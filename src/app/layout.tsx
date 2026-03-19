@@ -26,6 +26,10 @@ export const metadata: Metadata = {
   title: "Hotel Adria Ski | Premium Ski & Wellness Resort | Kupres, BiH",
   description:
     "Hotel Adria Ski u Kupresu nudi premium smještaj, skijalište, wellness, bazen i restoran. Idealna destinacija za zimski odmor, ljetni odmor, seminare i sportske pripreme u srcu Bosne i Hercegovine.",
+  icons: {
+    icon: "https://www.adriaski.net/wp-content/uploads/2016/05/logo160x160.png",
+    apple: "https://www.adriaski.net/wp-content/uploads/2016/05/logo160x160.png",
+  },
   openGraph: {
     title: "Hotel Adria Ski | Premium Ski & Wellness Resort | Kupres, BiH",
     description:

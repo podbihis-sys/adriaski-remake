@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { CheckCircle, ArrowRight } from "lucide-react";
 
 const categories = [
@@ -160,6 +161,21 @@ const packages = [
   },
 ];
 
+const imageMap: Record<string, string> = {
+  "Ski & Stay": "https://www.adriaski.net/wp-content/uploads/headerSkijaliste.jpg",
+  "Obiteljski paket": "https://www.adriaski.net/wp-content/uploads/skijaliste1.jpg",
+  "Ski & Learn": "https://www.adriaski.net/wp-content/uploads/headerSkijaliste.jpg",
+  "Brdski biciklizam": "https://www.adriaski.net/wp-content/uploads/2015/09/homeBiciklizam.jpg",
+  "Planinarenje": "https://www.adriaski.net/wp-content/uploads/planinarenjeStozer-1.jpg",
+  "Ramsko jezero": "https://www.adriaski.net/wp-content/uploads/jezero.jpg",
+  "Jahanje": "https://www.adriaski.net/wp-content/uploads/jahanje-1.jpg",
+  "Enduro turizam": "https://www.adriaski.net/wp-content/uploads/enduro-1.jpg",
+  "Wellness odmor": "https://www.adriaski.net/wp-content/uploads/headerBazen.jpg",
+  "Svadbeni salon": "https://www.adriaski.net/wp-content/uploads/svadba-1.jpg",
+  "Seminari i konferencije": "https://www.adriaski.net/wp-content/uploads/hotel-03.jpg",
+  "Sportske pripreme": "https://www.adriaski.net/wp-content/uploads/fitness-1.jpg",
+};
+
 const gradientMap: Record<string, string> = {
   zima: "from-[#1B3A6B] to-[#0EA5E9]",
   ljeto: "from-green-600 to-emerald-500",
@@ -194,8 +210,9 @@ export default function AngebotePage() {
   return (
     <main className="min-h-screen bg-[#F8FAFC]">
       {/* Hero */}
-      <section className="py-32 bg-gradient-to-br from-[#0F172A] via-[#1B3A6B] to-[#1B3A6B]/80">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      <section className="relative py-32 bg-gradient-to-br from-[#0F172A] via-[#1B3A6B] to-[#0F172A]/90 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(245,158,11,0.08)_0%,_transparent_60%)]" />
+        <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -209,6 +226,7 @@ export default function AngebotePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-heading text-5xl md:text-6xl text-white mb-6"
+            style={{ textShadow: '0 4px 30px rgba(0,0,0,0.3)' }}
           >
             Na&scaron;i paketi i ponude
           </motion.h1>
@@ -238,10 +256,10 @@ export default function AngebotePage() {
               <button
                 key={cat.key}
                 onClick={() => setActiveFilter(cat.key)}
-                className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+                className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 backdrop-blur-sm ${
                   activeFilter === cat.key
-                    ? "bg-[#F59E0B] text-[#0F172A] shadow-lg shadow-[#F59E0B]/25"
-                    : "bg-white/10 text-[#1B3A6B] border border-[#1B3A6B]/15 hover:bg-[#1B3A6B]/5"
+                    ? "bg-[#F59E0B] text-[#0F172A] shadow-lg shadow-[#F59E0B]/25 scale-105"
+                    : "bg-white/70 text-[#1B3A6B] border border-[#1B3A6B]/10 hover:bg-white/90 hover:shadow-md"
                 }`}
               >
                 {cat.label}
@@ -262,21 +280,24 @@ export default function AngebotePage() {
                 key={pkg.title}
                 variants={fadeInUp}
                 layout
-                className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group"
+                className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-[#1B3A6B]/5 transition-all duration-500 group bg-white"
               >
-                {/* Gradient placeholder top */}
-                <div
-                  className={`h-48 bg-gradient-to-br ${
-                    gradientMap[pkg.category]
-                  } relative`}
-                >
-                  <span className="absolute top-4 left-4 bg-white/20 backdrop-blur-sm text-white text-xs font-accent uppercase tracking-wide px-3 py-1 rounded-full">
+                {/* Package image */}
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={imageMap[pkg.title]}
+                    alt={pkg.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-black/30 to-transparent" />
+                  <span className="absolute top-4 left-4 z-10 backdrop-blur-sm bg-white/90 text-[#0F172A] text-xs font-accent uppercase tracking-wide px-3 py-1.5 rounded-full shadow-sm">
                     {categoryLabels[pkg.category]}
                   </span>
                 </div>
 
                 {/* Content */}
-                <div className="p-6 bg-white">
+                <div className="p-6">
                   <h3 className="font-heading text-xl text-[#0F172A]">
                     {pkg.title}
                   </h3>
@@ -294,7 +315,7 @@ export default function AngebotePage() {
                     {pkg.highlights.map((h) => (
                       <li
                         key={h}
-                        className="flex items-start gap-2 text-sm text-gray-600"
+                        className="flex items-start gap-2 text-sm text-gray-500"
                       >
                         <CheckCircle className="w-4 h-4 text-[#0EA5E9] mt-0.5 flex-shrink-0" />
                         <span>{h}</span>
@@ -304,10 +325,10 @@ export default function AngebotePage() {
 
                   <Link
                     href="/kontakt"
-                    className="inline-flex items-center gap-1 text-[#1B3A6B] font-semibold hover:text-[#F59E0B] transition-colors mt-4"
+                    className="inline-flex items-center gap-1 text-[#1B3A6B] font-semibold hover:text-[#F59E0B] transition-all duration-300 mt-6 group/link"
                   >
                     Rezervirajte
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                   </Link>
                 </div>
               </motion.div>
@@ -322,10 +343,12 @@ export default function AngebotePage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="py-20 bg-gradient-to-br from-[#0F172A] via-[#1B3A6B] to-[#1B3A6B]/80"
+        className="relative py-20 bg-gradient-to-br from-[#0F172A] via-[#1B3A6B] to-[#0F172A]/90 overflow-hidden"
       >
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-heading text-4xl text-white mb-4">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(14,165,233,0.1)_0%,_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,_rgba(245,158,11,0.08)_0%,_transparent_50%)]" />
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <h2 className="font-heading text-4xl text-white mb-4" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.2)' }}>
             Individualni paket?
           </h2>
           <p className="text-white/70 text-lg mb-8">
@@ -333,7 +356,7 @@ export default function AngebotePage() {
           </p>
           <Link
             href="/kontakt"
-            className="inline-block bg-[#F59E0B] hover:bg-[#F59E0B]/90 text-[#0F172A] font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-[#F59E0B]/25 hover:shadow-xl"
+            className="inline-block bg-[#F59E0B] hover:bg-[#F59E0B]/90 text-[#0F172A] font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-[#F59E0B]/25 hover:shadow-xl hover:scale-[1.02]"
           >
             Kontaktirajte nas
           </Link>

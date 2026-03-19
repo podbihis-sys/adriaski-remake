@@ -77,6 +77,12 @@ const config: Config = {
           "50%": { transform: "translateY(-10px)" },
         },
       },
+      boxShadow: {
+        'glow-accent': '0 0 20px rgba(245, 158, 11, 0.15)',
+        'glow-primary': '0 0 20px rgba(27, 58, 107, 0.15)',
+        'card': '0 10px 40px -10px rgba(0, 0, 0, 0.1)',
+        'card-hover': '0 20px 60px -15px rgba(0, 0, 0, 0.15)',
+      },
       borderRadius: {
         xl: "12px",
         "2xl": "16px",

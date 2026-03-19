@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState, FormEvent } from "react";
 import { MapPin, Phone, Mail, Clock, Check, AlertCircle } from "lucide-react";
@@ -61,9 +62,9 @@ const contactItems = [
 ];
 
 const inputClasses =
-  "w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition bg-white text-dark";
+  "w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 bg-white text-dark hover:border-gray-300";
 
-const labelClasses = "block text-sm font-accent font-medium text-gray-700 mb-2";
+const labelClasses = "block text-xs font-accent font-medium text-gray-500 mb-2 uppercase tracking-wide";
 
 export default function KontaktPage() {
   const [activeTab, setActiveTab] = useState<"booking" | "contact">("booking");
@@ -166,17 +167,15 @@ export default function KontaktPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-32 flex items-center justify-center overflow-hidden bg-gradient-to-br from-dark via-primary-600 to-primary-800">
-        <motion.div
-          className="absolute top-20 left-10 w-72 h-72 rounded-full bg-secondary-500/10 blur-3xl"
-          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      <section className="relative py-32 flex items-center justify-center overflow-hidden">
+        <Image
+          src="https://www.adriaski.net/wp-content/uploads/hotel-03.jpg"
+          alt="Hotel Adria Ski"
+          fill
+          className="object-cover"
+          priority
         />
-        <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-accent-500/10 blur-3xl"
-          animate={{ x: [0, -20, 0], y: [0, 30, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/60 to-dark/90" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <motion.div
@@ -191,6 +190,7 @@ export default function KontaktPage() {
 
           <motion.h1
             className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
+            style={{ textShadow: '0 4px 30px rgba(0,0,0,0.3)' }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -222,16 +222,16 @@ export default function KontaktPage() {
               transition={{ duration: 0.7 }}
             >
               {/* Tabs */}
-              <div className="flex mb-10 bg-light rounded-xl p-1.5">
+              <div className="flex mb-10 bg-light/80 backdrop-blur-sm rounded-xl p-1.5 shadow-sm">
                 <button
                   onClick={() => {
                     setActiveTab("booking");
                     setSubmitStatus("idle");
                   }}
-                  className={`flex-1 py-3 px-6 rounded-lg font-accent font-semibold text-sm transition-all ${
+                  className={`flex-1 py-3 px-6 rounded-lg font-accent font-semibold text-sm transition-all duration-300 ${
                     activeTab === "booking"
-                      ? "bg-primary text-white shadow-lg"
-                      : "text-gray-500 hover:text-dark"
+                      ? "bg-primary text-white shadow-lg shadow-primary/25"
+                      : "text-gray-500 hover:text-dark hover:bg-white/50"
                   }`}
                 >
                   Rezervacija
@@ -241,10 +241,10 @@ export default function KontaktPage() {
                     setActiveTab("contact");
                     setSubmitStatus("idle");
                   }}
-                  className={`flex-1 py-3 px-6 rounded-lg font-accent font-semibold text-sm transition-all ${
+                  className={`flex-1 py-3 px-6 rounded-lg font-accent font-semibold text-sm transition-all duration-300 ${
                     activeTab === "contact"
-                      ? "bg-primary text-white shadow-lg"
-                      : "text-gray-500 hover:text-dark"
+                      ? "bg-primary text-white shadow-lg shadow-primary/25"
+                      : "text-gray-500 hover:text-dark hover:bg-white/50"
                   }`}
                 >
                   Kontakt
@@ -472,7 +472,7 @@ export default function KontaktPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-accent hover:bg-accent-600 text-dark font-semibold py-4 rounded-xl font-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-accent hover:bg-accent-600 text-dark font-semibold py-4 rounded-xl font-accent transition-all duration-300 shadow-lg shadow-accent-500/25 hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
                       {isSubmitting ? "Šalje se..." : "Pošaljite rezervaciju"}
                     </button>
@@ -574,7 +574,7 @@ export default function KontaktPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-accent hover:bg-accent-600 text-dark font-semibold py-4 rounded-xl font-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-accent hover:bg-accent-600 text-dark font-semibold py-4 rounded-xl font-accent transition-all duration-300 shadow-lg shadow-accent-500/25 hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
                       {isSubmitting ? "Šalje se..." : "Pošaljite poruku"}
                     </button>
@@ -591,7 +591,15 @@ export default function KontaktPage() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <div className="rounded-2xl bg-light p-8 shadow-lg">
+              <div className="rounded-2xl bg-gradient-to-br from-light to-white border border-gray-100 p-8 shadow-lg">
+                <div className="relative h-48 -mx-8 -mt-8 mb-8 rounded-t-2xl overflow-hidden shadow-sm">
+                  <Image
+                    src="https://www.adriaski.net/wp-content/uploads/hotel-03.jpg"
+                    alt="Hotel Adria Ski"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <h3 className="font-heading text-2xl text-dark mb-8">
                   Kontakt informacije
                 </h3>
@@ -608,7 +616,7 @@ export default function KontaktPage() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: i * 0.1 }}
                       >
-                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-[#0EA5E9]/10 flex items-center justify-center flex-shrink-0">
                           <Icon className="w-5 h-5 text-primary" />
                         </div>
                         <div>
@@ -642,10 +650,10 @@ export default function KontaktPage() {
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
-            className="rounded-2xl overflow-hidden shadow-lg"
+            className="rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-gray-50 to-white border border-gray-100"
             {...fadeInUp}
           >
-            <div className="bg-light h-96 flex items-center justify-center">
+            <div className="h-96 flex items-center justify-center">
               <div className="text-center">
                 <MapPin className="w-12 h-12 text-primary/30 mx-auto mb-4" />
                 <p className="text-gray-500 font-accent text-lg">

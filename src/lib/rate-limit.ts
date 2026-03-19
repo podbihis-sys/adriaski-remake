@@ -4,8 +4,10 @@ const requests = new Map<string, { count: number; resetAt: number }>();
 if (typeof setInterval !== 'undefined') {
   setInterval(() => {
     const now = Date.now();
-    for (const [key, value] of requests.entries()) {
-      if (value.resetAt < now) requests.delete(key);
+    const keys = Array.from(requests.keys());
+    for (const key of keys) {
+      const value = requests.get(key);
+      if (value && value.resetAt < now) requests.delete(key);
     }
   }, 5 * 60 * 1000);
 }

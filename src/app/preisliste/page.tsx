@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -83,12 +84,12 @@ const boravisnaPristojba = [
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <motion.h2
-      variants={fadeInUp}
-      className="font-heading text-3xl md:text-4xl text-[#0F172A] mb-8"
-    >
-      {children}
-    </motion.h2>
+    <motion.div variants={fadeInUp} className="mb-8">
+      <h2 className="font-heading text-3xl md:text-4xl text-[#0F172A]">
+        {children}
+      </h2>
+      <div className="w-16 h-1 bg-gradient-to-r from-[#F59E0B] to-[#0EA5E9] mt-4 rounded-full" />
+    </motion.div>
   );
 }
 
@@ -96,7 +97,7 @@ function TableWrapper({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
       variants={fadeInUp}
-      className="rounded-2xl overflow-hidden shadow-lg border-l-4 border-[#F59E0B] mb-16"
+      className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 border-l-4 border-[#F59E0B] mb-16 bg-white"
     >
       <div className="overflow-x-auto">{children}</div>
     </motion.div>
@@ -117,8 +118,16 @@ export default function PreislistePage() {
   return (
     <main className="min-h-screen bg-[#F8FAFC]">
       {/* Hero */}
-      <section className="py-32 bg-gradient-to-br from-[#0F172A] via-[#1B3A6B] to-[#1B3A6B]/80">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      <section className="relative py-32 overflow-hidden">
+        <Image
+          src="https://www.adriaski.net/wp-content/uploads/headerSkijaliste.jpg"
+          alt="Skijalište Kupres"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A]/80 via-[#1B3A6B]/70 to-[#0F172A]/90" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -132,6 +141,7 @@ export default function PreislistePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-heading text-5xl md:text-6xl text-white mb-6"
+            style={{ textShadow: '0 4px 30px rgba(0,0,0,0.3)' }}
           >
             Cjenik 2025/26
           </motion.h1>
@@ -161,7 +171,7 @@ export default function PreislistePage() {
           </motion.p>
           <TableWrapper>
             <table className="w-full text-left">
-              <thead className="bg-[#1B3A6B] text-white">
+              <thead className="bg-gradient-to-r from-[#1B3A6B] to-[#0F172A] text-white">
                 <tr>
                   <Th>Kategorija</Th>
                   <Th>KM</Th>
@@ -174,7 +184,7 @@ export default function PreislistePage() {
                     key={r.kat}
                     className={`${
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
-                    } hover:bg-[#F59E0B]/5 transition-colors`}
+                    } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
                     <td className="px-6 py-3.5 text-[#0F172A]">{r.kat}</td>
                     <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
@@ -202,7 +212,7 @@ export default function PreislistePage() {
           </motion.p>
           <TableWrapper>
             <table className="w-full text-left">
-              <thead className="bg-[#1B3A6B] text-white">
+              <thead className="bg-gradient-to-r from-[#1B3A6B] to-[#0F172A] text-white">
                 <tr>
                   <Th>Razdoblje</Th>
                   <Th>KM</Th>
@@ -215,7 +225,7 @@ export default function PreislistePage() {
                     key={r.razdoblje}
                     className={`${
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
-                    } hover:bg-[#F59E0B]/5 transition-colors`}
+                    } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
                     <td className="px-6 py-3.5 text-[#0F172A]">
                       {r.razdoblje}
@@ -236,7 +246,7 @@ export default function PreislistePage() {
           <SectionTitle>Popusti za djecu</SectionTitle>
           <TableWrapper>
             <table className="w-full text-left">
-              <thead className="bg-[#1B3A6B] text-white">
+              <thead className="bg-gradient-to-r from-[#1B3A6B] to-[#0F172A] text-white">
                 <tr>
                   <Th>Opis</Th>
                   <Th>Popust</Th>
@@ -248,7 +258,7 @@ export default function PreislistePage() {
                     key={r.opis}
                     className={`${
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
-                    } hover:bg-[#F59E0B]/5 transition-colors`}
+                    } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
                     <td className="px-6 py-3.5 text-[#0F172A]">{r.opis}</td>
                     <td className="px-6 py-3.5 font-semibold text-[#F59E0B]">
@@ -264,7 +274,7 @@ export default function PreislistePage() {
           <SectionTitle>Motel Tikvice</SectionTitle>
           <TableWrapper>
             <table className="w-full text-left">
-              <thead className="bg-[#1B3A6B] text-white">
+              <thead className="bg-gradient-to-r from-[#1B3A6B] to-[#0F172A] text-white">
                 <tr>
                   <Th>Tip</Th>
                   <Th>Cijena</Th>
@@ -276,7 +286,7 @@ export default function PreislistePage() {
                     key={r.tip}
                     className={`${
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
-                    } hover:bg-[#F59E0B]/5 transition-colors`}
+                    } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
                     <td className="px-6 py-3.5 text-[#0F172A]">{r.tip}</td>
                     <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
@@ -292,7 +302,7 @@ export default function PreislistePage() {
           <SectionTitle>Ski karte</SectionTitle>
           <TableWrapper>
             <table className="w-full text-left">
-              <thead className="bg-[#1B3A6B] text-white">
+              <thead className="bg-gradient-to-r from-[#1B3A6B] to-[#0F172A] text-white">
                 <tr>
                   <Th>Trajanje</Th>
                   <Th>Odrasli KM</Th>
@@ -307,7 +317,7 @@ export default function PreislistePage() {
                     key={r.trajanje}
                     className={`${
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
-                    } hover:bg-[#F59E0B]/5 transition-colors`}
+                    } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
                     <td className="px-6 py-3.5 text-[#0F172A]">
                       {r.trajanje}
@@ -340,7 +350,7 @@ export default function PreislistePage() {
           <SectionTitle>Iznajmljivanje ski opreme</SectionTitle>
           <TableWrapper>
             <table className="w-full text-left">
-              <thead className="bg-[#1B3A6B] text-white">
+              <thead className="bg-gradient-to-r from-[#1B3A6B] to-[#0F172A] text-white">
                 <tr>
                   <Th>Trajanje</Th>
                   <Th>Odrasli KM / EUR</Th>
@@ -353,7 +363,7 @@ export default function PreislistePage() {
                     key={r.trajanje}
                     className={`${
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
-                    } hover:bg-[#F59E0B]/5 transition-colors`}
+                    } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
                     <td className="px-6 py-3.5 text-[#0F172A]">
                       {r.trajanje}
@@ -374,7 +384,7 @@ export default function PreislistePage() {
           <SectionTitle>&Scaron;kola skijanja</SectionTitle>
           <TableWrapper>
             <table className="w-full text-left">
-              <thead className="bg-[#1B3A6B] text-white">
+              <thead className="bg-gradient-to-r from-[#1B3A6B] to-[#0F172A] text-white">
                 <tr>
                   <Th>Tip</Th>
                   <Th>Trajanje</Th>
@@ -387,7 +397,7 @@ export default function PreislistePage() {
                     key={`${r.tip}-${r.trajanje}`}
                     className={`${
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
-                    } hover:bg-[#F59E0B]/5 transition-colors`}
+                    } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
                     <td className="px-6 py-3.5 text-[#0F172A]">{r.tip}</td>
                     <td className="px-6 py-3.5 text-[#0F172A]">
@@ -406,7 +416,7 @@ export default function PreislistePage() {
           <SectionTitle>Boravi&scaron;na pristojba</SectionTitle>
           <TableWrapper>
             <table className="w-full text-left">
-              <thead className="bg-[#1B3A6B] text-white">
+              <thead className="bg-gradient-to-r from-[#1B3A6B] to-[#0F172A] text-white">
                 <tr>
                   <Th>Opis</Th>
                   <Th>Cijena</Th>
@@ -418,7 +428,7 @@ export default function PreislistePage() {
                     key={r.opis}
                     className={`${
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
-                    } hover:bg-[#F59E0B]/5 transition-colors`}
+                    } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
                     <td className="px-6 py-3.5 text-[#0F172A]">{r.opis}</td>
                     <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
@@ -438,10 +448,11 @@ export default function PreislistePage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="py-20 bg-gradient-to-br from-[#0F172A] via-[#1B3A6B] to-[#1B3A6B]/80"
+        className="relative py-20 bg-gradient-to-br from-[#0F172A] via-[#1B3A6B] to-[#0F172A]/90 overflow-hidden"
       >
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-heading text-4xl text-white mb-4">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(14,165,233,0.1)_0%,_transparent_50%)]" />
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <h2 className="font-heading text-4xl text-white mb-4" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.2)' }}>
             Rezervirajte sada
           </h2>
           <p className="text-white/70 text-lg mb-8">
@@ -449,7 +460,7 @@ export default function PreislistePage() {
           </p>
           <Link
             href="/kontakt"
-            className="inline-block bg-[#F59E0B] hover:bg-[#F59E0B]/90 text-[#0F172A] font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-[#F59E0B]/25 hover:shadow-xl"
+            className="inline-block bg-[#F59E0B] hover:bg-[#F59E0B]/90 text-[#0F172A] font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-[#F59E0B]/25 hover:shadow-xl hover:scale-[1.02]"
           >
             Rezervirajte sada
           </Link>

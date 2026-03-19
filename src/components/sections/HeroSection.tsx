@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const fadeInUp = {
@@ -20,23 +21,14 @@ const stats = [
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-dark via-primary-600 to-primary-800">
-      {/* Decorative floating elements */}
-      <motion.div
-        className="absolute top-20 left-10 w-72 h-72 rounded-full bg-secondary-500/10 blur-3xl"
-        animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-accent-500/10 blur-3xl"
-        animate={{ x: [0, -20, 0], y: [0, 30, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute top-1/3 right-1/4 w-48 h-48 rounded-full bg-primary-600/20 blur-2xl"
-        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <Image src="https://www.adriaski.net/wp-content/uploads/headerSkijaliste.jpg" alt="Adria Ski" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/70 via-primary/60 to-dark/80" />
+        {/* Animated gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-primary-600/20 via-transparent to-accent-500/10 animate-pulse" style={{ animationDuration: '6s' }} />
+      </div>
 
       {/* Main content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
@@ -45,13 +37,14 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <span className="inline-block font-accent text-xs tracking-widest text-accent-500 uppercase mb-6 px-4 py-2 rounded-full border border-accent-500/30 bg-accent-500/10">
+          <span className="inline-block font-accent text-xs tracking-widest text-accent-500 uppercase mb-6 px-6 py-3 rounded-full border border-accent-500/30 bg-white/10 backdrop-blur-sm shadow-lg">
             PREMIUM SKI & WELLNESS RESORT
           </span>
         </motion.div>
 
         <motion.h1
           className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
+          style={{ textShadow: '0 4px 30px rgba(0,0,0,0.3)' }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
@@ -76,7 +69,7 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.8 }}
         >
           {stats.map((stat, i) => (
-            <div key={i} className="text-center">
+            <div key={i} className="text-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
               <div className="text-3xl font-heading font-bold text-white">
                 {stat.value}
               </div>
@@ -96,17 +89,20 @@ export default function HeroSection() {
         >
           <Link
             href="/kontakt"
-            className="bg-accent-500 hover:bg-accent-600 text-dark rounded-full px-8 py-4 font-accent font-semibold transition-colors text-lg"
+            className="bg-accent-500 hover:bg-accent-600 text-dark rounded-full px-8 py-4 font-accent font-semibold transition-all duration-500 text-lg shadow-lg shadow-accent-500/25 hover:shadow-xl hover:shadow-accent-500/30 hover:scale-105"
           >
             Rezervirajte sada
           </Link>
           <Link
             href="/unterkunft"
-            className="border-2 border-white/30 text-white hover:bg-white/10 rounded-full px-8 py-4 font-accent font-semibold transition-colors text-lg"
+            className="border-2 border-white/30 text-white hover:bg-white/10 rounded-full px-8 py-4 font-accent font-semibold transition-all duration-500 text-lg hover:border-white/50 hover:scale-105"
           >
             Pogledajte ponudu
           </Link>
         </motion.div>
+
+        {/* Subtle glow effect */}
+        <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-accent-500/10 rounded-full blur-3xl pointer-events-none" />
       </div>
 
       {/* Scroll indicator */}

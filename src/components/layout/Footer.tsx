@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Mountain, Phone, Mail, MapPin, Clock } from "lucide-react";
+import Image from "next/image";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 const quickLinks = [
   { label: "Početna", href: "/" },
@@ -14,18 +15,23 @@ export function Footer() {
   return (
     <footer>
       {/* Top accent line */}
-      <div className="h-1 w-full bg-accent" />
+      <div className="h-1 w-full bg-gradient-to-r from-accent-500 via-secondary-500 to-accent-500" />
 
-      <div className="bg-dark text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="bg-dark text-white relative overflow-hidden">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 [&>*+*]:lg:border-l [&>*+*]:lg:border-white/10 [&>*+*]:lg:pl-12">
             {/* Column 1: Logo & Description */}
             <div className="space-y-4">
-              <Link href="/" className="flex items-center gap-2 group">
-                <Mountain className="w-8 h-8 text-accent transition-transform duration-300 group-hover:scale-110" />
-                <span className="text-xl font-heading font-bold text-white tracking-wide">
-                  ADRIA SKI
-                </span>
+              <Link href="/" className="flex items-center group">
+                <Image
+                  src="https://www.adriaski.net/wp-content/uploads/2016/05/logo160x160.png"
+                  alt="Adria Ski"
+                  width={80}
+                  height={80}
+                  className="rounded-lg"
+                />
               </Link>
               <p className="text-sm font-accent font-medium text-accent-400">
                 Premium Ski & Wellness Resort
@@ -47,7 +53,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/60 hover:text-accent transition-colors duration-200"
+                      className="text-sm text-white/60 hover:text-accent-500 hover:translate-x-1 transition-all duration-200 inline-block"
                     >
                       {link.label}
                     </Link>
@@ -63,13 +69,13 @@ export function Footer() {
               </h3>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 flex-shrink-0"><MapPin className="w-4 h-4 text-accent" /></span>
                   <span className="text-sm text-white/60">
                     Čajuša bb, 80 320 Kupres, BiH
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Phone className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 flex-shrink-0"><Phone className="w-4 h-4 text-accent" /></span>
                   <a
                     href="tel:+38734275100"
                     className="text-sm text-white/60 hover:text-accent transition-colors duration-200"
@@ -78,17 +84,17 @@ export function Footer() {
                   </a>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Mail className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 flex-shrink-0"><Mail className="w-4 h-4 text-accent" /></span>
                   <div className="flex flex-col gap-1">
                     <a
                       href="mailto:info@adriaski.net"
-                      className="text-sm text-white/60 hover:text-accent transition-colors duration-200"
+                      className="text-sm text-white/60 hover:text-accent-500 hover:translate-x-1 transition-all duration-200 inline-block"
                     >
                       info@adriaski.net
                     </a>
                     <a
                       href="mailto:recepcija@adriaski.net"
-                      className="text-sm text-white/60 hover:text-accent transition-colors duration-200"
+                      className="text-sm text-white/60 hover:text-accent-500 hover:translate-x-1 transition-all duration-200 inline-block"
                     >
                       recepcija@adriaski.net
                     </a>
@@ -104,7 +110,7 @@ export function Footer() {
               </h3>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <Clock className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 flex-shrink-0"><Clock className="w-4 h-4 text-accent" /></span>
                   <div>
                     <p className="text-sm font-medium text-white/80">
                       Recepcija
@@ -113,7 +119,7 @@ export function Footer() {
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Clock className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 flex-shrink-0"><Clock className="w-4 h-4 text-accent" /></span>
                   <div>
                     <p className="text-sm font-medium text-white/80">
                       Skijalište
@@ -122,7 +128,7 @@ export function Footer() {
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Clock className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 flex-shrink-0"><Clock className="w-4 h-4 text-accent" /></span>
                   <div>
                     <p className="text-sm font-medium text-white/80">Bazen</p>
                     <p className="text-sm text-white/60">08:00 - 20:00</p>

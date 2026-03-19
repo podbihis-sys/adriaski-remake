@@ -53,8 +53,11 @@ const cardVariants = {
 
 export default function FeaturesSection() {
   return (
-    <section className="py-24 bg-light">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-24 bg-light relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-20 -right-32 w-96 h-96 bg-primary-600/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-20 -left-32 w-80 h-80 bg-secondary-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="relative max-w-7xl mx-auto px-6">
         <motion.h2
           className="font-heading text-4xl text-dark text-center mb-16"
           {...fadeInUp}
@@ -74,10 +77,11 @@ export default function FeaturesSection() {
             return (
               <motion.div
                 key={i}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:shadow-primary-600/5 transition-all duration-500 hover:-translate-y-1 border border-gray-100 relative overflow-hidden"
                 variants={cardVariants}
               >
-                <div className="w-16 h-16 rounded-full bg-primary-600/10 flex items-center justify-center">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-600 to-secondary-500 rounded-t-2xl" />
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary-600/10 to-secondary-500/10 flex items-center justify-center">
                   <Icon className="w-8 h-8 text-primary-600" />
                 </div>
                 <h3 className="font-heading text-xl text-dark mt-6">

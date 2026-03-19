@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Mountain, Menu, X, ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -60,13 +61,13 @@ function DesktopDropdown({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
-          className="absolute top-full left-0 mt-2 w-56 rounded-xl bg-primary-700 shadow-xl border border-white/10 overflow-hidden z-50"
+          className="absolute top-full left-0 mt-2 w-56 rounded-2xl bg-white/95 backdrop-blur-xl shadow-2xl shadow-dark/10 border border-gray-100 overflow-hidden z-50"
         >
           {items.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="block px-5 py-3 text-sm text-white/80 hover:text-accent hover:bg-white/5 transition-colors duration-200"
+              className="block px-5 py-3 text-sm text-dark/70 hover:text-accent-600 hover:bg-accent-50 transition-colors duration-200"
             >
               {item.label}
             </Link>
@@ -177,18 +178,21 @@ export function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled
-            ? "bg-primary-600 shadow-lg"
+            ? "bg-dark/80 backdrop-blur-xl border-b border-white/10 shadow-lg"
             : "bg-transparent"
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group">
-              <Mountain className="w-8 h-8 text-accent transition-transform duration-300 group-hover:scale-110" />
-              <span className="text-xl font-heading font-bold text-white tracking-wide">
-                ADRIA SKI
-              </span>
+            <Link href="/" className="flex items-center group hover:opacity-80 transition">
+              <Image
+                src="https://www.adriaski.net/wp-content/uploads/2016/05/logo_adria_ski.png"
+                alt="Adria Ski"
+                width={150}
+                height={40}
+                className="h-10 w-auto"
+              />
             </Link>
 
             {/* Desktop Navigation */}
@@ -205,12 +209,12 @@ export function Navbar() {
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className="px-4 py-2 text-sm font-accent font-medium text-white/90 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/10"
+                      className="px-4 py-2 text-sm font-accent font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border-b-2 border-transparent hover:border-accent-500"
                     >
                       {item.label}
                     </Link>
                   ) : (
-                    <button className="flex items-center gap-1 px-4 py-2 text-sm font-accent font-medium text-white/90 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/10">
+                    <button className="flex items-center gap-1 px-4 py-2 text-sm font-accent font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border-b-2 border-transparent hover:border-accent-500">
                       {item.label}
                       <ChevronDown
                         className={cn(
@@ -234,7 +238,7 @@ export function Navbar() {
             <div className="flex items-center gap-4">
               <Link
                 href="/kontakt"
-                className="hidden lg:inline-flex items-center px-6 py-2.5 bg-accent text-dark font-accent font-semibold text-sm rounded-full hover:bg-accent-400 hover:scale-105 transition-all duration-300 shadow-lg shadow-accent/25"
+                className="hidden lg:inline-flex items-center px-6 py-2.5 bg-accent text-dark font-accent font-semibold text-sm rounded-full hover:bg-accent-400 hover:scale-105 transition-all duration-300 shadow-lg shadow-accent-500/25 hover:shadow-xl hover:shadow-accent-500/30"
               >
                 Rezervacija
               </Link>
@@ -263,7 +267,7 @@ export function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-primary-800 lg:hidden"
+            className="fixed inset-0 z-40 bg-dark/95 backdrop-blur-xl lg:hidden"
           >
             <div className="flex flex-col h-full pt-24 px-8 pb-8 overflow-y-auto">
               <div className="flex-1 space-y-2">

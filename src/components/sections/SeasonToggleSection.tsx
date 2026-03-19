@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import {
   Snowflake,
   Sun,
@@ -23,18 +24,18 @@ const fadeInUp = {
 };
 
 const winterActivities = [
-  { icon: Mountain, label: "Skijanje" },
-  { icon: Snowflake, label: "Snowboard" },
-  { icon: GraduationCap, label: "Škola skijanja" },
-  { icon: Waves, label: "Wellness" },
+  { icon: Mountain, label: "Skijanje", image: "https://www.adriaski.net/wp-content/uploads/skijaliste1.jpg" },
+  { icon: Snowflake, label: "Snowboard", image: "https://www.adriaski.net/wp-content/uploads/headerSkijaliste.jpg" },
+  { icon: GraduationCap, label: "Škola skijanja", image: "https://www.adriaski.net/wp-content/uploads/skijaliste2.jpg" },
+  { icon: Waves, label: "Wellness", image: "https://www.adriaski.net/wp-content/uploads/bazen-1.jpg" },
 ];
 
 const summerActivities = [
-  { icon: Bike, label: "Brdski biciklizam" },
-  { icon: Footprints, label: "Planinarenje" },
-  { icon: MapPin, label: "Ramsko jezero" },
-  { icon: Users, label: "Jahanje" },
-  { icon: Hotel, label: "Enduro turizam" },
+  { icon: Bike, label: "Brdski biciklizam", image: "https://www.adriaski.net/wp-content/uploads/2015/09/homeBiciklizam.jpg" },
+  { icon: Footprints, label: "Planinarenje", image: "https://www.adriaski.net/wp-content/uploads/planinarenjeStozer-1.jpg" },
+  { icon: MapPin, label: "Ramsko jezero", image: "https://www.adriaski.net/wp-content/uploads/jezero.jpg" },
+  { icon: Users, label: "Jahanje", image: "https://www.adriaski.net/wp-content/uploads/planinarenjeStozer-1.jpg" },
+  { icon: Hotel, label: "Enduro turizam", image: "https://www.adriaski.net/wp-content/uploads/enduro-1.jpg" },
 ];
 
 const containerVariants = {
@@ -79,13 +80,14 @@ export default function SeasonToggleSection() {
           </span>
           <button
             onClick={() => setIsWinter(!isWinter)}
-            className="relative w-16 h-8 rounded-full bg-white/20 backdrop-blur-sm border border-white/15 transition-colors"
+            className="relative w-20 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/20 transition-all duration-500 shadow-lg shadow-white/5 hover:shadow-white/10"
             aria-label="Toggle season"
           >
             <motion.div
-              className="absolute top-1 w-6 h-6 rounded-full bg-white shadow-md"
-              animate={{ left: isWinter ? 4 : 34 }}
+              className="absolute top-1.5 w-7 h-7 rounded-full bg-white shadow-lg"
+              animate={{ left: isWinter ? 5 : 44 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              style={{ boxShadow: '0 0 15px rgba(255,255,255,0.3)' }}
             />
           </button>
           <span
@@ -113,13 +115,17 @@ export default function SeasonToggleSection() {
                 return (
                   <motion.div
                     key={i}
-                    className="bg-white/10 backdrop-blur-lg border border-white/15 rounded-2xl p-6 text-center hover:bg-white/20 transition-colors"
+                    className="relative overflow-hidden rounded-2xl p-6 min-h-[140px] text-center hover:scale-105 transition-all duration-500 hover:shadow-xl hover:shadow-black/20"
                     variants={cardVariants}
                   >
-                    <Icon className="w-10 h-10 text-accent-500 mx-auto mb-3" />
-                    <span className="text-white font-accent font-semibold">
-                      {activity.label}
-                    </span>
+                    <Image src={activity.image} alt={activity.label} fill className="object-cover" />
+                    <div className="absolute inset-0 bg-dark/50 hover:bg-dark/40 transition-colors" />
+                    <div className="relative z-10">
+                      <Icon className="w-12 h-12 text-accent-500 mx-auto mb-3 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+                      <span className="text-white font-accent font-semibold">
+                        {activity.label}
+                      </span>
+                    </div>
                   </motion.div>
                 );
               })}
@@ -138,13 +144,17 @@ export default function SeasonToggleSection() {
                 return (
                   <motion.div
                     key={i}
-                    className="bg-white/10 backdrop-blur-lg border border-white/15 rounded-2xl p-6 text-center hover:bg-white/20 transition-colors"
+                    className="relative overflow-hidden rounded-2xl p-6 min-h-[140px] text-center hover:scale-105 transition-all duration-500 hover:shadow-xl hover:shadow-black/20"
                     variants={cardVariants}
                   >
-                    <Icon className="w-10 h-10 text-accent-500 mx-auto mb-3" />
-                    <span className="text-white font-accent font-semibold">
-                      {activity.label}
-                    </span>
+                    <Image src={activity.image} alt={activity.label} fill className="object-cover" />
+                    <div className="absolute inset-0 bg-dark/50 hover:bg-dark/40 transition-colors" />
+                    <div className="relative z-10">
+                      <Icon className="w-12 h-12 text-accent-500 mx-auto mb-3 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+                      <span className="text-white font-accent font-semibold">
+                        {activity.label}
+                      </span>
+                    </div>
                   </motion.div>
                 );
               })}

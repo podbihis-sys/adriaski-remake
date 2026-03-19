@@ -9,7 +9,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "*.adriaski.net",
+        hostname: "www.adriaski.net",
         pathname: "/**",
       },
     ],
