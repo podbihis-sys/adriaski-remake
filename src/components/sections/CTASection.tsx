@@ -5,10 +5,10 @@ import { Sparkles } from "lucide-react";
 import Link from "next/link";
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
+  initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-100px" },
-  transition: { duration: 0.6 },
+  viewport: { once: true, amount: 0.1 },
+  transition: { duration: 0.5, ease: "easeOut" },
 };
 
 export default function CTASection() {

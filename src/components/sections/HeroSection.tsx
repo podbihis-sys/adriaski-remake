@@ -6,10 +6,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
+  initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-100px" },
-  transition: { duration: 0.6 },
+  viewport: { once: true, amount: 0.1 },
+  transition: { duration: 0.5, ease: "easeOut" },
 };
 
 const stats = [
@@ -45,7 +45,7 @@ export default function HeroSection() {
         <motion.h1
           className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
           style={{ textShadow: '0 4px 30px rgba(0,0,0,0.3)' }}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
         >

@@ -6,10 +6,10 @@ import { motion } from "framer-motion";
 import { ArrowRight, Users, Presentation, CheckCircle } from "lucide-react";
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
+  initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-100px" },
-  transition: { duration: 0.6 },
+  viewport: { once: true, amount: 0.1 },
+  transition: { duration: 0.5, ease: "easeOut" },
 };
 
 const containerVariants = {
@@ -22,7 +22,7 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
@@ -86,7 +86,7 @@ export default function SeminarePage() {
           <motion.h1
             className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
             style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
           >
@@ -125,7 +125,7 @@ export default function SeminarePage() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, amount: 0.05 }}
           >
             {halls.map((hall, i) => {
               const Icon = hall.icon;
@@ -186,7 +186,7 @@ export default function SeminarePage() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, amount: 0.05 }}
           >
             {additionalServices.map((service, i) => (
               <motion.div
@@ -209,9 +209,9 @@ export default function SeminarePage() {
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             className="text-center max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.6 }}
           >
             <h2 className="font-heading text-4xl text-white mb-6">

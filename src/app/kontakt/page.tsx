@@ -6,10 +6,10 @@ import { useState, FormEvent } from "react";
 import { MapPin, Phone, Mail, Clock, Check, AlertCircle } from "lucide-react";
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
+  initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-100px" },
-  transition: { duration: 0.6 },
+  viewport: { once: true, amount: 0.1 },
+  transition: { duration: 0.5, ease: "easeOut" },
 };
 
 const containerVariants = {
@@ -22,7 +22,7 @@ const containerVariants = {
 };
 
 const fieldVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 15 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
 
@@ -191,7 +191,7 @@ export default function KontaktPage() {
           <motion.h1
             className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
             style={{ textShadow: '0 4px 30px rgba(0,0,0,0.3)' }}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
           >
@@ -218,7 +218,7 @@ export default function KontaktPage() {
               className="lg:w-7/12"
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.7 }}
             >
               {/* Tabs */}
@@ -588,7 +588,7 @@ export default function KontaktPage() {
               className="lg:w-5/12"
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
               <div className="rounded-2xl bg-gradient-to-br from-light to-white border border-gray-100 p-8 shadow-lg">

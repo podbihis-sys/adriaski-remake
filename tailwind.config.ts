@@ -49,9 +49,9 @@ const config: Config = {
         light: "#F8FAFC",
       },
       fontFamily: {
-        heading: ["Playfair Display", "serif"],
-        body: ["Inter", "sans-serif"],
-        accent: ["Montserrat", "sans-serif"],
+        heading: ["var(--font-playfair)", "Playfair Display", "serif"],
+        body: ["var(--font-inter)", "Inter", "sans-serif"],
+        accent: ["var(--font-montserrat)", "Montserrat", "sans-serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out",
