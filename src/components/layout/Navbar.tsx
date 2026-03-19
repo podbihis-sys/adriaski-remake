@@ -61,13 +61,13 @@ function DesktopDropdown({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
-          className="absolute top-full left-0 mt-2 w-56 rounded-2xl bg-white/95 backdrop-blur-xl shadow-2xl shadow-dark/10 border border-gray-100 overflow-hidden z-50"
+          className="absolute top-full left-0 mt-2 w-60 rounded-2xl bg-white/95 backdrop-blur-xl shadow-2xl shadow-dark/10 border border-gray-100 p-2 z-50"
         >
           {items.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="block px-5 py-3 text-sm text-dark/70 hover:text-accent-600 hover:bg-accent-50 transition-colors duration-200"
+              className="block px-4 py-3 text-sm text-dark/70 hover:text-accent-600 hover:bg-accent-50 rounded-lg transition-colors duration-200"
             >
               {item.label}
             </Link>
@@ -191,12 +191,12 @@ export function Navbar() {
                 alt="Adria Ski"
                 width={150}
                 height={40}
-                className="h-10 w-auto"
+                className="h-12 w-auto"
               />
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-1">
+            <div className="hidden lg:flex items-center gap-2">
               {navItems.map((item) => (
                 <div
                   key={item.label}
@@ -209,12 +209,12 @@ export function Navbar() {
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className="px-4 py-2 text-sm font-accent font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border-b-2 border-transparent hover:border-accent-500"
+                      className="px-5 py-2.5 text-base font-accent font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border-b-2 border-transparent hover:border-accent-500"
                     >
                       {item.label}
                     </Link>
                   ) : (
-                    <button className="flex items-center gap-1 px-4 py-2 text-sm font-accent font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border-b-2 border-transparent hover:border-accent-500">
+                    <button className="flex items-center gap-1.5 px-5 py-2.5 text-base font-accent font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border-b-2 border-transparent hover:border-accent-500">
                       {item.label}
                       <ChevronDown
                         className={cn(
@@ -238,7 +238,7 @@ export function Navbar() {
             <div className="flex items-center gap-4">
               <Link
                 href="/kontakt"
-                className="hidden lg:inline-flex items-center px-6 py-2.5 bg-accent text-dark font-accent font-semibold text-sm rounded-full hover:bg-accent-400 hover:scale-105 transition-all duration-300 shadow-lg shadow-accent-500/25 hover:shadow-xl hover:shadow-accent-500/30"
+                className="hidden lg:inline-flex items-center px-7 py-3 bg-accent text-dark font-accent font-semibold text-base rounded-full hover:bg-accent-400 hover:scale-105 transition-all duration-300 shadow-lg shadow-accent-500/25 hover:shadow-xl hover:shadow-accent-500/30"
               >
                 Rezervacija
               </Link>

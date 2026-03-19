@@ -85,7 +85,7 @@ const boravisnaPristojba = [
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
     <motion.div variants={fadeInUp} className="mb-8">
-      <h2 className="font-heading text-3xl md:text-4xl text-[#0F172A]">
+      <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-[#0F172A]">
         {children}
       </h2>
       <div className="w-16 h-1 bg-gradient-to-r from-[#F59E0B] to-[#0EA5E9] mt-4 rounded-full" />
@@ -106,7 +106,7 @@ function TableWrapper({ children }: { children: React.ReactNode }) {
 
 function Th({ children }: { children: React.ReactNode }) {
   return (
-    <th className="px-6 py-4 text-left font-accent uppercase tracking-wide text-sm">
+    <th className="px-6 py-5 text-left font-accent uppercase tracking-wide text-sm">
       {children}
     </th>
   );
@@ -118,7 +118,7 @@ export default function PreislistePage() {
   return (
     <main className="min-h-screen bg-[#F8FAFC]">
       {/* Hero */}
-      <section className="relative py-32 overflow-hidden">
+      <section className="relative py-36 overflow-hidden">
         <Image
           src="https://www.adriaski.net/wp-content/uploads/headerSkijaliste.jpg"
           alt="Skijalište Kupres"
@@ -140,8 +140,8 @@ export default function PreislistePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-heading text-5xl md:text-6xl text-white mb-6"
-            style={{ textShadow: '0 4px 30px rgba(0,0,0,0.3)' }}
+            className="font-heading text-5xl md:text-6xl lg:text-7xl text-white mb-6"
+            style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}
           >
             Cjenik 2025/26
           </motion.h1>
@@ -149,7 +149,7 @@ export default function PreislistePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-white/70 text-lg"
+            className="text-white/80 text-xl"
           >
             Sezona 2025/26
           </motion.p>
@@ -186,11 +186,11 @@ export default function PreislistePage() {
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
                     } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
-                    <td className="px-6 py-3.5 text-[#0F172A]">{r.kat}</td>
-                    <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
+                    <td className="px-6 py-5 text-[#0F172A]">{r.kat}</td>
+                    <td className="px-6 py-5 font-semibold text-[#0F172A]">
                       {r.km}
                     </td>
-                    <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
+                    <td className="px-6 py-5 font-semibold text-[#0F172A]">
                       {r.eur}
                     </td>
                   </tr>
@@ -227,13 +227,13 @@ export default function PreislistePage() {
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
                     } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
-                    <td className="px-6 py-3.5 text-[#0F172A]">
+                    <td className="px-6 py-5 text-[#0F172A]">
                       {r.razdoblje}
                     </td>
-                    <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
+                    <td className="px-6 py-5 font-semibold text-[#0F172A]">
                       {r.km}
                     </td>
-                    <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
+                    <td className="px-6 py-5 font-semibold text-[#0F172A]">
                       {r.eur}
                     </td>
                   </tr>
@@ -260,8 +260,8 @@ export default function PreislistePage() {
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
                     } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
-                    <td className="px-6 py-3.5 text-[#0F172A]">{r.opis}</td>
-                    <td className="px-6 py-3.5 font-semibold text-[#F59E0B]">
+                    <td className="px-6 py-5 text-[#0F172A]">{r.opis}</td>
+                    <td className="px-6 py-5 font-semibold text-[#F59E0B]">
                       {r.popust}
                     </td>
                   </tr>
@@ -288,8 +288,8 @@ export default function PreislistePage() {
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
                     } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
-                    <td className="px-6 py-3.5 text-[#0F172A]">{r.tip}</td>
-                    <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
+                    <td className="px-6 py-5 text-[#0F172A]">{r.tip}</td>
+                    <td className="px-6 py-5 font-semibold text-[#0F172A]">
                       {r.cijena}
                     </td>
                   </tr>
@@ -319,19 +319,19 @@ export default function PreislistePage() {
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
                     } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
-                    <td className="px-6 py-3.5 text-[#0F172A]">
+                    <td className="px-6 py-5 text-[#0F172A]">
                       {r.trajanje}
                     </td>
-                    <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
+                    <td className="px-6 py-5 font-semibold text-[#0F172A]">
                       {r.oKm}
                     </td>
-                    <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
+                    <td className="px-6 py-5 font-semibold text-[#0F172A]">
                       {r.oEur}
                     </td>
-                    <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
+                    <td className="px-6 py-5 font-semibold text-[#0F172A]">
                       {r.dKm}
                     </td>
-                    <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
+                    <td className="px-6 py-5 font-semibold text-[#0F172A]">
                       {r.dEur}
                     </td>
                   </tr>
@@ -365,13 +365,13 @@ export default function PreislistePage() {
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
                     } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
-                    <td className="px-6 py-3.5 text-[#0F172A]">
+                    <td className="px-6 py-5 text-[#0F172A]">
                       {r.trajanje}
                     </td>
-                    <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
+                    <td className="px-6 py-5 font-semibold text-[#0F172A]">
                       {r.oKm} / {r.oEur}
                     </td>
-                    <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
+                    <td className="px-6 py-5 font-semibold text-[#0F172A]">
                       {r.dKm} / {r.dEur}
                     </td>
                   </tr>
@@ -399,11 +399,11 @@ export default function PreislistePage() {
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
                     } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
-                    <td className="px-6 py-3.5 text-[#0F172A]">{r.tip}</td>
-                    <td className="px-6 py-3.5 text-[#0F172A]">
+                    <td className="px-6 py-5 text-[#0F172A]">{r.tip}</td>
+                    <td className="px-6 py-5 text-[#0F172A]">
                       {r.trajanje}
                     </td>
-                    <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
+                    <td className="px-6 py-5 font-semibold text-[#0F172A]">
                       {r.cijena}
                     </td>
                   </tr>
@@ -430,8 +430,8 @@ export default function PreislistePage() {
                       i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"
                     } hover:bg-[#F59E0B]/5 transition-colors duration-300`}
                   >
-                    <td className="px-6 py-3.5 text-[#0F172A]">{r.opis}</td>
-                    <td className="px-6 py-3.5 font-semibold text-[#0F172A]">
+                    <td className="px-6 py-5 text-[#0F172A]">{r.opis}</td>
+                    <td className="px-6 py-5 font-semibold text-[#0F172A]">
                       {r.cijena}
                     </td>
                   </tr>
@@ -452,10 +452,11 @@ export default function PreislistePage() {
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(14,165,233,0.1)_0%,_transparent_50%)]" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-heading text-4xl text-white mb-4" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.2)' }}>
+          <h2 className="font-heading text-4xl md:text-5xl text-white mb-6" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}>
             Rezervirajte sada
           </h2>
-          <p className="text-white/70 text-lg mb-8">
+          <div className="w-16 h-1 bg-gradient-to-r from-[#F59E0B] to-[#0EA5E9] mx-auto mb-6 rounded-full" />
+          <p className="text-white/80 text-xl mb-10">
             Kontaktirajte nas za rezervaciju ili dodatne informacije
           </p>
           <Link

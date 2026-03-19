@@ -62,7 +62,7 @@ export default function SeminarePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-32 flex items-center justify-center overflow-hidden">
+      <section className="relative py-36 flex items-center justify-center overflow-hidden">
         <Image
           src="https://www.adriaski.net/wp-content/uploads/hotel-03.jpg"
           alt="Seminari i konferencije Adria Ski"
@@ -70,7 +70,7 @@ export default function SeminarePage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/60 to-dark/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/70 to-dark/90" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <motion.div
@@ -85,7 +85,7 @@ export default function SeminarePage() {
 
           <motion.h1
             className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
-            style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
+            style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -136,7 +136,7 @@ export default function SeminarePage() {
                   variants={cardVariants}
                 >
                   <div className="h-1 bg-gradient-to-r from-[#1B3A6B] to-[#0EA5E9]" />
-                  <div className="p-8">
+                  <div className="p-10">
                     <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#1B3A6B]/10 to-[#0EA5E9]/10 flex items-center justify-center mb-6">
                       <Icon className="w-8 h-8 text-primary-600" />
                     </div>
@@ -214,10 +214,11 @@ export default function SeminarePage() {
             viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-heading text-4xl text-white mb-6">
-              Zatra\u017Eite ponudu za seminar
+            <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">
+              Zatražite ponudu za seminar
             </h2>
-            <p className="text-white/70 text-lg mb-10">
+            <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mx-auto mb-6 rounded-full" />
+            <p className="text-white/80 text-xl mb-10">
               Javite nam se s detaljima va\u0161eg doga\u0111aja
             </p>
             <Link

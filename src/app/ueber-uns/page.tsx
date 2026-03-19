@@ -127,7 +127,7 @@ function AnimatedCounter({ target, label, suffix, prefix }: CounterData) {
 
   return (
     <div ref={ref} className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-      <div className="text-5xl md:text-6xl font-heading font-bold text-[#F59E0B] mb-2">
+      <div className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-[#F59E0B] mb-2">
         {prefix}
         {formatNumber(count)}
         {suffix}
@@ -143,7 +143,7 @@ export default function UeberUnsPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-32 flex items-center justify-center overflow-hidden">
+      <section className="relative py-36 flex items-center justify-center overflow-hidden">
         <Image
           src="https://www.adriaski.net/wp-content/uploads/hotel-01.jpg"
           alt="Hotel Adria Ski"
@@ -151,7 +151,7 @@ export default function UeberUnsPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/60 to-dark/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/70 to-dark/90" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <motion.div
@@ -165,8 +165,8 @@ export default function UeberUnsPage() {
           </motion.div>
 
           <motion.h1
-            className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
-            style={{ textShadow: '0 4px 30px rgba(0,0,0,0.3)' }}
+            className="font-heading text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-6"
+            style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -197,9 +197,10 @@ export default function UeberUnsPage() {
               viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.7 }}
             >
-              <h2 className="font-heading text-4xl text-dark mb-8">
+              <h2 className="font-heading text-4xl text-dark mb-4">
                 O hotelu
               </h2>
+              <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mb-8 rounded-full" />
               <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
                 <p>
                   Kapacitet hotela Adria Ski je 256 ležajeva. Sve sobe opremljene su telefonom te TV uređajima sa digitalnim satelitskim sustavom. Svaka soba ima zasebno kupatilo. Hotel je opremljen malim olimpijskim bazenom (25m x 8m) koji zimi pruža jedinstveni pogled na snijegom prekrivenu borovu šumu.
@@ -241,11 +242,12 @@ export default function UeberUnsPage() {
       <section className="py-24 bg-light">
         <div className="max-w-7xl mx-auto px-6">
           <motion.h2
-            className="font-heading text-4xl text-dark text-center mb-16"
+            className="font-heading text-4xl text-dark text-center mb-4"
             {...fadeInUp}
           >
             Naši sadržaji
           </motion.h2>
+          <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mx-auto mb-16 rounded-full" />
 
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -283,11 +285,12 @@ export default function UeberUnsPage() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <motion.h2
-            className="font-heading text-4xl text-dark text-center mb-16"
+            className="font-heading text-4xl text-dark text-center mb-4"
             {...fadeInUp}
           >
             Galerija hotela
           </motion.h2>
+          <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mx-auto mb-16 rounded-full" />
 
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
@@ -308,7 +311,7 @@ export default function UeberUnsPage() {
             ].map((image, i) => (
               <motion.div
                 key={i}
-                className="relative h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 border border-gray-100"
+                className="relative h-72 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 border border-gray-100 group"
                 variants={cardVariants}
               >
                 <Image
@@ -368,9 +371,10 @@ export default function UeberUnsPage() {
               viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <h2 className="font-heading text-4xl text-dark mb-8">
+              <h2 className="font-heading text-4xl text-dark mb-4">
                 Motel Tikvice
               </h2>
+              <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mb-8 rounded-full" />
               <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
                 <p>
                   Dragi gosti, djelatnici hotela Adria Ski nastavljaju sa svojom tradicijom poboljšanja usluga, u sklopu kojih Vam predstavljamo MOTEL TIKVICE, koji se nalazi na 1560 metara nadmorske visine (na vrhu staza), sa restoranom, 4 Apartmana sa kuhinjom, 1 trokrevetnom sobom i 2 dvokrevetne sobe.
@@ -416,9 +420,10 @@ export default function UeberUnsPage() {
             viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-heading text-4xl text-dark mb-8">
+            <h2 className="font-heading text-4xl text-dark mb-4">
               Hotel Jezero
             </h2>
+            <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mx-auto mb-8 rounded-full" />
             <p className="text-gray-600 text-lg leading-relaxed mb-10">
               Najnoviji objekt Adria Ski kompleksa.
             </p>

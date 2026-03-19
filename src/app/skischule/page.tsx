@@ -47,7 +47,7 @@ export default function SkischulePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-32 flex items-center justify-center overflow-hidden">
+      <section className="relative py-36 flex items-center justify-center overflow-hidden">
         <Image
           src="https://www.adriaski.net/wp-content/uploads/headerSkijaliste.jpg"
           alt="Škola skijanja Adria Ski"
@@ -55,7 +55,7 @@ export default function SkischulePage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/60 to-dark/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/70 to-dark/90" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <motion.div
@@ -70,7 +70,7 @@ export default function SkischulePage() {
 
           <motion.h1
             className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
-            style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
+            style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -100,9 +100,10 @@ export default function SkischulePage() {
               viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.7 }}
             >
-              <h2 className="font-heading text-4xl text-dark mb-8">
+              <h2 className="font-heading text-4xl text-dark mb-4">
                 O školi skijanja
               </h2>
+              <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mb-8 rounded-full" />
               <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
                 <p>
                   U našoj posebnoj ponudi je i škola skijanja &quot;Adria Ski&quot;. U školi rade kvalificirani ski-instruktori koji će Vas uvesti u sve tajne skijanja.
@@ -220,9 +221,10 @@ export default function SkischulePage() {
               viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <h2 className="font-heading text-4xl text-dark mb-8">
+              <h2 className="font-heading text-4xl text-dark mb-4">
                 Program za najmlađe
               </h2>
+              <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mb-8 rounded-full" />
               <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
                 <p>
                   U sklopu škole djeluje i &quot;ski-vrtić&quot;, dodatna pogodnost za djecu i roditelje. Osim učenja prvih koraka na skijama u vrtiću se djeca mogu zabaviti i igrama na snijegu uz prisustvo animatora te sanjkanjem.
@@ -374,10 +376,11 @@ export default function SkischulePage() {
             viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-heading text-4xl text-white mb-6">
+            <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">
               Rezervirajte tečaj
             </h2>
-            <p className="text-white/70 text-lg mb-10">
+            <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mx-auto mb-6 rounded-full" />
+            <p className="text-white/80 text-xl mb-10">
               Javite nam se i rezervirajte svoje mjesto u školi skijanja
             </p>
             <Link

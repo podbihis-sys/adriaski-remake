@@ -16,6 +16,23 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  line-height: 1.7;
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
+}
+
+a {
+  transition: color 0.3s ease;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -36,8 +53,8 @@ html {
 
 /* Selection Color */
 ::selection {
-  background-color: var(--color-primary);
-  color: white;
+  background: rgba(245, 158, 11, 0.3);
+  color: inherit;
 }
 
 @layer components {

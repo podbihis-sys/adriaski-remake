@@ -115,14 +115,14 @@ export default function SeasonToggleSection() {
                 return (
                   <motion.div
                     key={i}
-                    className="relative overflow-hidden rounded-2xl p-6 min-h-[140px] text-center hover:scale-105 transition-all duration-500 hover:shadow-xl hover:shadow-black/20"
+                    className="relative overflow-hidden rounded-2xl p-8 min-h-[180px] text-center hover:scale-105 transition-all duration-500 hover:shadow-xl hover:shadow-black/20"
                     variants={cardVariants}
                   >
                     <Image src={activity.image} alt={activity.label} fill className="object-cover" />
                     <div className="absolute inset-0 bg-dark/50 hover:bg-dark/40 transition-colors" />
                     <div className="relative z-10">
-                      <Icon className="w-12 h-12 text-accent-500 mx-auto mb-3 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
-                      <span className="text-white font-accent font-semibold">
+                      <Icon className="w-14 h-14 text-accent-500 mx-auto mb-4 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+                      <span className="text-white font-accent font-semibold text-lg">
                         {activity.label}
                       </span>
                     </div>
@@ -144,14 +144,14 @@ export default function SeasonToggleSection() {
                 return (
                   <motion.div
                     key={i}
-                    className="relative overflow-hidden rounded-2xl p-6 min-h-[140px] text-center hover:scale-105 transition-all duration-500 hover:shadow-xl hover:shadow-black/20"
+                    className="relative overflow-hidden rounded-2xl p-8 min-h-[180px] text-center hover:scale-105 transition-all duration-500 hover:shadow-xl hover:shadow-black/20"
                     variants={cardVariants}
                   >
                     <Image src={activity.image} alt={activity.label} fill className="object-cover" />
                     <div className="absolute inset-0 bg-dark/50 hover:bg-dark/40 transition-colors" />
                     <div className="relative z-10">
-                      <Icon className="w-12 h-12 text-accent-500 mx-auto mb-3 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
-                      <span className="text-white font-accent font-semibold">
+                      <Icon className="w-14 h-14 text-accent-500 mx-auto mb-4 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+                      <span className="text-white font-accent font-semibold text-lg">
                         {activity.label}
                       </span>
                     </div>

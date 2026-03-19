@@ -143,7 +143,7 @@ export default function EventsPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-32 flex items-center justify-center overflow-hidden">
+      <section className="relative py-36 flex items-center justify-center overflow-hidden">
         <Image
           src="https://www.adriaski.net/wp-content/uploads/headerHotel.jpg"
           alt="Događanja Adria Ski"
@@ -151,7 +151,7 @@ export default function EventsPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/60 to-dark/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/70 to-dark/90" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <motion.div
@@ -166,7 +166,7 @@ export default function EventsPage() {
 
           <motion.h1
             className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
-            style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
+            style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -219,15 +219,15 @@ export default function EventsPage() {
                   <div className="flex flex-col md:flex-row">
                     {/* Event Image */}
                     {event.image && (
-                      <div className="relative md:w-64 h-48 md:h-auto flex-shrink-0">
+                      <div className="relative md:w-80 h-56 md:h-auto flex-shrink-0 overflow-hidden">
                         <Image
                           src={event.image}
                           alt={event.title}
                           fill
                           className="object-cover"
                         />
-                        <div className={`absolute top-4 left-4 ${event.accent} rounded-full p-2`}>
-                          <Icon className="w-5 h-5 text-white" />
+                        <div className={`absolute top-4 left-4 ${event.accent} rounded-full p-3 shadow-lg`}>
+                          <Icon className="w-6 h-6 text-white" />
                         </div>
                       </div>
                     )}
@@ -235,8 +235,8 @@ export default function EventsPage() {
                     {/* Content */}
                     <div className="p-6 md:p-8 flex-1">
                       <div className="flex items-center gap-2 text-gray-500 mb-2">
-                        <Calendar className="w-4 h-4" />
-                        <span className="font-accent text-sm font-semibold">
+                        <Calendar className="w-5 h-5" />
+                        <span className="font-accent text-base font-semibold">
                           {event.date}
                         </span>
                       </div>
@@ -351,10 +351,11 @@ export default function EventsPage() {
             viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-heading text-4xl text-white mb-6">
+            <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">
               Kontaktirajte nas za više informacija
             </h2>
-            <p className="text-white/70 text-lg mb-10">
+            <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mx-auto mb-6 rounded-full" />
+            <p className="text-white/80 text-xl mb-10">
               Saznajte više o nadolazećim događajima i rezervirajte svoje
               mjesto
             </p>

@@ -111,7 +111,7 @@ export default function WellnessPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-32 flex items-center justify-center overflow-hidden">
+      <section className="relative py-36 flex items-center justify-center overflow-hidden">
         <Image
           src="https://www.adriaski.net/wp-content/uploads/headerBazen.jpg"
           alt="Bazen i wellness Adria Ski"
@@ -119,7 +119,7 @@ export default function WellnessPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/60 to-dark/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/70 to-dark/90" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <motion.div
@@ -134,7 +134,7 @@ export default function WellnessPage() {
 
           <motion.h1
             className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
-            style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
+            style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -164,9 +164,10 @@ export default function WellnessPage() {
               viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.7 }}
             >
-              <h2 className="font-heading text-4xl text-dark mb-8">
+              <h2 className="font-heading text-4xl text-dark mb-4">
                 Olimpijski zatvoreni bazen
               </h2>
+              <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mb-8 rounded-full" />
               <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
                 <p>
                   Nakon aktivno provedenog dana u skijanju itekako će Vam dobro doći opuštanje i plivanje u bazenu koji se nalazi u sklopu wellness centra hotela &lsquo;Adria ski&rsquo;.
@@ -248,8 +249,8 @@ export default function WellnessPage() {
                 >
                   <div className="h-1 bg-gradient-to-r from-secondary-500 to-accent-500" />
                   <div className="p-8 text-center">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#1B3A6B]/10 to-[#0EA5E9]/10 flex items-center justify-center mb-6 mx-auto">
-                      <Icon className="w-8 h-8 text-primary-600" />
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#1B3A6B]/10 to-[#0EA5E9]/10 flex items-center justify-center mb-6 mx-auto">
+                      <Icon className="w-10 h-10 text-primary-600" />
                     </div>
                     <h3 className="font-heading text-xl text-dark mb-3">
                       {feature.title}
@@ -293,9 +294,10 @@ export default function WellnessPage() {
               viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <h2 className="font-heading text-4xl text-dark mb-8">
+              <h2 className="font-heading text-4xl text-dark mb-4">
                 Fitness centar
               </h2>
+              <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mb-8 rounded-full" />
               <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
                 <p>
                   U velikoj i suvremeno opremljenoj dvorani za fitness možete se zabaviti i rekreirati uz grupne treninge. Fitness je opremljen najmodernijim spravama, koje pojedinačno ili u kombinaciji više njih, nude mogućnost za oblikovanje svakog dijela tijela i dosezanje svakog sportsko-natjecateljskog cilja.
@@ -376,10 +378,11 @@ export default function WellnessPage() {
             viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-heading text-4xl text-white mb-6">
+            <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">
               Rezervirajte wellness odmor
             </h2>
-            <p className="text-white/70 text-lg mb-10">
+            <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mx-auto mb-6 rounded-full" />
+            <p className="text-white/80 text-xl mb-10">
               Opustite se u našem olimpijskom bazenu, saunama i fitness centru
             </p>
             <Link

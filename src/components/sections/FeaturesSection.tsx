@@ -55,15 +55,17 @@ export default function FeaturesSection() {
   return (
     <section className="py-24 bg-light relative overflow-hidden">
       {/* Decorative background elements */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(30,64,175,0.04) 0%, transparent 70%)' }} />
       <div className="absolute top-20 -right-32 w-96 h-96 bg-primary-600/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-20 -left-32 w-80 h-80 bg-secondary-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="relative max-w-7xl mx-auto px-6">
         <motion.h2
-          className="font-heading text-4xl text-dark text-center mb-16"
+          className="font-heading text-4xl text-dark text-center mb-4"
           {...fadeInUp}
         >
           Što nas čini posebnima
         </motion.h2>
+        <p className="text-gray-500 text-center max-w-2xl mx-auto mt-4 mb-16">Sve što trebate za savršen odmor na jednom mjestu</p>
 
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
@@ -77,14 +79,14 @@ export default function FeaturesSection() {
             return (
               <motion.div
                 key={i}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:shadow-primary-600/5 transition-all duration-500 hover:-translate-y-1 border border-gray-100 relative overflow-hidden"
+                className="bg-white rounded-2xl p-10 shadow-lg hover:shadow-xl hover:shadow-primary-600/5 transition-all duration-500 hover:-translate-y-1 border border-gray-100 relative overflow-hidden"
                 variants={cardVariants}
               >
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-600 to-secondary-500 rounded-t-2xl" />
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary-600/10 to-secondary-500/10 flex items-center justify-center">
-                  <Icon className="w-8 h-8 text-primary-600" />
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary-600/10 to-secondary-500/10 flex items-center justify-center">
+                  <Icon className="w-10 h-10 text-primary-600" />
                 </div>
-                <h3 className="font-heading text-xl text-dark mt-6">
+                <h3 className="font-heading text-2xl text-dark mt-6">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600 mt-3">{feature.description}</p>

@@ -24,8 +24,8 @@ export default function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
-        <Image src="https://www.adriaski.net/wp-content/uploads/headerSkijaliste.jpg" alt="Adria Ski" fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/70 via-primary/60 to-dark/80" />
+        <Image src="/images/hotel-adria-ski.jpg" alt="Hotel Adria Ski" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/70 to-dark/90" />
         {/* Animated gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-tr from-primary-600/20 via-transparent to-accent-500/10 animate-pulse" style={{ animationDuration: '6s' }} />
       </div>
@@ -40,11 +40,12 @@ export default function HeroSection() {
           <span className="inline-block font-accent text-xs tracking-widest text-accent-500 uppercase mb-6 px-6 py-3 rounded-full border border-accent-500/30 bg-white/10 backdrop-blur-sm shadow-lg">
             PREMIUM SKI & WELLNESS RESORT
           </span>
+          <div className="w-16 h-0.5 bg-accent-500 mx-auto mb-8" />
         </motion.div>
 
         <motion.h1
-          className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
-          style={{ textShadow: '0 4px 30px rgba(0,0,0,0.3)' }}
+          className="font-heading text-5xl md:text-7xl lg:text-8xl text-white leading-tight mb-6"
+          style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
@@ -70,7 +71,7 @@ export default function HeroSection() {
         >
           {stats.map((stat, i) => (
             <div key={i} className="text-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
-              <div className="text-3xl font-heading font-bold text-white">
+              <div className="text-4xl font-heading font-bold text-white">
                 {stat.value}
               </div>
               <div className="text-sm text-white/60 font-accent uppercase tracking-wide mt-1">
@@ -89,13 +90,13 @@ export default function HeroSection() {
         >
           <Link
             href="/kontakt"
-            className="bg-accent-500 hover:bg-accent-600 text-dark rounded-full px-8 py-4 font-accent font-semibold transition-all duration-500 text-lg shadow-lg shadow-accent-500/25 hover:shadow-xl hover:shadow-accent-500/30 hover:scale-105"
+            className="bg-accent-500 hover:bg-accent-600 text-dark rounded-full px-10 py-5 font-accent font-semibold transition-all duration-500 text-lg shadow-xl shadow-accent-500/25 hover:shadow-2xl hover:shadow-accent-500/30 hover:scale-105"
           >
             Rezervirajte sada
           </Link>
           <Link
             href="/unterkunft"
-            className="border-2 border-white/30 text-white hover:bg-white/10 rounded-full px-8 py-4 font-accent font-semibold transition-all duration-500 text-lg hover:border-white/50 hover:scale-105"
+            className="border-2 border-white/30 text-white hover:bg-white/10 rounded-full px-10 py-5 font-accent font-semibold transition-all duration-500 text-lg shadow-xl hover:border-white/50 hover:scale-105"
           >
             Pogledajte ponudu
           </Link>

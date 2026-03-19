@@ -50,11 +50,12 @@ export default function SkipassSection() {
         </div>
 
         <motion.h2
-          className="font-heading text-4xl text-dark text-center mb-16"
+          className="font-heading text-4xl text-dark text-center mb-4"
           {...fadeInUp}
         >
           Cijene ski karata 2025/26
         </motion.h2>
+        <p className="text-gray-500 text-center max-w-2xl mx-auto mt-4 mb-16">Pronađite idealnu ski kartu za vaš boravak</p>
 
         <motion.div
           className="rounded-3xl overflow-hidden shadow-xl border border-gray-100"
@@ -62,11 +63,11 @@ export default function SkipassSection() {
         >
           {/* Header */}
           <div className="grid grid-cols-3 bg-gradient-to-r from-primary-600 to-primary-800 text-white">
-            <div className="p-5 font-accent font-semibold" />
-            <div className="p-5 font-accent font-semibold text-center">
+            <div className="p-6 font-accent font-semibold text-lg" />
+            <div className="p-6 font-accent font-semibold text-center text-lg">
               Odrasli (KM/EUR)
             </div>
-            <div className="p-5 font-accent font-semibold text-center">
+            <div className="p-6 font-accent font-semibold text-center text-lg">
               Djeca do 14 (KM/EUR)
             </div>
           </div>
@@ -79,11 +80,11 @@ export default function SkipassSection() {
                 i % 2 === 0 ? "bg-white" : "bg-light"
               }`}
             >
-              <div className="p-5 font-semibold text-dark font-accent">
+              <div className="p-5 font-semibold text-dark font-accent text-lg">
                 {row.label}
               </div>
-              <div className="p-5 text-center text-gray-700 font-mono">{row.adult}</div>
-              <div className="p-5 text-center text-gray-700 font-mono">{row.child}</div>
+              <div className="p-5 text-center text-gray-700 font-mono text-lg font-bold">{row.adult}</div>
+              <div className="p-5 text-center text-gray-700 font-mono text-lg font-bold">{row.child}</div>
             </div>
           ))}
         </motion.div>

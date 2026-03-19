@@ -210,7 +210,7 @@ export default function AngebotePage() {
   return (
     <main className="min-h-screen bg-[#F8FAFC]">
       {/* Hero */}
-      <section className="relative py-32 bg-gradient-to-br from-[#0F172A] via-[#1B3A6B] to-[#0F172A]/90 overflow-hidden">
+      <section className="relative py-36 bg-gradient-to-br from-[#0F172A] via-[#1B3A6B] to-[#0F172A]/90 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(245,158,11,0.08)_0%,_transparent_60%)]" />
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.span
@@ -225,8 +225,8 @@ export default function AngebotePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-heading text-5xl md:text-6xl text-white mb-6"
-            style={{ textShadow: '0 4px 30px rgba(0,0,0,0.3)' }}
+            className="font-heading text-5xl md:text-6xl lg:text-7xl text-white mb-6"
+            style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}
           >
             Na&scaron;i paketi i ponude
           </motion.h1>
@@ -234,7 +234,7 @@ export default function AngebotePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-white/70 text-lg max-w-2xl mx-auto"
+            className="text-white/80 text-xl max-w-2xl mx-auto"
           >
             Prona&#273;ite savr&scaron;en paket za va&scaron; boravak
           </motion.p>
@@ -256,7 +256,7 @@ export default function AngebotePage() {
               <button
                 key={cat.key}
                 onClick={() => setActiveFilter(cat.key)}
-                className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 backdrop-blur-sm ${
+                className={`px-8 py-3.5 rounded-full text-base font-semibold transition-all duration-300 backdrop-blur-sm ${
                   activeFilter === cat.key
                     ? "bg-[#F59E0B] text-[#0F172A] shadow-lg shadow-[#F59E0B]/25 scale-105"
                     : "bg-white/70 text-[#1B3A6B] border border-[#1B3A6B]/10 hover:bg-white/90 hover:shadow-md"
@@ -283,7 +283,7 @@ export default function AngebotePage() {
                 className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-[#1B3A6B]/5 transition-all duration-500 group bg-white"
               >
                 {/* Package image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-56 overflow-hidden">
                   <Image
                     src={imageMap[pkg.title]}
                     alt={pkg.title}
@@ -325,7 +325,7 @@ export default function AngebotePage() {
 
                   <Link
                     href="/kontakt"
-                    className="inline-flex items-center gap-1 text-[#1B3A6B] font-semibold hover:text-[#F59E0B] transition-all duration-300 mt-6 group/link"
+                    className="inline-flex items-center gap-2 bg-[#1B3A6B] hover:bg-[#F59E0B] text-white hover:text-[#0F172A] font-semibold px-6 py-3 rounded-full transition-all duration-300 mt-6 group/link shadow-md hover:shadow-lg"
                   >
                     Rezervirajte
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" />
@@ -348,15 +348,16 @@ export default function AngebotePage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(14,165,233,0.1)_0%,_transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,_rgba(245,158,11,0.08)_0%,_transparent_50%)]" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-heading text-4xl text-white mb-4" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.2)' }}>
+          <h2 className="font-heading text-4xl md:text-5xl text-white mb-6" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}>
             Individualni paket?
           </h2>
-          <p className="text-white/70 text-lg mb-8">
+          <div className="w-16 h-1 bg-gradient-to-r from-[#F59E0B] to-[#0EA5E9] mx-auto mb-6 rounded-full" />
+          <p className="text-white/80 text-xl mb-10">
             Kontaktirajte nas za prilago&#273;enu ponudu
           </p>
           <Link
             href="/kontakt"
-            className="inline-block bg-[#F59E0B] hover:bg-[#F59E0B]/90 text-[#0F172A] font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-[#F59E0B]/25 hover:shadow-xl hover:scale-[1.02]"
+            className="inline-block bg-[#F59E0B] hover:bg-[#F59E0B]/90 text-[#0F172A] font-semibold px-10 py-4 rounded-full transition-all duration-300 shadow-lg shadow-[#F59E0B]/25 hover:shadow-xl hover:scale-[1.02] text-lg"
           >
             Kontaktirajte nas
           </Link>

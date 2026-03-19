@@ -71,38 +71,34 @@ export default function AccommodationSection() {
           {accommodations.map((item, i) => (
             <motion.div
               key={i}
-              className="rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl group-hover:shadow-primary-600/10 transition-all duration-500 group border border-gray-100"
+              className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-primary-600/10 transition-all duration-500 group border border-gray-100"
               variants={cardVariants}
             >
               {/* Image */}
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-72 overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark/70 via-dark/20 to-transparent" />
                 {/* Price badge */}
-                <div className="absolute top-4 right-4 bg-accent-500 text-dark rounded-full px-4 py-1 font-accent font-bold text-sm shadow-lg">
+                <div className="absolute top-4 right-4 bg-accent-500 text-dark rounded-full px-4 py-1.5 font-accent font-bold text-sm shadow-lg">
                   {item.price}
                 </div>
-                {/* Title over image */}
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="font-heading text-xl text-white" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>{item.title}</h3>
+                {/* Title + description + link over image at bottom */}
+                <div className="absolute bottom-0 inset-x-0 p-6 text-white">
+                  <h3 className="font-heading text-2xl text-white mb-1" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.4)' }}>{item.title}</h3>
+                  <p className="text-white/80 text-sm mb-3">{item.description}</p>
+                  <Link
+                    href={item.href}
+                    className="inline-flex items-center gap-2 text-accent-500 font-semibold text-sm group/link hover:gap-3 transition-all"
+                  >
+                    Saznajte više
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+                  </Link>
                 </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <p className="text-gray-600">{item.description}</p>
-                <Link
-                  href={item.href}
-                  className="inline-flex items-center gap-2 text-primary-600 font-semibold mt-4 group/link hover:gap-3 transition-all"
-                >
-                  Saznajte više
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
-                </Link>
               </div>
             </motion.div>
           ))}

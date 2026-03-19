@@ -84,7 +84,7 @@ export default function SportPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-32 flex items-center justify-center overflow-hidden">
+      <section className="relative py-36 flex items-center justify-center overflow-hidden">
         <Image
           src="https://www.adriaski.net/wp-content/uploads/fitness-1.jpg"
           alt="Sportske pripreme Adria Ski"
@@ -92,7 +92,7 @@ export default function SportPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/60 to-dark/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/70 to-dark/90" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <motion.div
@@ -107,7 +107,7 @@ export default function SportPage() {
 
           <motion.h1
             className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
-            style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
+            style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -136,9 +136,10 @@ export default function SportPage() {
             viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="font-heading text-4xl text-dark mb-8">
+            <h2 className="font-heading text-4xl text-dark mb-4">
               Idealni uvjeti za sportske ekipe
             </h2>
+            <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mx-auto mb-8 rounded-full" />
             <p className="text-gray-600 leading-relaxed text-lg">
               Idealni atmosferski uvjeti, planinski zrak bogat kisikom kojeg dodatno obogaćuje gusta šuma, veliki fitness centar te unutarnji bazen od početka su u našoj ponudi. Novost je veliko nogometno igralište pokraj samog hotela koje sa svakodnevno njegovanom travom (i za vrijeme zime) omogućava nogometnim momčadima rad s loptom u tijeku kondicijskih priprema.
             </p>
@@ -330,10 +331,11 @@ export default function SportPage() {
             viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-heading text-4xl text-white mb-6">
+            <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">
               Kontaktirajte nas za sportske pripreme
             </h2>
-            <p className="text-white/70 text-lg mb-10">
+            <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mx-auto mb-6 rounded-full" />
+            <p className="text-white/80 text-xl mb-10">
               Organizirajte trening za va\u0161u ekipu u planinskom ambijentu
             </p>
             <Link

@@ -62,9 +62,9 @@ const contactItems = [
 ];
 
 const inputClasses =
-  "w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 bg-white text-dark hover:border-gray-300";
+  "w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 bg-white text-dark hover:border-gray-300 text-base";
 
-const labelClasses = "block text-xs font-accent font-medium text-gray-500 mb-2 uppercase tracking-wide";
+const labelClasses = "block text-sm font-accent font-semibold text-gray-600 mb-2.5 uppercase tracking-wide";
 
 export default function KontaktPage() {
   const [activeTab, setActiveTab] = useState<"booking" | "contact">("booking");
@@ -167,7 +167,7 @@ export default function KontaktPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-32 flex items-center justify-center overflow-hidden">
+      <section className="relative py-36 flex items-center justify-center overflow-hidden">
         <Image
           src="https://www.adriaski.net/wp-content/uploads/hotel-03.jpg"
           alt="Hotel Adria Ski"
@@ -175,7 +175,7 @@ export default function KontaktPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/60 to-dark/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/70 to-dark/90" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <motion.div
@@ -189,8 +189,8 @@ export default function KontaktPage() {
           </motion.div>
 
           <motion.h1
-            className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
-            style={{ textShadow: '0 4px 30px rgba(0,0,0,0.3)' }}
+            className="font-heading text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-6"
+            style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -472,7 +472,7 @@ export default function KontaktPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-accent hover:bg-accent-600 text-dark font-semibold py-4 rounded-xl font-accent transition-all duration-300 shadow-lg shadow-accent-500/25 hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                      className="w-full bg-accent hover:bg-accent-600 text-dark font-semibold py-4.5 rounded-xl font-accent transition-all duration-300 shadow-lg shadow-accent-500/25 hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-lg"
                     >
                       {isSubmitting ? "Šalje se..." : "Pošaljite rezervaciju"}
                     </button>
@@ -574,7 +574,7 @@ export default function KontaktPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-accent hover:bg-accent-600 text-dark font-semibold py-4 rounded-xl font-accent transition-all duration-300 shadow-lg shadow-accent-500/25 hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                      className="w-full bg-accent hover:bg-accent-600 text-dark font-semibold py-4.5 rounded-xl font-accent transition-all duration-300 shadow-lg shadow-accent-500/25 hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-lg"
                     >
                       {isSubmitting ? "Šalje se..." : "Pošaljite poruku"}
                     </button>

@@ -13,7 +13,7 @@ const fadeInUp = {
 
 export default function CTASection() {
   return (
-    <section className="py-24 bg-gradient-to-r from-accent-500 to-accent-600 relative overflow-hidden">
+    <section className="py-32 bg-gradient-to-r from-accent-500 to-accent-600 relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(0,0,0,0.1) 1px, transparent 1px), radial-gradient(circle at 80% 20%, rgba(0,0,0,0.1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
       <Sparkles className="absolute top-12 left-[15%] w-6 h-6 text-dark/10 pointer-events-none" />
@@ -23,7 +23,7 @@ export default function CTASection() {
 
       <div className="relative max-w-4xl mx-auto px-6 text-center">
         <motion.h2
-          className="font-heading text-4xl text-dark mb-6"
+          className="font-heading text-5xl text-dark mb-6"
           {...fadeInUp}
         >
           Spremni za avanturu?
@@ -34,7 +34,7 @@ export default function CTASection() {
         <motion.div {...fadeInUp}>
           <Link
             href="/kontakt"
-            className="inline-block bg-dark text-white rounded-full px-12 py-5 font-accent font-semibold text-lg hover:bg-dark/90 transition-all duration-500 shadow-xl shadow-dark/20 hover:scale-105 hover:shadow-2xl hover:shadow-dark/30"
+            className="inline-block bg-dark text-white rounded-full px-14 py-5 font-accent font-semibold text-xl hover:bg-dark/90 transition-all duration-500 shadow-xl shadow-dark/20 hover:scale-105 hover:shadow-2xl hover:shadow-dark/30"
           >
             Kontaktirajte nas
           </Link>

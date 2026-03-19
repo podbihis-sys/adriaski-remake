@@ -72,7 +72,7 @@ export default function HochzeitPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-32 flex items-center justify-center overflow-hidden">
+      <section className="relative py-36 flex items-center justify-center overflow-hidden">
         <Image
           src="https://www.adriaski.net/wp-content/uploads/svadba-1.jpg"
           alt="Svadbeni salon Adria Ski"
@@ -80,7 +80,7 @@ export default function HochzeitPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/60 to-dark/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/70 to-dark/90" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <motion.div
@@ -95,7 +95,7 @@ export default function HochzeitPage() {
 
           <motion.h1
             className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
-            style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
+            style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -124,9 +124,10 @@ export default function HochzeitPage() {
             viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="font-heading text-4xl text-dark mb-8">
+            <h2 className="font-heading text-4xl text-dark mb-4">
               Vaš najljepši dan
             </h2>
+            <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mx-auto mb-8 rounded-full" />
             <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
               <p>
                 Svako vjenčanje je priča za sebe, stoga i mi tako pristupamo svakom vjenčanju.
@@ -175,7 +176,7 @@ export default function HochzeitPage() {
                 variants={cardVariants}
               >
                 <div className="h-1 bg-gradient-to-r from-[#F59E0B] to-orange-500" />
-                <div className="p-8">
+                <div className="p-10">
                   <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#F59E0B]/10 to-orange-500/10 flex items-center justify-center mb-6">
                     <UtensilsCrossed className="w-8 h-8 text-[#F59E0B]" />
                   </div>
@@ -236,7 +237,7 @@ export default function HochzeitPage() {
             {galleryImages.map((src, i) => (
               <motion.div
                 key={i}
-                className="relative h-56 md:h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500 group"
+                className="relative h-64 md:h-72 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500 group"
                 variants={cardVariants}
               >
                 <Image
@@ -262,10 +263,11 @@ export default function HochzeitPage() {
             viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-heading text-4xl text-white mb-6">
+            <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">
               Kontaktirajte nas za ponudu
             </h2>
-            <p className="text-white/70 text-lg mb-10">
+            <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mx-auto mb-6 rounded-full" />
+            <p className="text-white/80 text-xl mb-10">
               Ispri\u010Dajte nam svoju viziju savr\u0161enog vjen\u010Danja
             </p>
             <Link

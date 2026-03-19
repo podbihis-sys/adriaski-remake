@@ -132,7 +132,7 @@ export default function RestaurantPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-32 flex items-center justify-center overflow-hidden">
+      <section className="relative py-36 flex items-center justify-center overflow-hidden">
         <Image
           src="https://www.adriaski.net/wp-content/uploads/ognjista-1.jpg"
           alt="Restoran Ognjišta"
@@ -140,7 +140,7 @@ export default function RestaurantPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/60 to-dark/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/70 to-dark/90" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <motion.div
@@ -155,7 +155,7 @@ export default function RestaurantPage() {
 
           <motion.h1
             className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
-            style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
+            style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -185,9 +185,10 @@ export default function RestaurantPage() {
               viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.7 }}
             >
-              <h2 className="font-heading text-4xl text-dark mb-8">
+              <h2 className="font-heading text-4xl text-dark mb-4">
                 O restoranu
               </h2>
+              <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mb-8 rounded-full" />
               <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
                 <p>
                   Ispod završetka skijaških staza nalazi se restoran Ognjišta koji u planinskom ambijentu nudi gotova jela za brzu okrijepu i nastavak skijanja bez ulaska u hotel. Uz veliki otvoreni kamin koji daje pravi zimski ugođaj restoranu možete uživati u raznovrsnim domaćim jelima, a dodatnu toplinu će osigurati dobra šalica domaćeg kuhanog vina.
@@ -279,11 +280,11 @@ export default function RestaurantPage() {
                   variants={cardVariants}
                 >
                   <div className="h-1 bg-gradient-to-r from-[#1B3A6B] to-[#0EA5E9]" />
-                  <div className="p-8">
+                  <div className="p-10">
                     <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#1B3A6B]/10 to-[#0EA5E9]/10 flex items-center justify-center mb-6">
                       <Icon className="w-8 h-8 text-primary-600" />
                     </div>
-                    <h3 className="font-heading text-xl text-dark mb-4">
+                    <h3 className="font-heading text-2xl text-dark mb-4">
                       {category.title}
                     </h3>
                     <ul className="space-y-3">
@@ -306,11 +307,12 @@ export default function RestaurantPage() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <motion.h2
-            className="font-heading text-4xl text-dark text-center mb-16"
+            className="font-heading text-4xl text-dark text-center mb-4"
             {...fadeInUp}
           >
             Galerija
           </motion.h2>
+          <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mx-auto mb-16 rounded-full" />
 
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -322,14 +324,14 @@ export default function RestaurantPage() {
             {galleryImages.map((image, i) => (
               <motion.div
                 key={i}
-                className="relative h-72 md:h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 border border-gray-100"
+                className="relative h-80 md:h-96 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 border border-gray-100 group"
                 variants={cardVariants}
               >
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-700"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </motion.div>
             ))}

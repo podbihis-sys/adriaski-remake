@@ -44,7 +44,7 @@ export default function SkigebietPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-32 flex items-center justify-center overflow-hidden">
+      <section className="relative py-36 flex items-center justify-center overflow-hidden">
         <Image
           src="https://www.adriaski.net/wp-content/uploads/headerSkijaliste.jpg"
           alt="Skijalište Adria Ski"
@@ -52,7 +52,7 @@ export default function SkigebietPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/60 to-dark/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/70 to-dark/90" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <motion.div
@@ -67,7 +67,7 @@ export default function SkigebietPage() {
 
           <motion.h1
             className="font-heading text-5xl md:text-7xl text-white leading-tight mb-6"
-            style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
+            style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -97,9 +97,10 @@ export default function SkigebietPage() {
               viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.7 }}
             >
-              <h2 className="font-heading text-4xl text-dark mb-8">
+              <h2 className="font-heading text-4xl text-dark mb-4">
                 Pregled skijaške ponude
               </h2>
+              <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mb-8 rounded-full" />
               <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
                 <p>
                   U sezoni 2023/2024 dodajemo za 2 nova ski lifta. U pitanju su ski liftovi VUCNICE/SIDRO oko 1150 metara dužine.
@@ -250,9 +251,10 @@ export default function SkigebietPage() {
               viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <h2 className="font-heading text-4xl text-dark mb-8">
+              <h2 className="font-heading text-4xl text-dark mb-4">
                 Moderna oprema i novosti
               </h2>
+              <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mb-8 rounded-full" />
               <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
                 <p>
                   Topovi za umjetni snijeg za čiju su svrhu izgrađena dodatna umjetna jezera, omogućavaju umjetno zasnježivanje kako bi se spriječio nedostatak snijega ili vode.
@@ -308,14 +310,14 @@ export default function SkigebietPage() {
             ].map((image, i) => (
               <motion.div
                 key={i}
-                className="relative h-72 md:h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 border border-gray-100"
+                className="relative h-72 md:h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 border border-gray-100 group"
                 variants={cardVariants}
               >
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-700"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </motion.div>
             ))}
@@ -333,10 +335,11 @@ export default function SkigebietPage() {
             viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-heading text-4xl text-white mb-6">
+            <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">
               Pogledajte cijene ski karata
             </h2>
-            <p className="text-white/70 text-lg mb-10">
+            <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-secondary-500 mx-auto mb-6 rounded-full" />
+            <p className="text-white/80 text-xl mb-10">
               Dnevne, višednevne i sezonske ski karte za sve uzraste
             </p>
             <Link
