@@ -52,7 +52,7 @@ function MenuSection({ icon, title, items, text, accent = "amber", delay = 0 }: 
         <ul className="space-y-2.5">
           {items.map((item, i) => (
             <li key={i} className="flex items-start gap-2 text-[#3d3d3d] text-[15px] leading-relaxed">
-              <span className="text-amber-500 mt-1.5 flex-shrink-0">•</span>
+              <span className="text-amber-500 mt-1.5 flex-shrink-0">&bull;</span>
               <span>{item}</span>
             </li>
           ))}
@@ -66,8 +66,18 @@ function MenuSection({ icon, title, items, text, accent = "amber", delay = 0 }: 
 }
 
 export default function GastroPonudaPage() {
+  const t = useTranslations("gastro");
   const tc = useTranslations("common");
   const locale = useLocale();
+
+  const breakfastItems: string[] = t.raw("breakfast_items");
+  const lunchDinnerItems: string[] = t.raw("lunch_dinner_items");
+  const piesItems: string[] = t.raw("pies_items");
+  const sacItems: string[] = t.raw("sac_items");
+  const lesoItems: string[] = t.raw("leso_items");
+  const specialBusiness: string[] = t.raw("special_business");
+  const specialEvents: string[] = t.raw("special_events");
+
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -89,13 +99,13 @@ export default function GastroPonudaPage() {
               transition={{ duration: 0.7 }}
             >
               <span className="inline-block text-amber-400 text-xs tracking-[0.25em] uppercase font-semibold mb-3">
-                Gastronomija
+                {t("hero_label")}
               </span>
               <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">
-                Gastro ponuda
+                {t("title")}
               </h1>
               <p className="mt-3 text-lg text-white/70 max-w-xl">
-                Tradicionalna kupreška kuhinja i domaći specijaliteti
+                {t("hero_desc")}
               </p>
             </motion.div>
           </div>
@@ -108,10 +118,10 @@ export default function GastroPonudaPage() {
           {/* Intro */}
           <motion.div {...fadeInUp} className="text-center mb-14">
             <span className="inline-block text-amber-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-              Jelovnik
+              {t("menu_label")}
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">
-              Naša ponuda
+              {t("menu_heading")}
             </h2>
           </motion.div>
 
@@ -119,54 +129,32 @@ export default function GastroPonudaPage() {
             {/* Doručak */}
             <MenuSection
               icon={<CakeSlice className="w-6 h-6 text-amber-600" />}
-              title="Ponuda jela za domaći doručak"
-              items={[
-                'domaća pogača i domaći kruh i uštipci',
-                'domaće sušeno meso: pršut, slanina, kobasica i čvarci (čvarci uprženi na luku)',
-                'domaća svinjska mast sa paprikom i slaninom na kruhu',
-                'domaći kajmak, jogurt (domaće kiselo mlijeko), domaći mladi sir škripavac, domaći mladi ili tvrdi kupreški sir i domaće mlado maslo',
-                'domaća jaja',
-                'domaće marmelade: šipak i borovnica',
-                'kupreške debele palačinke – "prevrta"',
-              ]}
+              title={t("breakfast_title")}
+              items={breakfastItems}
               delay={0}
             />
 
             {/* Ručak i večera */}
             <MenuSection
               icon={<Soup className="w-6 h-6 text-amber-600" />}
-              title="Domaća jela - ponuda za ručak i večeru"
-              items={[
-                'pura sa kajmakom',
-                'pita "užljivača" (bijeli luk, maslo i kiselo mlijeko)',
-                'domaća gibanica (jajuša) sarma (kiseli kupus, mljeveno meso sa sušenom domaćom slaninom)',
-                'kiseli kupus sa sušenim mesom po izboru (koljenice, rebra i kobasice, suha ovčetina ili bravetina)',
-                'dinstani kiseli kupus sa kobasicama',
-                'grah sa kobasicom i slaninom',
-                'pile na kupreški način sa kuhanim geršlom (pšenica sa maslacem)',
-                'musaka sa krumpirom (poznati kupreški krumpir i mljeveno meso)',
-              ]}
+              title={t("lunch_dinner_title")}
+              items={lunchDinnerItems}
               delay={0.1}
             />
 
             {/* Pite */}
             <MenuSection
               icon={<Salad className="w-6 h-6 text-amber-600" />}
-              title="Pite"
-              items={[
-                'zeljanica, sirnica i burek (mljeveno meso)',
-                'kupreški burek "kvrgo" od sjeckanog mesa',
-                'krumpiruša i pita od varenih krumpira',
-                'pita od kiselog kupusa sa kuhanim suhim mesom',
-              ]}
+              title={t("pies_title")}
+              items={piesItems}
               delay={0}
             />
 
             {/* Jela ispod sača */}
             <MenuSection
               icon={<Flame className="w-6 h-6 text-red-600" />}
-              title="Jela ispod sača"
-              items={['prasetina, teletina i janjetina']}
+              title={t("sac_title")}
+              items={sacItems}
               accent="red"
               delay={0.1}
             />
@@ -174,23 +162,16 @@ export default function GastroPonudaPage() {
             {/* Lešo meso */}
             <MenuSection
               icon={<Beef className="w-6 h-6 text-amber-600" />}
-              title="Lešo meso"
-              items={[
-                'janjetina i teletina',
-                'kupreška kuhana kalja',
-                'teletina sa povrćem i krumpirom',
-                'pečeni krumpir (pole) sa kupreškim ovčijim sirom i domaćom slaninom i crvenim lukom',
-                'PODKRIŽA: krumpir izrezan na ploške sa carskim mesom',
-                'POPARA: stari kruh u začinjenoj vodi sa maslacem',
-              ]}
+              title={t("leso_title")}
+              items={lesoItems}
               delay={0}
             />
 
             {/* Specijaliteti */}
             <MenuSection
               icon={<ChefHat className="w-6 h-6 text-red-600" />}
-              title="Specijaliteti"
-              text='Pozivamo Vas da kušate naše specijalitete koji se baziraju na tradicionalnim narodnim jelima pripremljenim po suvremenim tehnologijama u skladu s HACCP-om. Nezaobilazni Kupreški pršut i sir kao početak svakog dobrog obroka te zapečena "Kupreška plata" kao njegov vrhunac samo su dio naše ponude po kojoj smo prepoznatljivi.'
+              title={t("specialties_title")}
+              text={t("specialties_text")}
               accent="red"
               delay={0.1}
             />
@@ -211,17 +192,13 @@ export default function GastroPonudaPage() {
             >
               <div className="flex items-center gap-3 mb-4">
                 <Wine className="w-6 h-6 text-amber-600" />
-                <span className="text-amber-600 text-xs tracking-[0.2em] uppercase font-semibold">Restoran</span>
+                <span className="text-amber-600 text-xs tracking-[0.2em] uppercase font-semibold">{t("alacarte_label")}</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">
-                A la carte ponuda
+                {t("alacarte_heading")}
               </h2>
               <p className="text-[#3d3d3d] leading-relaxed text-[15px]">
-                Hotelski restoran pruža usluge doručka i večere za goste hotela kao i
-                cjelodnevnu a la carte ponudu. Osim kvalitetne i ukusne hrane u ponudi
-                je i bogata vinska karta koja će zadovoljiti i najzahtjevnije ljubitelje
-                dobre kapljice. Specijalizirani smo za sve vrste cateringa i organizacije
-                velikih eventa.
+                {t("alacarte_desc")}
               </p>
             </motion.div>
 
@@ -234,42 +211,26 @@ export default function GastroPonudaPage() {
             >
               <div className="flex items-center gap-3 mb-4">
                 <PartyPopper className="w-6 h-6 text-amber-600" />
-                <span className="text-amber-600 text-xs tracking-[0.2em] uppercase font-semibold">Eventi</span>
+                <span className="text-amber-600 text-xs tracking-[0.2em] uppercase font-semibold">{t("special_label")}</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">
-                Posebna ponuda
+                {t("special_heading")}
               </h2>
               <p className="text-[#3d3d3d] leading-relaxed text-[15px] mb-4">
-                U posebnoj ponudi na Vaš zahtjev organiziramo:
+                {t("special_intro")}
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
-                {[
-                  "Poslovne ručkove i domjenke",
-                  "Konferencije",
-                  "Seminare i prezentacije",
-                  "Konferencijski catering",
-                  "Cocktail party",
-                  "Pića dobrodošlice",
-                ].map((item) => (
+                {specialBusiness.map((item) => (
                   <span key={item} className="inline-block bg-white text-[#163c6f] text-sm px-3 py-1.5 rounded-full border border-gray-200">
                     {item}
                   </span>
                 ))}
               </div>
               <p className="text-[#3d3d3d] leading-relaxed text-[15px] mb-3">
-                Za posebne događaje u Vašem životu nudimo organizaciju prigodnih svečanosti:
+                {t("special_events_intro")}
               </p>
               <div className="flex flex-wrap gap-2">
-                {[
-                  "Zaruke",
-                  "Svadbene večere",
-                  "Rođendani",
-                  "Krstitke",
-                  "Krizme",
-                  "Prve pričesti",
-                  "Proslave diplome",
-                  "Razne obljetnice",
-                ].map((item) => (
+                {specialEvents.map((item) => (
                   <span key={item} className="inline-block bg-amber-50 text-amber-700 text-sm px-3 py-1.5 rounded-full border border-amber-200">
                     {item}
                   </span>
@@ -285,9 +246,9 @@ export default function GastroPonudaPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: "Restoran Ognjišta", desc: "Planinski ambijent uz otvoreni kamin", img: "/images/headerOgnjista.jpg", link: "/restoran-ognjista" },
-              { title: "Svadbeni salon", desc: "Nezaboravne svečanosti i proslave", img: "/images/headerSvadbeniSalon.jpg", link: "/svadbeni-salon" },
-              { title: "Hotel Adria Ski", desc: "Smještaj uz vrhunsku gastronomiju", img: "/images/headerHotel.jpg", link: "/hotel-adria-ski" },
+              { title: t("card_ognjista_title"), desc: t("card_ognjista_desc"), img: "/images/headerOgnjista.jpg", link: "/restoran-ognjista" },
+              { title: t("card_wedding_title"), desc: t("card_wedding_desc"), img: "/images/headerSvadbeniSalon.jpg", link: "/svadbeni-salon" },
+              { title: t("card_hotel_title"), desc: t("card_hotel_desc"), img: "/images/headerHotel.jpg", link: "/hotel-adria-ski" },
             ].map((card, i) => (
               <motion.div
                 key={card.title}
@@ -340,23 +301,23 @@ export default function GastroPonudaPage() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              Dođite na domaći obrok
+              {t("cta_heading")}
             </h2>
             <p className="text-white/60 mb-8 max-w-xl mx-auto">
-              Uživajte u tradicionalnim kupreškim specijalitetima
+              {t("cta_subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href={`/${locale}/kontakt`}
                 className="inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
-                Rezervirajte stol <ArrowRight className="w-4 h-4" />
+                {t("cta_reserve")} <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href={`/${locale}/svadbeni-salon`}
                 className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
-                Svadbeni salon
+                {t("cta_wedding")}
               </Link>
             </div>
           </motion.div>

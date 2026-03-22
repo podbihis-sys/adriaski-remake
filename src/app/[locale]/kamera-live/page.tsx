@@ -22,12 +22,6 @@ interface CameraItem {
   visible: boolean;
 }
 
-const defaultCameras: CameraItem[] = [
-  { name: "Hotel Adria Ski", description: "Pogled na hotel i podnožje staza", url: "https://g0.ipcamlive.com/player/player.php?alias=adriaski", active: false, visible: true },
-  { name: "Sidro / Vučnica", description: "Pogled na ski lift Sidro", url: "https://g0.ipcamlive.com/player/player.php?alias=sidrokamera", active: false, visible: true },
-  { name: "Motel Tikvice", description: "Pogled sa vrha staza, 1.560m", url: "https://g0.ipcamlive.com/player/player.php?alias=tikvice", active: false, visible: true },
-];
-
 interface WeatherData {
   temperature: number;
   windSpeed: number;
@@ -35,24 +29,33 @@ interface WeatherData {
   weatherCode: number;
 }
 
-function getWeatherDescription(code: number): string {
-  if (code === 0 || code === 1) return "Vedro";
-  if (code === 2) return "Djelomično oblačno";
-  if (code === 3) return "Oblačno";
-  if (code >= 45 && code <= 48) return "Magla";
-  if (code >= 51 && code <= 65) return "Kiša";
-  if (code >= 71 && code <= 77) return "Snijeg";
-  if (code >= 80 && code <= 82) return "Pljuskovi";
-  if (code >= 85 && code <= 86) return "Snježni pljuskovi";
-  return "Nepoznato";
-}
-
 export default function KameraLivePage() {
+  const t = useTranslations("camera");
   const tc = useTranslations("common");
+  const tn = useTranslations("nav");
   const locale = useLocale();
+
+  const defaultCameras: CameraItem[] = [
+    { name: t("cam_hotel"), description: t("cam_hotel_desc"), url: "https://g0.ipcamlive.com/player/player.php?alias=adriaski", active: false, visible: true },
+    { name: t("cam_sidro"), description: t("cam_sidro_desc"), url: "https://g0.ipcamlive.com/player/player.php?alias=sidrokamera", active: false, visible: true },
+    { name: t("cam_tikvice"), description: t("cam_tikvice_desc"), url: "https://g0.ipcamlive.com/player/player.php?alias=tikvice", active: false, visible: true },
+  ];
+
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [cameras, setCameras] = useState<CameraItem[]>(defaultCameras);
   const [activeCamera, setActiveCamera] = useState(0);
+
+  function getWeatherDescription(code: number): string {
+    if (code === 0 || code === 1) return t("weather_clear");
+    if (code === 2) return t("weather_partly_cloudy");
+    if (code === 3) return t("weather_cloudy");
+    if (code >= 45 && code <= 48) return t("weather_fog");
+    if (code >= 51 && code <= 65) return t("weather_rain");
+    if (code >= 71 && code <= 77) return t("weather_snow");
+    if (code >= 80 && code <= 82) return t("weather_showers");
+    if (code >= 85 && code <= 86) return t("weather_snow_showers");
+    return t("weather_unknown");
+  }
 
   // Fetch camera settings from API
   useEffect(() => {
@@ -113,13 +116,13 @@ export default function KameraLivePage() {
             >
               <span className="inline-flex items-center gap-2 text-red-400 text-xs tracking-[0.2em] uppercase font-semibold mb-3">
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                Uživo
+                {t("hero_label")}
               </span>
               <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">
-                Adria ski uživo
+                {t("title")}
               </h1>
               <p className="mt-3 text-lg text-white/70 max-w-xl">
-                3 kamere uživo - pratite trenutne uvjete na skijalištu
+                {t("hero_desc")}
               </p>
             </motion.div>
           </div>
@@ -162,7 +165,7 @@ export default function KameraLivePage() {
                         ? "bg-green-500/20 text-green-400"
                         : "bg-red-500/20 text-red-400"
                     }`}>
-                      {cam.active ? "Online" : "Offline"}
+                      {cam.active ? t("online") : t("offline")}
                     </span>
                   </div>
                   <p className={`text-xs ${activeCamera === i ? "text-white/70" : "text-white/50"}`}>
@@ -211,7 +214,7 @@ export default function KameraLivePage() {
             >
               <div className="flex items-center gap-2 mb-6">
                 <Snowflake className="w-5 h-5 text-[#00c0f7]" />
-                <h2 className="text-xl font-heading font-bold">Trenutni uvjeti</h2>
+                <h2 className="text-xl font-heading font-bold">{t("weather_heading")}</h2>
               </div>
 
               {weather ? (
@@ -219,38 +222,38 @@ export default function KameraLivePage() {
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <Thermometer className="w-4 h-4 text-[#00c0f7]" />
-                      <span className="text-sm text-white/60">Temperatura</span>
+                      <span className="text-sm text-white/60">{t("temperature")}</span>
                     </div>
                     <p className="text-3xl font-heading font-bold">{weather.temperature}°C</p>
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <Snowflake className="w-4 h-4 text-[#00c0f7]" />
-                      <span className="text-sm text-white/60">Snijeg</span>
+                      <span className="text-sm text-white/60">{t("snow")}</span>
                     </div>
                     <p className="text-3xl font-heading font-bold">{weather.snowDepth} cm</p>
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <Wind className="w-4 h-4 text-[#00c0f7]" />
-                      <span className="text-sm text-white/60">Vjetar</span>
+                      <span className="text-sm text-white/60">{t("wind")}</span>
                     </div>
                     <p className="text-3xl font-heading font-bold">{weather.windSpeed} km/h</p>
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <Mountain className="w-4 h-4 text-[#00c0f7]" />
-                      <span className="text-sm text-white/60">Vrijeme</span>
+                      <span className="text-sm text-white/60">{t("weather")}</span>
                     </div>
                     <p className="text-xl font-heading font-bold">{getWeatherDescription(weather.weatherCode)}</p>
                   </div>
                 </div>
               ) : (
-                <div className="text-white/40 animate-pulse">Učitavanje...</div>
+                <div className="text-white/40 animate-pulse">{t("loading")}</div>
               )}
 
               <div className="mt-6 pt-4 border-t border-white/10">
-                <p className="text-xs text-white/40">Podaci: Open-Meteo API · Lokacija: Kupres (43.95°N, 17.28°E)</p>
+                <p className="text-xs text-white/40">{t("weather_source")}</p>
               </div>
             </motion.div>
 
@@ -261,7 +264,7 @@ export default function KameraLivePage() {
             >
               <div className="flex items-center gap-2 mb-6">
                 <Video className="w-5 h-5 text-[#163c6f]" />
-                <h2 className="text-xl font-heading font-bold text-[#163c6f]">Informacije</h2>
+                <h2 className="text-xl font-heading font-bold text-[#163c6f]">{t("info_heading")}</h2>
               </div>
 
               <div className="space-y-5">
@@ -270,8 +273,8 @@ export default function KameraLivePage() {
                     <MapPin className="w-4 h-4 text-[#163c6f]" />
                   </div>
                   <div>
-                    <p className="font-semibold text-[#163c6f] text-sm">Lokacija</p>
-                    <p className="text-[#3d3d3d] text-sm">Kupres Adria Ski, Čajuša bb, 80 320 Kupres</p>
+                    <p className="font-semibold text-[#163c6f] text-sm">{t("info_location")}</p>
+                    <p className="text-[#3d3d3d] text-sm">{t("info_location_value")}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -279,8 +282,8 @@ export default function KameraLivePage() {
                     <Clock className="w-4 h-4 text-[#163c6f]" />
                   </div>
                   <div>
-                    <p className="font-semibold text-[#163c6f] text-sm">Radno vrijeme skijališta</p>
-                    <p className="text-[#3d3d3d] text-sm">Svaki dan: 09:00 - 16:00</p>
+                    <p className="font-semibold text-[#163c6f] text-sm">{t("info_hours")}</p>
+                    <p className="text-[#3d3d3d] text-sm">{t("info_hours_value")}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -288,7 +291,7 @@ export default function KameraLivePage() {
                     <Phone className="w-4 h-4 text-[#163c6f]" />
                   </div>
                   <div>
-                    <p className="font-semibold text-[#163c6f] text-sm">Kontakt</p>
+                    <p className="font-semibold text-[#163c6f] text-sm">{t("info_contact")}</p>
                     <a href="tel:+38734275100" className="text-[#00c0f7] text-sm hover:underline">+387 (0) 34 275 100</a>
                   </div>
                 </div>
@@ -297,8 +300,8 @@ export default function KameraLivePage() {
                     <Camera className="w-4 h-4 text-[#163c6f]" />
                   </div>
                   <div>
-                    <p className="font-semibold text-[#163c6f] text-sm">Kamere</p>
-                    <p className="text-[#3d3d3d] text-sm">3 kamere uživo (Hotel, Sidro, Tikvice)</p>
+                    <p className="font-semibold text-[#163c6f] text-sm">{t("info_cameras")}</p>
+                    <p className="text-[#3d3d3d] text-sm">{t("info_cameras_value")}</p>
                   </div>
                 </div>
               </div>
@@ -307,7 +310,7 @@ export default function KameraLivePage() {
                 href={`/${locale}/skijalista`}
                 className="inline-flex items-center gap-2 mt-6 text-[#00c0f7] text-sm font-semibold hover:gap-3 transition-all duration-300"
               >
-                Više o stazama <ArrowRight className="w-3.5 h-3.5" />
+                {t("link_slopes")} <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </motion.div>
           </div>
@@ -319,9 +322,9 @@ export default function KameraLivePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: "Skijalište", desc: "Preko 13 km uređenih staza", img: "/images/staze-1.jpg", link: "/skijalista" },
-              { title: "Cjenik", desc: "Ski karte i oprema", img: "/images/staze-3.jpg", link: "/cjenik" },
-              { title: "Škola skijanja", desc: "Za početnike i napredne", img: "/images/headerSkolaSkijanja.jpg", link: "/skola-skijanja" },
+              { title: t("quick_ski_title"), desc: t("quick_ski_desc"), img: "/images/staze-1.jpg", link: "/skijalista" },
+              { title: t("quick_pricing_title"), desc: t("quick_pricing_desc"), img: "/images/staze-3.jpg", link: "/cjenik" },
+              { title: t("quick_school_title"), desc: t("quick_school_desc"), img: "/images/headerSkolaSkijanja.jpg", link: "/skola-skijanja" },
             ].map((card, i) => (
               <motion.div
                 key={card.title}

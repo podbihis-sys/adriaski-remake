@@ -20,7 +20,9 @@ const galleryImages = Array.from({ length: 8 }, (_, i) => ({
 }));
 
 export default function EnduroTurizam() {
+  const t = useTranslations("enduro");
   const tc = useTranslations("common");
+  const tn = useTranslations("nav");
   const locale = useLocale();
   return (
     <main>
@@ -31,9 +33,9 @@ export default function EnduroTurizam() {
         <div className="absolute bottom-0 left-0 right-0 z-10 pb-12 md:pb-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              <span className="inline-block text-red-400 text-xs tracking-[0.25em] uppercase font-semibold mb-3">Ljetna ponuda</span>
-              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">Enduro turizam</h1>
-              <p className="mt-3 text-lg text-white/70 max-w-xl">Motociklističke avanture kroz divlje šume i brdske staze Kupresa</p>
+              <span className="inline-block text-red-400 text-xs tracking-[0.25em] uppercase font-semibold mb-3">{t("hero_label")}</span>
+              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">{t("title")}</h1>
+              <p className="mt-3 text-lg text-white/70 max-w-xl">{t("hero_desc")}</p>
             </motion.div>
           </div>
         </div>
@@ -44,10 +46,10 @@ export default function EnduroTurizam() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { icon: Mountain, value: "2.000m", label: "Visina" },
-              { icon: Clock, value: "3 dana", label: "Program" },
-              { icon: Bike, value: "Motocikli", label: "Enduro ture" },
-              { icon: Flame, value: "Adrenalin", label: "Doživljaj" },
+              { icon: Mountain, value: "2.000m", label: t("highlight_altitude") },
+              { icon: Clock, value: "3 dana", label: t("highlight_program") },
+              { icon: Bike, value: "Motocikli", label: t("highlight_tours") },
+              { icon: Flame, value: "Adrenalin", label: t("highlight_experience") },
             ].map((item) => {
               const Icon = item.icon;
               return (
@@ -92,10 +94,10 @@ export default function EnduroTurizam() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <span className="inline-block text-red-500 text-xs tracking-[0.2em] uppercase font-semibold mb-3">Avantura</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">Enduro ture</h2>
+              <span className="inline-block text-red-500 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("adventure_label")}</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">{t("adventure_heading")}</h2>
               <p className="text-[#3d3d3d] leading-relaxed text-lg">
-                Za vozače je to velika avantura i izazov – uspeti se na 2.000 metara nadmorske visine. Na to nisu navikli u svojim podnebljima, niti imaju tu mogućnost. Enduro ture, odnosno vožnje motociklom na otvorenom terenu, u divljim šumama, na brdskim kamenim putevima i blatnjavim stazama.
+                {t("adventure_desc")}
               </p>
             </motion.div>
           </div>
@@ -113,10 +115,10 @@ export default function EnduroTurizam() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <span className="inline-block text-red-500 text-xs tracking-[0.2em] uppercase font-semibold mb-3">Iskustvo</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">Za vozače</h2>
+              <span className="inline-block text-red-500 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("riders_label")}</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">{t("riders_heading")}</h2>
               <p className="text-[#3d3d3d] leading-relaxed text-lg">
-                Na enduro motociklu su svi jednaki, vuku i guraju jedni drugima motocikle kada zaglave u blatu, znoje se jednako, što zbog opreme, što zbog straha i adrenalina, a na kraju zajedno i uživaju u pogledu, nakon naporne vožnje.
+                {t("riders_desc")}
               </p>
             </motion.div>
 
@@ -143,8 +145,8 @@ export default function EnduroTurizam() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-12">
-            <span className="inline-block text-red-500 text-xs tracking-[0.2em] uppercase font-semibold mb-3">Raspored</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">Program</h2>
+            <span className="inline-block text-red-500 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("program_label")}</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">{t("program_heading")}</h2>
           </motion.div>
 
           <div className="space-y-5">
@@ -152,10 +154,10 @@ export default function EnduroTurizam() {
             <motion.div {...fadeInUp} className="bg-[#f2f3f4] rounded-xl p-5">
               <div className="flex items-center gap-3 mb-2">
                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#163c6f] text-white text-xs font-bold">D1</span>
-                <h3 className="font-heading font-bold text-[#163c6f]">Dan 1.</h3>
+                <h3 className="font-heading font-bold text-[#163c6f]">{t("day1_title")}</h3>
               </div>
               <p className="text-[#3d3d3d] text-sm leading-relaxed">
-                Dolazak u hotel &quot;Adriaski&quot; u poslijepodnevnim satima. Večera dobrodošlice na bazi švedskog stola s domaćim specijalitetima. Za večernju zabavu (ovisno o dogovoru) gosti će imati priliku birati između: zabave uz harmonikaša, karaoke show ili zabavu uz glazbu uživo.
+                {t("day1_desc")}
               </p>
             </motion.div>
 
@@ -163,13 +165,13 @@ export default function EnduroTurizam() {
             <motion.div {...fadeInUp} className="bg-[#f2f3f4] rounded-xl p-5">
               <div className="flex items-center gap-3 mb-2">
                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#163c6f] text-white text-xs font-bold">D2</span>
-                <h3 className="font-heading font-bold text-[#163c6f]">Dan 2.</h3>
+                <h3 className="font-heading font-bold text-[#163c6f]">{t("day2_title")}</h3>
               </div>
               <div className="text-[#3d3d3d] text-sm leading-relaxed space-y-1.5">
                 <p><span className="font-semibold">08:00 – 09:00 h</span> Doručak</p>
                 <p><span className="font-semibold">09:00 – 13:00 h</span> Prijepodnevni program:</p>
-                <p className="font-semibold">MOTOCIKLISTIČKE TURE</p>
-                <p>Vožnje motociklom – različite ture shodno interesu i fizičkim mogućnostima. Znanje motociklista će se prethodno provjeriti na poligonu prilagođenom vožnjama motorima.</p>
+                <p className="font-semibold">{t("day2_motorcycle_tours")}</p>
+                <p>{t("day2_desc")}</p>
                 <p><span className="font-semibold">13:00 – 14:30 h</span> Ručak u prirodi</p>
                 <p><span className="font-semibold">15:00 – 18:00 h</span> Slobodne aktivnosti</p>
                 <p><span className="font-semibold">19:00 – 20:30 h</span> Večera u restoranu &quot;Ognjišta&quot; – gosti će moći ukoliko to žele sudjelovati u pripremi večere – roštilj</p>
@@ -181,7 +183,7 @@ export default function EnduroTurizam() {
             <motion.div {...fadeInUp} className="bg-[#f2f3f4] rounded-xl p-5">
               <div className="flex items-center gap-3 mb-2">
                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#163c6f] text-white text-xs font-bold">D3</span>
-                <h3 className="font-heading font-bold text-[#163c6f]">Dan 3.</h3>
+                <h3 className="font-heading font-bold text-[#163c6f]">{t("day3_title")}</h3>
               </div>
               <div className="text-[#3d3d3d] text-sm leading-relaxed space-y-1.5">
                 <p><span className="font-semibold">08:00 – 09:30 h</span> – Doručak</p>
@@ -193,17 +195,17 @@ export default function EnduroTurizam() {
 
             {/* Uključeno */}
             <motion.div {...fadeInUp} className="bg-orange-50 border border-red-200 rounded-xl p-5">
-              <h3 className="font-heading font-bold text-red-600 mb-1">Uključeno</h3>
+              <h3 className="font-heading font-bold text-red-600 mb-1">{t("included_title")}</h3>
               <p className="text-[#3d3d3d] text-sm font-semibold">
-                Ponuda uključuje: BORAVAK NA BAZI DVIJE NOĆI: 2 puna pansiona (u cijenu je uključeni ručak u prirodi);
+                {t("included_desc")}
               </p>
             </motion.div>
 
             {/* Dodatno */}
             <motion.div {...fadeInUp} className="bg-orange-50 border border-red-200 rounded-xl p-5">
-              <h3 className="font-heading font-bold text-red-600 mb-1">Dodatno</h3>
+              <h3 className="font-heading font-bold text-red-600 mb-1">{t("additional_title")}</h3>
               <p className="text-[#3d3d3d] text-sm">
-                UKOLIKO GOSTI BUDU BORAVILI 3 NOĆI – 4 DANA, TREĆI DAN ĆE GOSTI IĆI ILI NA JAHANJE, U RIBOLOV ILI ĆE KAMPIRATI U PRIRODI – OVISNO O DOGOVORU, IMATI ĆE RUČAK I /ILI VEČERU U PRIRODI, A NAVEČER UKOLIKO NE BUDU IŠLI NA KAMPIRANJE ĆE IMATI VEČERU I ZABAVU U HOTELU &quot;ADRIA SKI&quot; UZ GLAZBU UŽIVO ILI UZ HARMONIKAŠA
+                {t("additional_desc")}
               </p>
             </motion.div>
           </div>
@@ -227,14 +229,14 @@ export default function EnduroTurizam() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b1d42]/90 to-[#163c6f]/80" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Spremni za enduro avanturu?</h2>
-            <p className="text-white/60 mb-8 max-w-xl mx-auto">Rezervirajte enduro paket i istražite brdske staze Kupresa</p>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">{t("cta_heading")}</h2>
+            <p className="text-white/60 mb-8 max-w-xl mx-auto">{t("cta_subtitle")}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href={`/${locale}/kontakt`} className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
-                Rezervirajte <ArrowRight className="w-4 h-4" />
+                {tc("reserve")} <ArrowRight className="w-4 h-4" />
               </Link>
               <Link href={`/${locale}/jahanje`} className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
-                Jahanje
+                {tn("horseback")}
               </Link>
             </div>
           </motion.div>

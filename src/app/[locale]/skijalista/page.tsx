@@ -68,7 +68,7 @@ export default function Skijalista() {
                 {t("subtitle")}
               </h1>
               <p className="mt-3 text-lg text-white/70 max-w-xl">
-                Preko 13 kilometara staza sa 5 ski liftova
+                {t("hero_desc")}
               </p>
             </motion.div>
           </div>
@@ -125,7 +125,7 @@ export default function Skijalista() {
               </div>
               <div className="absolute -bottom-6 -right-4 md:-right-8 bg-[#163c6f] text-white rounded-xl p-5 shadow-xl hidden sm:block">
                 <p className="text-3xl font-heading font-bold">13+ km</p>
-                <p className="text-sm text-white/70">uređenih staza</p>
+                <p className="text-sm text-white/70">{t("slopes_accent_label")}</p>
               </div>
             </motion.div>
 
@@ -137,24 +137,13 @@ export default function Skijalista() {
               transition={{ duration: 0.7 }}
             >
               <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-                Staze
+                {t("slopes_label")}
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">
                 {t("over_13km")}
               </h2>
               <div className="text-[#3d3d3d] leading-relaxed space-y-4 text-[15px]">
-                <p>
-                  U sezoni 2023/2024 dodajemo za 2 nova ski lifta. U pitanju su ski
-                  liftovi VUČNICE/SIDRO oko 1150 metara dužine. Skijaši svakodnevno
-                  mogu od 09,00-16,00 sati uživati na preko 13 kilometara odlično
-                  pripremljenih skijaških staza sa 5 ski-liftova. Ono što je bitno
-                  napomenuti je da su sve staze međusobno povezane i udaljene nekoliko
-                  desetaka metara od liftova i kompleksa hotela. Staze su raznolike tako da
-                  i početnici i skijaši sa višegodišnjim stažom u skijanju mogu
-                  pronaći ono što im najviše odgovara. Ljubazno osoblje na terenu će
-                  Vam se u svakom trenutku naći pri ruci bilo da se radi o pomoći pri
-                  ulasku na ski lift ili dodatnim objašnjenjima vezanim za ski staze.
-                </p>
+                <p>{t("slopes_desc")}</p>
               </div>
             </motion.div>
           </div>
@@ -169,7 +158,7 @@ export default function Skijalista() {
               {t("infrastructure")}
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">
-              Ski liftovi
+              {t("ski_lifts_heading")}
             </h2>
           </motion.div>
 
@@ -216,20 +205,13 @@ export default function Skijalista() {
               transition={{ duration: 0.7 }}
             >
               <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-                Zasnježivanje
+                {t("snow_label")}
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">
                 {t("snow_cannons")}
               </h2>
               <div className="text-[#3d3d3d] leading-relaxed space-y-4 text-[15px]">
-                <p>
-                  Četvorosjed u dužini od 1850 metara, jedna sjedežnica (dvosjed) u
-                  dužini od 980 metara, dvije &quot;sidro&quot; vučnice u dužini od
-                  1080 i 1150 metara, te jedan baby lift dužine 300 metara. Topovi za
-                  umjetni snijeg za čiju su svrhu izgrađena dodatna umjetna jezera,
-                  omogućavaju umjetno zasnježivanje kako bi se spriječio nedostatak
-                  snijega ili vode.
-                </p>
+                <p>{t("snow_desc")}</p>
               </div>
 
               {/* Info badges */}
@@ -238,7 +220,7 @@ export default function Skijalista() {
                   <Snowflake className="w-3.5 h-3.5" /> {t("artificial_snow")}
                 </span>
                 <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-sm font-medium px-3 py-1.5 rounded-full">
-                  <Mountain className="w-3.5 h-3.5" /> Dvosjed &amp; Četvorosjed
+                  <Mountain className="w-3.5 h-3.5" /> {t("snow_badge_chairlift")}
                 </span>
                 <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-sm font-medium px-3 py-1.5 rounded-full">
                   <Baby className="w-3.5 h-3.5" /> {t("baby_lift")}
@@ -270,9 +252,9 @@ export default function Skijalista() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: "Škola skijanja", desc: "Kvalificirani instruktori za sve uzraste", img: "/images/headerSkolaSkijanja.jpg", link: "/skola-skijanja" },
-              { title: "Cjenik skijališta", desc: "Dnevne, višednevne i sezonske karte", img: "/images/staze-9.jpg", link: "/cjenik" },
-              { title: "Kamera live", desc: "Pogledajte staze uživo", img: "/images/staze-2.jpg", link: "/kamera-live" },
+              { title: t("quick_ski_school_title"), desc: t("quick_ski_school_desc"), img: "/images/headerSkolaSkijanja.jpg", link: "/skola-skijanja" },
+              { title: t("quick_pricing_title"), desc: t("quick_pricing_desc"), img: "/images/staze-9.jpg", link: "/cjenik" },
+              { title: t("quick_camera_title"), desc: t("quick_camera_desc"), img: "/images/staze-2.jpg", link: "/kamera-live" },
             ].map((card, i) => (
               <motion.div
                 key={card.title}
@@ -328,7 +310,7 @@ export default function Skijalista() {
               {tc("ready_for_skiing")}
             </h2>
             <p className="text-white/60 mb-8 max-w-xl mx-auto">
-              Pogledajte cjenik ski karata i rezervirajte svoj boravak
+              {t("cta_subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

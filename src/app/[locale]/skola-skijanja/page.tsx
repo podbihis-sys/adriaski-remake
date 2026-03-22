@@ -13,17 +13,26 @@ const fadeInUp = {
   transition: { duration: 0.6 },
 };
 
-const groupPricing = [
-  { days: "1 dan", label: "Jednodnevni tečaj", price: "31" },
-  { days: "2 dana", label: "Dvodnevni tečaj", price: "57" },
-  { days: "3 dana", label: "Trodnevni tečaj", price: "82,50" },
-  { days: "4 dana", label: "Četverodnevni tečaj", price: "98" },
-  { days: "5 dana", label: "Petodnevni tečaj", price: "113,50" },
-];
-
 export default function SkolaSkijanja() {
+  const t = useTranslations("ski_school");
   const tc = useTranslations("common");
   const locale = useLocale();
+
+  const groupPricing = [
+    { days: "1 dan", label: t("course_1day"), price: "31" },
+    { days: "2 dana", label: t("course_2day"), price: "57" },
+    { days: "3 dana", label: t("course_3day"), price: "82,50" },
+    { days: "4 dana", label: t("course_4day"), price: "98" },
+    { days: "5 dana", label: t("course_5day"), price: "113,50" },
+  ];
+
+  const highlights = [
+    { icon: GraduationCap, value: "5+", label: t("highlight_age") },
+    { icon: Users, value: "7-10", label: t("highlight_group") },
+    { icon: Baby, value: "3-6", label: t("highlight_kindergarten") },
+    { icon: User, value: "1:1", label: t("highlight_individual") },
+  ];
+
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -45,13 +54,13 @@ export default function SkolaSkijanja() {
               transition={{ duration: 0.7 }}
             >
               <span className="inline-block text-[#00c0f7] text-xs tracking-[0.25em] uppercase font-semibold mb-3">
-                Obuka
+                {t("hero_label")}
               </span>
               <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">
-                Škola skijanja i snowboarda
+                {t("title")}
               </h1>
               <p className="mt-3 text-lg text-white/70 max-w-xl">
-                Kvalificirani instruktori za sve uzraste i nivoe
+                {t("hero_desc")}
               </p>
             </motion.div>
           </div>
@@ -67,12 +76,7 @@ export default function SkolaSkijanja() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-3"
           >
-            {[
-              { icon: GraduationCap, value: "5+", label: "Godina starosti" },
-              { icon: Users, value: "7-10", label: "Polaznika u grupi" },
-              { icon: Baby, value: "3-6", label: "Ski-vrtić (godine)" },
-              { icon: User, value: "1:1", label: "Individualna obuka" },
-            ].map((item) => {
+            {highlights.map((item) => {
               const Icon = item.icon;
               return (
                 <div
@@ -113,7 +117,7 @@ export default function SkolaSkijanja() {
               </div>
               <div className="absolute -bottom-6 -right-4 md:-right-8 bg-[#163c6f] text-white rounded-xl p-5 shadow-xl hidden sm:block">
                 <GraduationCap className="w-8 h-8 mb-1" />
-                <p className="text-sm font-semibold">Certificirani</p>
+                <p className="text-sm font-semibold">{t("certified")}</p>
               </div>
             </motion.div>
 
@@ -125,21 +129,13 @@ export default function SkolaSkijanja() {
               transition={{ duration: 0.7 }}
             >
               <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-                Naš tim
+                {t("team_label")}
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">
-                Kvalificirani ski-instruktori
+                {t("team_heading")}
               </h2>
               <div className="text-[#3d3d3d] leading-relaxed space-y-4 text-[15px]">
-                <p>
-                  U našoj posebnoj ponudi je i škola skijanja &quot;Adria Ski&quot;. U
-                  školi rade kvalificirani ski-instruktori koji će Vas uvesti u sve
-                  tajne skijanja. U sklopu škole djeluje i &quot;ski-vrtić&quot;,
-                  dodatna pogodnost za djecu i roditelje. Osim učenja prvih koraka na
-                  skijama u vrtiću se djeca mogu zabaviti i igrama na snijegu uz
-                  prisustvo animatora te sanjkanjem. Ski-vrtiću mogu pristupiti djeca
-                  od 3-6 godina starosti.
-                </p>
+                <p>{t("team_desc")}</p>
               </div>
             </motion.div>
           </div>
@@ -159,19 +155,13 @@ export default function SkolaSkijanja() {
               className="order-2 lg:order-1"
             >
               <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-                Iskustvo
+                {t("experience_label")}
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">
-                Dugogodišnje iskustvo
+                {t("experience_heading")}
               </h2>
               <div className="text-[#3d3d3d] leading-relaxed space-y-4 text-[15px]">
-                <p>
-                  Pristup školi skijanja imaju pravo sve osobe starije od 5 godina.
-                  Oboružani dugogodišnjim iskustvom preporučamo Vam da izbor metoda,
-                  oblik rada, izbor terena i sve preostalo prepustite Vašem učitelju
-                  skijanja čije će Vas znanje i iskustvo idealnim putem (stazom)
-                  dovesti do željenog cilja.
-                </p>
+                <p>{t("experience_desc")}</p>
               </div>
 
               {/* Contact Info */}
@@ -181,7 +171,7 @@ export default function SkolaSkijanja() {
                     <Clock className="w-4 h-4 text-[#163c6f]" />
                   </div>
                   <div className="text-sm">
-                    <span className="font-semibold">Radno vrijeme:</span> Tjedno 09-16h / Vikend 08-19h
+                    <span className="font-semibold">{t("working_hours_label")}</span> {t("working_hours_value")}
                   </div>
                 </div>
                 <div className="flex items-center gap-3 text-[#3d3d3d]">
@@ -189,7 +179,7 @@ export default function SkolaSkijanja() {
                     <Phone className="w-4 h-4 text-[#163c6f]" />
                   </div>
                   <div className="text-sm">
-                    <p><span className="font-semibold">Ured:</span> +387 63 096 520</p>
+                    <p><span className="font-semibold">{t("office")}</span> +387 63 096 520</p>
                     <p><span className="font-semibold">Mario:</span> +387 63 331 800</p>
                   </div>
                 </div>
@@ -198,7 +188,7 @@ export default function SkolaSkijanja() {
                     <Facebook className="w-4 h-4 text-[#163c6f]" />
                   </div>
                   <div className="text-sm">
-                    <span className="font-semibold">Facebook:</span> škola skijanja i snowboarda adriaski
+                    <span className="font-semibold">{t("facebook_label")}</span> {t("facebook_value")}
                   </div>
                 </div>
               </div>
@@ -228,12 +218,12 @@ export default function SkolaSkijanja() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-12">
             <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-              Cijene
+              {t("pricing_label")}
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">
-              Cjenik
+              {t("pricing_heading")}
             </h2>
-            <p className="mt-3 text-gray-500">Grupni tečajevi (7 – 10 polaznika)</p>
+            <p className="mt-3 text-gray-500">{t("pricing_subtitle")}</p>
           </motion.div>
 
           {/* Group pricing */}
@@ -254,7 +244,7 @@ export default function SkolaSkijanja() {
                   <span className="text-[#3d3d3d] font-medium">{item.label}</span>
                 </div>
                 <span className="text-xl font-heading font-bold text-[#163c6f]">
-                  {item.price} <span className="text-sm font-normal text-gray-500">€</span>
+                  {item.price} <span className="text-sm font-normal text-gray-500">&euro;</span>
                 </span>
               </motion.div>
             ))}
@@ -270,20 +260,20 @@ export default function SkolaSkijanja() {
           >
             <div className="flex items-center justify-center gap-2 mb-2">
               <User className="w-5 h-5 text-[#00c0f7]" />
-              <span className="text-[#00c0f7] text-sm font-semibold uppercase tracking-wider">Premium</span>
+              <span className="text-[#00c0f7] text-sm font-semibold uppercase tracking-wider">{t("individual_label")}</span>
             </div>
             <h3 className="text-2xl font-heading font-bold text-white mb-1">
-              Individualna obuka
+              {t("individual_heading")}
             </h3>
-            <p className="text-white/60 text-sm mb-4">1 na 1 / 60 minuta</p>
+            <p className="text-white/60 text-sm mb-4">{t("individual_duration")}</p>
             <p className="text-4xl font-heading font-bold text-[#00c0f7]">
-              30 <span className="text-lg text-white/70">€</span>
+              30 <span className="text-lg text-white/70">&euro;</span>
             </p>
             <Link
               href={`/${locale}/kontakt`}
               className="inline-flex items-center justify-center gap-2 mt-5 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-6 py-2.5 rounded-lg transition-all duration-300 text-sm"
             >
-              Rezerviraj termin <ArrowRight className="w-3.5 h-3.5" />
+              {t("individual_book")} <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </motion.div>
         </div>
@@ -294,9 +284,9 @@ export default function SkolaSkijanja() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: "Skijalište", desc: "Preko 13 km uređenih staza", img: "/images/headerSkijalista.jpg", link: "/skijalista" },
-              { title: "Cjenik", desc: "Kompletne cijene ski karata i opreme", img: "/images/staze-2.jpg", link: "/cjenik" },
-              { title: "Hotel Adria Ski", desc: "Smještaj uz same staze", img: "/images/headerHotel.jpg", link: "/hotel-adria-ski" },
+              { title: t("quick_ski_title"), desc: t("quick_ski_desc"), img: "/images/headerSkijalista.jpg", link: "/skijalista" },
+              { title: t("quick_pricing_title"), desc: t("quick_pricing_desc"), img: "/images/staze-2.jpg", link: "/cjenik" },
+              { title: t("quick_hotel_title"), desc: t("quick_hotel_desc"), img: "/images/headerHotel.jpg", link: "/hotel-adria-ski" },
             ].map((card, i) => (
               <motion.div
                 key={card.title}
@@ -334,23 +324,23 @@ export default function SkolaSkijanja() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              Naučite skijati s nama
+              {t("cta_heading")}
             </h2>
             <p className="text-white/60 mb-8 max-w-xl mx-auto">
-              Rezervirajte tečaj skijanja za sebe ili svoju djecu
+              {t("cta_subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="tel:+38763096520"
                 className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
-                <Phone className="w-4 h-4" /> Nazovite nas
+                <Phone className="w-4 h-4" /> {t("cta_call")}
               </a>
               <Link
                 href={`/${locale}/kontakt`}
                 className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
-                Kontakt obrazac
+                {t("cta_form")}
               </Link>
             </div>
           </motion.div>

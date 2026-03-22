@@ -13,28 +13,28 @@ const fadeInUp = {
   transition: { duration: 0.6 },
 };
 
-const rooms = [
-  {
-    title: "Mala sala",
-    capacity: "60",
-    features: ["Tik do restorana", "Fleksibilan raspored stolova", "Predavanja i panel diskusije"],
-    description:
-      'Jedan od segmeneta našeg poslovanja kojim se ponosimo i koji iz dana u dan razvijamo te dižemo na višu razinu je organizacija svih vrsta seminara i tematskih skupova. Za skupove do 60 osoba idealna je mala sala koja se nalazi tik do restorana na nultoj razini hotela. Budući da stolovi nisu fiksni moguće je organizirati predavanje ili panel diskusiju ovisno o potrebama klijenta.',
-    icon: Presentation,
-  },
-  {
-    title: "Velika sala",
-    capacity: "250",
-    features: ["Audio i video tehnika", "Šank za okrijepu", "Odvojene radne skupine"],
-    description:
-      'Za veće skupove idealna je sala u podzemnoj razini hotela. Sa smještajnim kapacitetom do 250 osoba, polivalentim rasporedom stolica te oblikom koji omogućava formiranje odvojenih radnih skupina, u potpunosti zadovoljava uvjete za višednevne seminare ili skupove. Sala je u potpunosti opremljena audio i video tehnikom, a u njenom sklopu se nalazi i šank za kratku i brzu okrijepu.',
-    icon: Presentation,
-  },
-];
-
 export default function SeminariPage() {
+  const t = useTranslations("seminars_page");
   const tc = useTranslations("common");
   const locale = useLocale();
+
+  const rooms = [
+    {
+      title: t("small_hall_title"),
+      capacity: "60",
+      features: [t("small_hall_feature1"), t("small_hall_feature2"), t("small_hall_feature3")],
+      description: t("small_hall_desc"),
+      icon: Presentation,
+    },
+    {
+      title: t("large_hall_title"),
+      capacity: "250",
+      features: [t("large_hall_feature1"), t("large_hall_feature2"), t("large_hall_feature3")],
+      description: t("large_hall_desc"),
+      icon: Presentation,
+    },
+  ];
+
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -44,9 +44,9 @@ export default function SeminariPage() {
         <div className="absolute bottom-0 left-0 right-0 z-10 pb-12 md:pb-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              <span className="inline-block text-[#00c0f7] text-xs tracking-[0.25em] uppercase font-semibold mb-3">Poslovni skupovi</span>
-              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">Seminari</h1>
-              <p className="mt-3 text-lg text-white/70 max-w-xl">Profesionalna organizacija seminara i tematskih skupova</p>
+              <span className="inline-block text-[#00c0f7] text-xs tracking-[0.25em] uppercase font-semibold mb-3">{t("hero_label")}</span>
+              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">{t("title")}</h1>
+              <p className="mt-3 text-lg text-white/70 max-w-xl">{t("hero_desc")}</p>
             </motion.div>
           </div>
         </div>
@@ -57,10 +57,10 @@ export default function SeminariPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { icon: Users, value: "310", label: "Ukupni kapacitet" },
-              { icon: Monitor, value: "Audio/Video", label: "Tehnika" },
-              { icon: Coffee, value: "Šank", label: "Bar" },
-              { icon: Presentation, value: "2", label: "Sale" },
+              { icon: Users, value: "310", label: t("highlight_capacity") },
+              { icon: Monitor, value: "Audio/Video", label: t("highlight_tech") },
+              { icon: Coffee, value: "Šank", label: t("highlight_bar") },
+              { icon: Presentation, value: "2", label: t("highlight_halls") },
             ].map((item) => {
               const Icon = item.icon;
               return (
@@ -98,7 +98,7 @@ export default function SeminariPage() {
                     <h2 className="text-2xl font-heading font-bold mb-2">{room.title}</h2>
                     <div className="flex items-baseline gap-1 mb-5">
                       <span className="text-4xl font-heading font-bold text-[#00c0f7]">{room.capacity}</span>
-                      <span className="text-white/60 text-sm">osoba</span>
+                      <span className="text-white/60 text-sm">{t("persons")}</span>
                     </div>
                     <ul className="space-y-2">
                       {room.features.map((f) => (
@@ -127,8 +127,8 @@ export default function SeminariPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b1d42]/90 to-[#163c6f]/80" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Planirate seminar ili konferenciju?</h2>
-            <p className="text-white/60 mb-8 max-w-xl mx-auto">Kontaktirajte nas za organizaciju vašeg poslovnog skupa</p>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">{t("cta_heading")}</h2>
+            <p className="text-white/60 mb-8 max-w-xl mx-auto">{t("cta_subtitle")}</p>
             <Link href={`/${locale}/kontakt`} className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
               {tc("contact_us")} <ArrowRight className="w-4 h-4" />
             </Link>

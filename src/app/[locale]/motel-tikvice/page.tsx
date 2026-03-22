@@ -14,47 +14,49 @@ const fadeInUp = {
   transition: { duration: 0.6 },
 };
 
-const highlights = [
-  { icon: Mountain, value: "1.560m", label: "Nadmorske visine" },
-  { icon: Home, value: "4", label: "Apartmana" },
-  { icon: Users, value: "3", label: "Sobe" },
-  { icon: UtensilsCrossed, value: "1", label: "Restoran" },
-  { icon: TreePine, value: "∞", label: "Borova šuma" },
-  { icon: Eye, value: "360°", label: "Pogled" },
-];
-
-const pricing = [
-  {
-    type: "Apartman",
-    capacity: "2+2+2 (6 osoba)",
-    price: "180,50",
-    unit: "po danu",
-    featured: true,
-  },
-  {
-    type: "Trokrevetna soba",
-    capacity: "3 osobe",
-    price: "51,54",
-    unit: "po osobi / dan",
-    featured: false,
-  },
-  {
-    type: "Dvokrevetna soba",
-    capacity: "2 osobe",
-    price: "51,54",
-    unit: "po osobi / dan",
-    featured: false,
-  },
-];
-
 const galleryImages = Array.from({ length: 12 }, (_, i) => ({
   src: `/images/motelTikvice-${String(i + 1).padStart(2, "0")}.jpg`,
   alt: `Motel Tikvice ${i + 1}`,
 }));
 
 export default function MotelTikvice() {
+  const t = useTranslations("tikvice");
   const tc = useTranslations("common");
   const locale = useLocale();
+
+  const highlights = [
+    { icon: Mountain, value: "1.560m", label: t("highlight_altitude") },
+    { icon: Home, value: "4", label: t("highlight_apartments") },
+    { icon: Users, value: "3", label: t("highlight_rooms") },
+    { icon: UtensilsCrossed, value: "1", label: t("highlight_restaurant") },
+    { icon: TreePine, value: "\u221E", label: t("highlight_forest") },
+    { icon: Eye, value: "360\u00B0", label: t("highlight_view") },
+  ];
+
+  const pricing = [
+    {
+      type: t("apartment"),
+      capacity: t("apartment_capacity"),
+      price: "180,50",
+      unit: t("per_day"),
+      featured: true,
+    },
+    {
+      type: t("triple_room"),
+      capacity: t("triple_capacity"),
+      price: "51,54",
+      unit: t("per_person_day"),
+      featured: false,
+    },
+    {
+      type: t("double_room"),
+      capacity: t("double_capacity"),
+      price: "51,54",
+      unit: t("per_person_day"),
+      featured: false,
+    },
+  ];
+
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -76,13 +78,13 @@ export default function MotelTikvice() {
               transition={{ duration: 0.7 }}
             >
               <span className="inline-block text-[#00c0f7] text-xs tracking-[0.25em] uppercase font-semibold mb-3">
-                Smještaj
+                {t("hero_label")}
               </span>
               <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">
-                Motel Tikvice
+                {t("title")}
               </h1>
               <p className="mt-3 text-lg text-white/70 max-w-xl">
-                Na vrhu skijaških staza, 1.560m nadmorske visine
+                {t("hero_desc")}
               </p>
             </motion.div>
           </div>
@@ -140,7 +142,7 @@ export default function MotelTikvice() {
               {/* Floating altitude card */}
               <div className="absolute -bottom-6 -right-4 md:-right-8 bg-[#163c6f] text-white rounded-xl p-5 shadow-xl hidden sm:block">
                 <p className="text-3xl font-heading font-bold">1.560m</p>
-                <p className="text-sm text-white/70">nadmorske visine</p>
+                <p className="text-sm text-white/70">{t("altitude_label")}</p>
               </div>
             </motion.div>
 
@@ -152,29 +154,14 @@ export default function MotelTikvice() {
               transition={{ duration: 0.7 }}
             >
               <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-                Na vrhu staza
+                {t("section_label")}
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">
-                Planinski raj
+                {t("section_heading")}
               </h2>
               <div className="text-[#3d3d3d] leading-relaxed space-y-4 text-[15px]">
-                <p>
-                  Dragi gosti, djelatnici hotela Adria Ski nastavljaju sa svojom
-                  tradicijom poboljšanja usluga, u sklopu kojih Vam predstavljamo
-                  MOTEL TIKVICE, koji se nalazi na 1560 metara nadmorske visine (na
-                  vrhu staza), sa restoranom, 4 Apartmana sa kuhinjom, 1 trokrevetnom
-                  sobom i 2 dvokrevetne sobe. Osim restorana uređenog u planinskom
-                  stilu gdje također možete uživati u domaćim jelima i piću, sa terase
-                  smještene ispred motela okruženog borovom šumom, možete uživati u
-                  sunčevim zrakama i pogledu na predivno kupreško polje.
-                </p>
-                <p>
-                  S obzirom na
-                  to da je motel smješten tik do skijaških staza koje vode u podnožje
-                  hotela &quot;Adria ski&quot;, možete ne gubeći vrijeme iskombinirati
-                  skijanje sa ručkom u motelu i uživati u izvrsnoj šalici domaćeg
-                  kuhanog vina.
-                </p>
+                <p>{t("desc_p1")}</p>
+                <p>{t("desc_p2")}</p>
               </div>
             </motion.div>
           </div>
@@ -186,12 +173,12 @@ export default function MotelTikvice() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-12">
             <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-              Cijene
+              {t("pricing_label")}
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">
-              Cjenik - Sezona 2025/26
+              {t("pricing_heading")}
             </h2>
-            <p className="mt-3 text-gray-500">Noćenje s doručkom</p>
+            <p className="mt-3 text-gray-500">{t("pricing_subtitle")}</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -210,7 +197,7 @@ export default function MotelTikvice() {
               >
                 {item.featured && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#00c0f7] text-white text-xs font-bold px-4 py-1 rounded-full">
-                    Popularan
+                    {t("popular")}
                   </span>
                 )}
                 <h3 className={`text-lg font-heading font-bold mb-1 ${item.featured ? "text-white" : "text-[#163c6f]"}`}>
@@ -223,7 +210,7 @@ export default function MotelTikvice() {
                   <span className={`text-4xl font-heading font-bold ${item.featured ? "text-[#00c0f7]" : "text-[#163c6f]"}`}>
                     {item.price}
                   </span>
-                  <span className={`text-lg ml-1 ${item.featured ? "text-white/70" : "text-gray-500"}`}>€</span>
+                  <span className={`text-lg ml-1 ${item.featured ? "text-white/70" : "text-gray-500"}`}>&euro;</span>
                 </div>
                 <p className={`text-sm ${item.featured ? "text-white/60" : "text-gray-500"}`}>
                   {item.unit}
@@ -236,7 +223,7 @@ export default function MotelTikvice() {
                       : "bg-[#163c6f]/5 hover:bg-[#163c6f]/10 text-[#163c6f]"
                   }`}
                 >
-                  Rezerviraj <ArrowRight className="w-3.5 h-3.5" />
+                  {t("reserve")} <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </motion.div>
             ))}
@@ -249,9 +236,9 @@ export default function MotelTikvice() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: "Restoran", desc: "Domaća jela u planinskom ambijentu", img: "/images/motelTikvice-01.jpg" },
-              { title: "Terasa", desc: "Pogled na kupreško polje iz borove šume", img: "/images/motelTikvice-06.jpg" },
-              { title: "Direktan pristup stazama", desc: "Skijaške staze tik do motela", img: "/images/motelTikvice-03.jpg" },
+              { title: t("feature_restaurant_title"), desc: t("feature_restaurant_desc"), img: "/images/motelTikvice-01.jpg" },
+              { title: t("feature_terrace_title"), desc: t("feature_terrace_desc"), img: "/images/motelTikvice-06.jpg" },
+              { title: t("feature_slopes_title"), desc: t("feature_slopes_desc"), img: "/images/motelTikvice-03.jpg" },
             ].map((card, i) => (
               <motion.div
                 key={card.title}
@@ -300,10 +287,10 @@ export default function MotelTikvice() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              Rezervirajte boravak na Tikvicama
+              {t("cta_heading")}
             </h2>
             <p className="text-white/60 mb-8 max-w-xl mx-auto">
-              Uživajte u planini, snijegu i domaćim jelima na vrhu skijaških staza
+              {t("cta_subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -316,7 +303,7 @@ export default function MotelTikvice() {
                 href={`/${locale}/cjenik`}
                 className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
-                Kompletan cjenik
+                {t("cta_full_pricing")}
               </Link>
             </div>
           </motion.div>

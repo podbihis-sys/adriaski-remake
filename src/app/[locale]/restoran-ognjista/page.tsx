@@ -14,23 +14,25 @@ const fadeInUp = {
   transition: { duration: 0.6 },
 };
 
-const highlights = [
-  { icon: Flame, label: "Otvoreni kamin" },
-  { icon: UtensilsCrossed, label: "Domaća jela" },
-  { icon: Wine, label: "Kuhano vino" },
-  { icon: Mountain, label: "Planinski ambijent" },
-  { icon: MapPin, label: "Ispod staza" },
-  { icon: Clock, label: "Brza okrijepa" },
-];
-
 const galleryImages = [1, 4, 6, 7, 8, 9, 10, 11, 12].map((n) => ({
   src: `/images/ognjista-${n}.jpg`,
   alt: `Restoran Ognjišta ${n}`,
 }));
 
 export default function RestoranOgnjista() {
+  const t = useTranslations("ognjista");
   const tc = useTranslations("common");
   const locale = useLocale();
+
+  const highlights = [
+    { icon: Flame, label: t("highlight_fireplace") },
+    { icon: UtensilsCrossed, label: t("highlight_food") },
+    { icon: Wine, label: t("highlight_wine") },
+    { icon: Mountain, label: t("highlight_ambience") },
+    { icon: MapPin, label: t("highlight_location") },
+    { icon: Clock, label: t("highlight_quick") },
+  ];
+
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -52,13 +54,13 @@ export default function RestoranOgnjista() {
               transition={{ duration: 0.7 }}
             >
               <span className="inline-block text-[#00c0f7] text-xs tracking-[0.25em] uppercase font-semibold mb-3">
-                Gastronomija
+                {t("hero_label")}
               </span>
               <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">
-                Restoran Ognjišta
+                {t("title")}
               </h1>
               <p className="mt-3 text-lg text-white/70 max-w-xl">
-                Tradicionalna domaća kuhinja u planinskom ambijentu
+                {t("hero_desc")}
               </p>
             </motion.div>
           </div>
@@ -115,7 +117,7 @@ export default function RestoranOgnjista() {
               {/* Floating accent card */}
               <div className="absolute -bottom-6 -right-4 md:-right-8 bg-amber-600 text-white rounded-xl p-5 shadow-xl hidden sm:block">
                 <Flame className="w-8 h-8 mb-1" />
-                <p className="text-sm font-semibold">Otvoreni kamin</p>
+                <p className="text-sm font-semibold">{t("fireplace_label")}</p>
               </div>
             </motion.div>
 
@@ -127,17 +129,13 @@ export default function RestoranOgnjista() {
               transition={{ duration: 0.7 }}
             >
               <span className="inline-block text-amber-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-                Ponuda
+                {t("section1_label")}
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">
-                Tradicionalna jela
+                {t("section1_heading")}
               </h2>
               <div className="text-[#3d3d3d] leading-relaxed space-y-4 text-[15px]">
-                <p>
-                  Ispod završetka skijaških staza nalazi se restoran Ognjišta koji u
-                  planinskom ambijentu nudi gotova jela za brzu okrijepu i nastavak
-                  skijanja bez ulaska u hotel.
-                </p>
+                <p>{t("section1_desc")}</p>
               </div>
             </motion.div>
           </div>
@@ -157,17 +155,13 @@ export default function RestoranOgnjista() {
               className="order-2 lg:order-1"
             >
               <span className="inline-block text-amber-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-                Ambijent
+                {t("section2_label")}
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">
-                Planinski ugođaj
+                {t("section2_heading")}
               </h2>
               <div className="text-[#3d3d3d] leading-relaxed space-y-4 text-[15px]">
-                <p>
-                  Uz veliki otvoreni kamin koji daje pravi zimski ugođaj restoranu
-                  možete uživati u raznovrsnim domaćim jelima, a dodatnu toplinu će
-                  osigurati dobra šalica domaćeg kuhanog vina.
-                </p>
+                <p>{t("section2_desc")}</p>
               </div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -175,13 +169,13 @@ export default function RestoranOgnjista() {
                   href={`/${locale}/gastro-ponuda`}
                   className="inline-flex items-center gap-2 text-sm text-amber-600 font-semibold hover:gap-3 transition-all duration-300"
                 >
-                  Pogledajte gastro ponudu <ArrowRight className="w-4 h-4" />
+                  {t("link_gastro")} <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href={`/${locale}/hotel-adria-ski`}
                   className="inline-flex items-center gap-2 text-sm text-[#00c0f7] font-semibold hover:gap-3 transition-all duration-300"
                 >
-                  Više o hotelu <ArrowRight className="w-4 h-4" />
+                  {t("link_hotel")} <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </motion.div>
@@ -210,9 +204,9 @@ export default function RestoranOgnjista() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: "Gastro ponuda", desc: "Kompletna ponuda jela i specijaliteta", img: "/images/headerGastro.jpg", link: "/gastro-ponuda" },
-              { title: "Svadbeni salon", desc: "Za nezaboravne svečanosti", img: "/images/headerSvadbeniSalon.jpg", link: "/svadbeni-salon" },
-              { title: "Skijalište", desc: "Direktan pristup stazama iz restorana", img: "/images/headerSkijalista.jpg", link: "/skijalista" },
+              { title: t("card_gastro_title"), desc: t("card_gastro_desc"), img: "/images/headerGastro.jpg", link: "/gastro-ponuda" },
+              { title: t("card_wedding_title"), desc: t("card_wedding_desc"), img: "/images/headerSvadbeniSalon.jpg", link: "/svadbeni-salon" },
+              { title: t("card_ski_title"), desc: t("card_ski_desc"), img: "/images/headerSkijalista.jpg", link: "/skijalista" },
             ].map((card, i) => (
               <motion.div
                 key={card.title}
@@ -265,17 +259,17 @@ export default function RestoranOgnjista() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              Dođite na ručak
+              {t("cta_heading")}
             </h2>
             <p className="text-white/60 mb-8 max-w-xl mx-auto">
-              Uživajte u domaćim jelima uz otvoreni kamin i pogled na skijaške staze
+              {t("cta_subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href={`/${locale}/gastro-ponuda`}
                 className="inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
-                Pogledajte jelovnik <ArrowRight className="w-4 h-4" />
+                {t("cta_menu")} <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href={`/${locale}/kontakt`}

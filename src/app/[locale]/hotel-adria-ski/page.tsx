@@ -54,13 +54,13 @@ export default function HotelAdriaSki() {
               transition={{ duration: 0.7 }}
             >
               <span className="inline-block text-[#00c0f7] text-xs tracking-[0.25em] uppercase font-semibold mb-3">
-                O nama
+                {t("hero_label")}
               </span>
               <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">
                 {t("title")}
               </h1>
               <p className="mt-3 text-lg text-white/70 max-w-xl">
-                256 ležajeva, wellness, bazen, restoran - sve na jednom mjestu
+                {t("hero_desc")}
               </p>
             </motion.div>
           </div>
@@ -134,24 +134,13 @@ export default function HotelAdriaSki() {
               transition={{ duration: 0.7 }}
             >
               <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-                Smještaj
+                {t("view_label")}
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">
-                Prekrasan pogled
+                {t("view_heading")}
               </h2>
               <div className="text-[#3d3d3d] leading-relaxed space-y-4 text-[15px]">
-                <p>
-                  Kapacitet hotela Adria Ski je 256 ležajeva. Sve sobe opremljene su
-                  telefonom te TV uređajima sa digitalnim satelitskim sustavom. Svaka
-                  soba ima zasebno kupatilo. Hotel je opremljen malim olimpijskim
-                  bazenom (25m x 8m) koji zimi pruža jedinstveni pogled na snijegom
-                  prekrivenu borovu šumu. U sklopu bazena su dvije saune, usluge
-                  masaže i veliki fitness centar u kojem istovremeno može vježbati
-                  30-ak osoba. Centar je opremljen spravama za vježbu i rastezanje
-                  svih dijelova tijela, a za svaku vježbu na raspolaganju su najmanje
-                  tri istovrsne sprave, što omogućuje brzo izmjenično vježbanje većih
-                  organiziranih grupa i momčadi.
-                </p>
+                <p>{t("view_desc")}</p>
               </div>
             </motion.div>
           </div>
@@ -171,27 +160,14 @@ export default function HotelAdriaSki() {
               className="order-2 lg:order-1"
             >
               <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-                Usluge
+                {t("comfort_label")}
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">
-                Udobnost
+                {t("comfort_heading")}
               </h2>
               <div className="text-[#3d3d3d] leading-relaxed space-y-4 text-[15px]">
-                <p>
-                  U sklopu hotela je restoran koji Vam nudi tradicionalna autohtona
-                  jela, te jela po narudžbi. Jela spravljaju vrhunski kuhari uz bogatu
-                  ponudu stranih i domaćih vina. Pokraj restorana nalazi se caffe bar
-                  u kojem možete uz jutarnju kavu pročitati dnevni tisak.
-                </p>
-                <p>
-                  Netom ispod završetka skijaških staza nalazi se restoran Ognjišta
-                  koji u planinskom ambijentu nudi gotova jela za brzu okrijepu i
-                  nastavak skijanja bez ulaska u hotel. Odmah preko puta restorana
-                  &quot;Ognjišta&quot; se nalazi zasebna zgrada gdje možete iznajmiti
-                  komletnu ski opremu, kao i dvije škole skijanja u kojima
-                  profesionalno obučeni treneri održavaju satove skijanja za sve
-                  zainteresirane.
-                </p>
+                <p>{t("comfort_p1")}</p>
+                <p>{t("comfort_p2")}</p>
               </div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -199,13 +175,13 @@ export default function HotelAdriaSki() {
                   href={`/${locale}/restoran-ognjista`}
                   className="inline-flex items-center gap-2 text-sm text-[#00c0f7] font-semibold hover:gap-3 transition-all duration-300"
                 >
-                  Restoran Ognjišta <ArrowRight className="w-4 h-4" />
+                  {t("comfort_link_ognjista")} <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href={`/${locale}/skola-skijanja`}
                   className="inline-flex items-center gap-2 text-sm text-[#00c0f7] font-semibold hover:gap-3 transition-all duration-300"
                 >
-                  Škola skijanja <ArrowRight className="w-4 h-4" />
+                  {t("comfort_link_ski_school")} <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </motion.div>
@@ -234,9 +210,9 @@ export default function HotelAdriaSki() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: "Bazen & Wellness", desc: "Olimpijski bazen 25m x 8m, saune, masaže", img: "/images/headerBazen.jpg", link: "/bazen" },
-              { title: "Motel Tikvice", desc: "Na vrhu staza, 1.560m nadmorske visine", img: "/images/headerTikvice.jpg", link: "/motel-tikvice" },
-              { title: "Skijalište", desc: "Preko 13 km staza sa 5 ski liftova", img: "/images/headerSkijalista.jpg", link: "/skijalista" },
+              { title: t("quick_pool_title"), desc: t("quick_pool_desc"), img: "/images/headerBazen.jpg", link: "/bazen" },
+              { title: t("quick_tikvice_title"), desc: t("quick_tikvice_desc"), img: "/images/headerTikvice.jpg", link: "/motel-tikvice" },
+              { title: t("quick_ski_title"), desc: t("quick_ski_desc"), img: "/images/headerSkijalista.jpg", link: "/skijalista" },
             ].map((card, i) => (
               <motion.div
                 key={card.title}
@@ -282,10 +258,10 @@ export default function HotelAdriaSki() {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              Rezervirajte svoj boravak
+              {t("cta_heading")}
             </h2>
             <p className="text-white/60 mb-8 max-w-xl mx-auto">
-              Kontaktirajte nas za rezervacije i posebne ponude
+              {t("cta_subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

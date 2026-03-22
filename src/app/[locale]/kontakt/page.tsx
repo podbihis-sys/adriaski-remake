@@ -25,7 +25,7 @@ export default function Kontakt() {
         <div className="absolute bottom-0 left-0 right-0 z-10 pb-10 md:pb-14">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              <span className="inline-block text-[#00c0f7] text-xs tracking-[0.25em] uppercase font-semibold mb-3">Kontakt</span>
+              <span className="inline-block text-[#00c0f7] text-xs tracking-[0.25em] uppercase font-semibold mb-3">{t("hero_label")}</span>
               <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">{t("title")}</h1>
               <p className="mt-3 text-lg text-white/70">{t("subtitle")}</p>
             </motion.div>
@@ -74,7 +74,7 @@ export default function Kontakt() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">Info</span>
+              <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">{tc("info")}</span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-8">{t("title")}</h2>
 
               <div className="space-y-6">
@@ -137,7 +137,7 @@ export default function Kontakt() {
             >
               <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("form_title")}</span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-2">{t("form_subtitle")}</h2>
-              <p className="text-gray-500 text-sm mb-8">Ukoliko imate bilo kakvih pitanja ili želite saznati više</p>
+              <p className="text-gray-500 text-sm mb-8">{t("form_description")}</p>
 
               <form className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">

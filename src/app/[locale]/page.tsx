@@ -24,40 +24,44 @@ const fadeInUp = {
   transition: { duration: 0.6 },
 };
 
-const features = [
-  {
-    icon: "/images/icon_ski.png",
-    title: "Prvoklasne staze",
-    description: "13 km uređenih staza sa 5 ski liftova za sve nivoe skijaša",
-    link: "/skijalista",
-  },
-  {
-    icon: "/images/icon_climbing.png",
-    title: "Šetnja & Planinarenje",
-    description: "Brojne pješačke i planinarske staze u prekrasnoj prirodi",
-    link: "/planinarenje",
-  },
-  {
-    icon: "/images/icon_hotel2.png",
-    title: "Hotel 4*",
-    description: "256 ležajeva sa wellness centrom, bazenom i restoranom",
-    link: "/hotel-adria-ski",
-  },
-];
+// features array moved inside component to use translations
 
-const galleryImages = [
-  { src: "/images/hotel-01.jpg", alt: "Hotel Adria Ski", label: "Hotel" },
-  { src: "/images/staze-1.jpg", alt: "Ski staze", label: "Staze" },
-  { src: "/images/bazen.jpg", alt: "Bazen", label: "Bazen" },
-  { src: "/images/ognjista-1.jpg", alt: "Restoran", label: "Restoran" },
-  { src: "/images/headerTikvice.jpg", alt: "Motel Tikvice", label: "Tikvice" },
-  { src: "/images/headerSkolaSkijanja.jpg", alt: "Škola skijanja", label: "Ski škola" },
-];
+// galleryImages moved inside component to use translations
 
 export default function HomePage() {
   const t = useTranslations("home");
   const tc = useTranslations("common");
   const locale = useLocale();
+
+  const galleryImages = [
+    { src: "/images/hotel-01.jpg", alt: "Hotel Adria Ski", label: t("gallery_hotel") },
+    { src: "/images/staze-1.jpg", alt: "Ski staze", label: t("gallery_slopes") },
+    { src: "/images/bazen.jpg", alt: "Bazen", label: t("gallery_pool") },
+    { src: "/images/ognjista-1.jpg", alt: "Restoran", label: t("gallery_restaurant") },
+    { src: "/images/headerTikvice.jpg", alt: "Motel Tikvice", label: t("gallery_tikvice") },
+    { src: "/images/headerSkolaSkijanja.jpg", alt: "Škola skijanja", label: t("gallery_ski_school") },
+  ];
+
+  const features = [
+    {
+      icon: "/images/icon_ski.png",
+      title: t("feature_slopes_title"),
+      description: t("feature_slopes_desc"),
+      link: "/skijalista",
+    },
+    {
+      icon: "/images/icon_climbing.png",
+      title: t("feature_hiking_title"),
+      description: t("feature_hiking_desc"),
+      link: "/planinarenje",
+    },
+    {
+      icon: "/images/icon_hotel2.png",
+      title: t("feature_hotel_title"),
+      description: t("feature_hotel_desc"),
+      link: "/hotel-adria-ski",
+    },
+  ];
 
   const stats = [
     { value: "256", label: t("beds"), icon: Hotel },
@@ -98,7 +102,7 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
           >
             <span className="inline-block text-[#00c0f7] text-xs md:text-sm tracking-[0.3em] uppercase font-medium mb-4 mt-6 md:mt-0 px-4 py-1.5 border border-[#00c0f7]/30 rounded-full backdrop-blur-sm bg-white/5">
-              Premium Ski & Wellness Resort
+              {t("hero_badge")}
             </span>
           </motion.div>
 
@@ -200,7 +204,7 @@ export default function HomePage() {
               {/* Floating accent card */}
               <div className="absolute -bottom-6 -right-6 bg-[#163c6f] text-white rounded-xl p-5 shadow-xl hidden md:block">
                 <p className="text-3xl font-heading font-bold">256</p>
-                <p className="text-sm text-white/70">ležajeva</p>
+                <p className="text-sm text-white/70">{t("about_beds_label")}</p>
               </div>
             </motion.div>
 
@@ -215,30 +219,15 @@ export default function HomePage() {
                 {t("about_hotel")}
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] leading-tight mb-2">
-                Otkrijte očaravajući Hotel Adria ski.
+                {t("about_heading")}
               </h2>
               <h3 className="text-xl font-heading text-[#163c6f]/70 mb-6">
                 {t("hero_subtitle")}.
               </h3>
 
               <div className="text-[#3d3d3d] leading-relaxed space-y-4">
-                <p>
-                  Kapacitet hotela Adria Ski je 256 ležajeva. Sve sobe opremljene su
-                  telefonom te TV uređajima sa digitalnim satelitskim sustavom. Svaka
-                  soba ima zasebno kupatilo. Hotel je u sklopu wellness centra
-                  opremljen malim olimpijskim bazenom (25m x 8m) u kojem ćete se moći
-                  opustiti nakon dana provedenog na skijanju, kao i dvjema saunama i
-                  teretanom, a dodatno možete uživati i u masažama.
-                </p>
-                <p>
-                  U sklopu skijaškog centra se nalazi zasebna zgrada za
-                  iznajmljivanje ski opreme i dvije ski škole. Za profesionalce kao i
-                  za početnike su na raspolaganju skijaške staze do koji vode dvosjed,
-                  četverosjed, baby lift te vučnice. Kao novi dodatak ponudi na vrhu
-                  skijaških staza se nalazi motel &quot;Tikvice&quot;. U sklopu hotela je
-                  restoran koji Vam nudi tradicionalna autohtona jela, te jela po
-                  narudžbi.
-                </p>
+                <p>{t("about_p1")}</p>
+                <p>{t("about_p2")}</p>
               </div>
 
               <Link
@@ -261,7 +250,7 @@ export default function HomePage() {
               {t("our_offer")}
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">
-              Sportovi, avanture i vrhunski smjestaj
+              {t("offer_heading")}
             </h2>
           </motion.div>
 
@@ -410,7 +399,7 @@ export default function HomePage() {
             href={`/${locale}/dogadanja`}
             className="md:hidden inline-flex items-center gap-2 mt-8 text-[#00c0f7] font-semibold text-sm"
           >
-            Svi događaji <ArrowRight className="w-4 h-4" />
+            {tc("all_events")} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </section>
@@ -431,7 +420,7 @@ export default function HomePage() {
               {tc("ready_for_adventure")}
             </h2>
             <p className="text-lg text-white/70 mb-8 max-w-2xl mx-auto">
-              Rezervirajte svoj boravak i osigurajte najbolje cijene za nezaboravan odmor na Kupresu
+              {t("cta_subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

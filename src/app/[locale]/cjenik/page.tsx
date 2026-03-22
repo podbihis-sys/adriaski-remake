@@ -87,37 +87,37 @@ export default function Cjenik() {
           <motion.div {...fadeInUp} className="text-center mb-10">
             <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("accommodation")}</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">{t("season")}</h2>
-            <p className="mt-2 text-gray-500 text-sm">Pansionske usluge – Cjene po osobi (višekrevetna soba sa TV, telefon, WC)</p>
+            <p className="mt-2 text-gray-500 text-sm">{t("board_services")}</p>
           </motion.div>
 
           <PriceTable
-            headers={["Usluga", "KM", "EUR"]}
+            headers={[t("service"), "KM", "EUR"]}
             rows={[
-              ["Noćenje s doručkom u 1/1 sobi", "126,00", "64,94"],
-              ["Noćenje s doručkom u 1/2 sobi", "100,00", "51,54"],
-              ["Polupansion u 1/1 sobi", "147,00", "75,77"],
-              ["Polupansion u 1/2 sobi", "121,00", "62,37"],
-              ["Puni pansion u 1/1 sobi", "167,00", "86,08"],
-              ["Puni pansion u 1/2 sobi", "140,00", "72,16"],
-              ["Noćenje u apartmanu", "260,00", "134,02"],
+              [t("night_breakfast_single"), "126,00", "64,94"],
+              [t("night_breakfast_double"), "100,00", "51,54"],
+              [t("half_board_single"), "147,00", "75,77"],
+              [t("half_board_double"), "121,00", "62,37"],
+              [t("full_board_single"), "167,00", "86,08"],
+              [t("full_board_double"), "140,00", "72,16"],
+              [t("night_apartment"), "260,00", "134,02"],
             ]}
           />
 
-          <h3 className="text-xl font-heading font-bold text-[#163c6f] mt-12 mb-4">Nadoplata za obroke u apartmanu</h3>
+          <h3 className="text-xl font-heading font-bold text-[#163c6f] mt-12 mb-4">{t("meal_surcharge")}</h3>
           <PriceTable
-            headers={["Obrok", "KM", "EUR"]}
+            headers={[t("meal"), "KM", "EUR"]}
             rows={[
-              ["Doručak", "15,00", "7,74"],
-              ["Ručak", "25,00", "12,89"],
-              ["Večera", "25,00", "12,89"],
-              ["Puni pansion nadoplata", "25,00", "12,89"],
+              [t("breakfast"), "15,00", "7,74"],
+              [t("lunch"), "25,00", "12,89"],
+              [t("dinner"), "25,00", "12,89"],
+              [t("full_board_surcharge"), "25,00", "12,89"],
             ]}
           />
-          <p className="text-gray-500 text-sm mt-3 italic">Uključeno: sauna, bazen, teretana, stoni tenis</p>
+          <p className="text-gray-500 text-sm mt-3 italic">{t("included_note")}</p>
 
-          <h3 className="text-xl font-heading font-bold text-[#163c6f] mt-12 mb-4">Polupansioni (5-7 dana, 1/2 soba po osobi)</h3>
+          <h3 className="text-xl font-heading font-bold text-[#163c6f] mt-12 mb-4">{t("half_board_periods")}</h3>
           <PriceTable
-            headers={["Period", "KM", "EUR"]}
+            headers={[t("period"), "KM", "EUR"]}
             rows={[
               ["01.12.25 – 27.12.25", "87,00", "44,84"],
               ["27.12.25 – 03.01.26 *", "114,00", "58,76"],
@@ -126,24 +126,24 @@ export default function Cjenik() {
               ["01.04.26 – 01.12.26", "87,00", "44,84"],
             ]}
           />
-          <p className="text-gray-500 text-sm mt-3">* Novogodišnja nadoplata sa svečanom večerom: 120,00 KM (61,85 EUR) odrasli; djeca 6-14 godina 40% popusta</p>
+          <p className="text-gray-500 text-sm mt-3">* {t("nye_note")}</p>
 
           {/* Popusti */}
           <div className="grid md:grid-cols-2 gap-6 mt-10">
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-              <h3 className="font-heading text-lg font-bold text-[#163c6f] mb-4">Popusti na treći/četvrti krevet</h3>
+              <h3 className="font-heading text-lg font-bold text-[#163c6f] mb-4">{t("discount_bed_title")}</h3>
               <div className="space-y-2 text-sm text-[#3d3d3d]">
-                <div className="flex justify-between"><span>Do 4 godine</span><span className="font-bold text-green-600">100%</span></div>
-                <div className="flex justify-between"><span>4-14 godina</span><span className="font-bold text-[#163c6f]">40%</span></div>
-                <div className="flex justify-between"><span>14-99 godina</span><span className="font-bold text-[#163c6f]">20%</span></div>
+                <div className="flex justify-between"><span>{t("up_to_4_years")}</span><span className="font-bold text-green-600">100%</span></div>
+                <div className="flex justify-between"><span>{t("4_to_14_years")}</span><span className="font-bold text-[#163c6f]">40%</span></div>
+                <div className="flex justify-between"><span>{t("14_to_99_years")}</span><span className="font-bold text-[#163c6f]">20%</span></div>
               </div>
             </div>
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-              <h3 className="font-heading text-lg font-bold text-[#163c6f] mb-4">Boravišna pristojba</h3>
+              <h3 className="font-heading text-lg font-bold text-[#163c6f] mb-4">{t("tourist_tax_title")}</h3>
               <div className="space-y-2 text-sm text-[#3d3d3d]">
-                <div className="flex justify-between"><span>Do 12 godina</span><span className="font-bold text-green-600">Besplatno</span></div>
-                <div className="flex justify-between"><span>12-26 godina</span><span className="font-bold text-[#163c6f]">1,00 KM/dan</span></div>
-                <div className="flex justify-between"><span>Preko 26 godina</span><span className="font-bold text-[#163c6f]">2,00 KM/dan</span></div>
+                <div className="flex justify-between"><span>{t("up_to_12_years")}</span><span className="font-bold text-green-600">{t("free")}</span></div>
+                <div className="flex justify-between"><span>{t("12_to_26_years")}</span><span className="font-bold text-[#163c6f]">1,00 {t("per_day")}</span></div>
+                <div className="flex justify-between"><span>{t("over_26_years")}</span><span className="font-bold text-[#163c6f]">2,00 {t("per_day")}</span></div>
               </div>
             </div>
           </div>
@@ -154,21 +154,21 @@ export default function Cjenik() {
       <section id="tikvice" className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-10">
-            <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">Na vrhu staza</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">Motel Tikvice</h2>
+            <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("tikvice_label")}</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">{t("tikvice")}</h2>
           </motion.div>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-gradient-to-br from-[#163c6f] to-[#0b1d42] rounded-2xl p-6 text-white">
-              <h3 className="font-heading text-lg font-bold mb-2">Apartmani sa kuhinjom</h3>
-              <p className="text-white/60 text-sm mb-3">Do 6 osoba</p>
+              <h3 className="font-heading text-lg font-bold mb-2">{t("tikvice_apartments")}</h3>
+              <p className="text-white/60 text-sm mb-3">{t("tikvice_up_to_6")}</p>
               <p className="text-3xl font-heading font-bold text-[#00c0f7]">180,50 <span className="text-lg text-white/60">€/dan</span></p>
-              <p className="text-white/50 text-xs mt-1">+ doručak</p>
+              <p className="text-white/50 text-xs mt-1">{t("tikvice_plus_breakfast")}</p>
             </div>
             <div className="bg-gradient-to-br from-[#163c6f] to-[#0b1d42] rounded-2xl p-6 text-white">
-              <h3 className="font-heading text-lg font-bold mb-2">Sobe</h3>
-              <p className="text-white/60 text-sm mb-3">Dvokrevetna / Trokrevetna</p>
+              <h3 className="font-heading text-lg font-bold mb-2">{t("tikvice_rooms")}</h3>
+              <p className="text-white/60 text-sm mb-3">{t("tikvice_rooms_type")}</p>
               <p className="text-3xl font-heading font-bold text-[#00c0f7]">51,54 <span className="text-lg text-white/60">€/osoba</span></p>
-              <p className="text-white/50 text-xs mt-1">Noćenje s doručkom</p>
+              <p className="text-white/50 text-xs mt-1">{t("tikvice_night_breakfast")}</p>
             </div>
           </div>
         </div>
@@ -178,24 +178,24 @@ export default function Cjenik() {
       <section id="skijaliste" className="py-16 bg-[#f2f3f4]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-10">
-            <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">Ski karte</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">Cjenik skijališta</h2>
+            <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("ski_cards_label")}</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">{t("ski_pricing_heading")}</h2>
           </motion.div>
           <PriceTable
-            headers={["Ski karta", "Odrasli", "Djeca do 14"]}
+            headers={[t("ski_card"), t("adults"), t("children_14")]}
             rows={[
-              ["Jedna vožnja", "5 KM", "5 KM"],
-              ["Dnevna", "44 KM / 23 €", "32 KM / 16,50 €"],
-              ["Poludnevna (od 13h)", "32 KM / 16,50 €", "26 KM / 13,50 €"],
-              ["2 dana", "75 KM / 38,50 €", "55 KM / 28,50 €"],
-              ["3 dana", "112 KM / 57,50 €", "80 KM / 41 €"],
-              ["4 dana", "150 KM / 77,50 €", "105 KM / 54,50 €"],
-              ["5 dana", "187 KM / 96,50 €", "130 KM / 67 €"],
-              ["6 dana", "230 KM / 118,50 €", "158 KM / 81,50 €"],
-              ["7 dana", "262 KM / 135 €", "185 KM / 95,50 €"],
-              ["Sezonska", "650 KM / 336 €", "420 KM / 217 €"],
-              ["Ski učitelj/Trener", "450 KM / 232,50 €", "–"],
-              ["Natjecatelji", "480 KM / 248 €", "–"],
+              [t("single_ride"), "5 KM", "5 KM"],
+              [t("daily"), "44 KM / 23 €", "32 KM / 16,50 €"],
+              [t("half_day"), "32 KM / 16,50 €", "26 KM / 13,50 €"],
+              [t("two_days"), "75 KM / 38,50 €", "55 KM / 28,50 €"],
+              [t("three_days"), "112 KM / 57,50 €", "80 KM / 41 €"],
+              [t("four_days"), "150 KM / 77,50 €", "105 KM / 54,50 €"],
+              [t("five_days"), "187 KM / 96,50 €", "130 KM / 67 €"],
+              [t("six_days"), "230 KM / 118,50 €", "158 KM / 81,50 €"],
+              [t("seven_days"), "262 KM / 135 €", "185 KM / 95,50 €"],
+              [t("seasonal"), "650 KM / 336 €", "420 KM / 217 €"],
+              [t("ski_teacher"), "450 KM / 232,50 €", "–"],
+              [t("competitors"), "480 KM / 248 €", "–"],
             ]}
           />
         </div>
@@ -205,19 +205,19 @@ export default function Cjenik() {
       <section id="oprema" className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-10">
-            <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">Najam</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">Iznajmljivanje ski opreme</h2>
+            <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("rental_label")}</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">{t("rental_heading")}</h2>
           </motion.div>
           <PriceTable
-            headers={["Period", "Odrasli", "Djeca"]}
+            headers={[t("period"), t("adults"), t("children_14")]}
             rows={[
-              ["Dnevno (9-16:30)", "22 KM / 11,50 €", "16,50 KM / 8,50 €"],
-              ["2 dana", "39,60 KM / 20,50 €", "27,50 KM / 14 €"],
-              ["3 dana", "55 KM / 28,50 €", "38,50 KM / 20 €"],
-              ["6 dana", "88 KM / 45,50 €", "66 KM / 34 €"],
+              [t("rental_daily"), "22 KM / 11,50 €", "16,50 KM / 8,50 €"],
+              [t("two_days"), "39,60 KM / 20,50 €", "27,50 KM / 14 €"],
+              [t("three_days"), "55 KM / 28,50 €", "38,50 KM / 20 €"],
+              [t("six_days"), "88 KM / 45,50 €", "66 KM / 34 €"],
             ]}
           />
-          <p className="text-gray-500 text-sm mt-3 italic">Kompletna oprema: skije, pancerice, štapovi</p>
+          <p className="text-gray-500 text-sm mt-3 italic">{t("rental_equipment_note")}</p>
         </div>
       </section>
 
@@ -225,8 +225,8 @@ export default function Cjenik() {
       <section className="py-16 bg-[#163c6f]">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Rezervirajte sada</h2>
-            <p className="text-white/60 mb-8">Kontaktirajte nas za posebne ponude i grupne popuste</p>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">{t("cta_heading")}</h2>
+            <p className="text-white/60 mb-8">{t("cta_subtitle")}</p>
             <Link href={`/${locale}/kontakt`} className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
               {tc("contact_us")} <ArrowRight className="w-4 h-4" />
             </Link>

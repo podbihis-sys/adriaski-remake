@@ -133,14 +133,14 @@ export default function Dogadanja() {
       <section className="py-16 bg-[#163c6f]">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Budite u toku</h2>
-            <p className="text-white/60 mb-8 max-w-xl mx-auto">Kontaktirajte nas za informacije o nadolazećim događanjima</p>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">{t("cta_heading")}</h2>
+            <p className="text-white/60 mb-8 max-w-xl mx-auto">{t("cta_subtitle")}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href={`/${locale}/kontakt`} className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
                 {tc("contact_us")} <ArrowRight className="w-4 h-4" />
               </Link>
               <a href="https://www.facebook.com/adriaski" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
-                Facebook stranica
+                {t("facebook_page")}
               </a>
             </div>
           </motion.div>

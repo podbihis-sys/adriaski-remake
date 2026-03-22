@@ -32,7 +32,9 @@ const galleryImages = [
 ];
 
 export default function RamskoJezero() {
+  const t = useTranslations("lake");
   const tc = useTranslations("common");
+  const tn = useTranslations("nav");
   const locale = useLocale();
   return (
     <main>
@@ -43,9 +45,9 @@ export default function RamskoJezero() {
         <div className="absolute bottom-0 left-0 right-0 z-10 pb-12 md:pb-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              <span className="inline-block text-sky-400 text-xs tracking-[0.25em] uppercase font-semibold mb-3">Ljetna ponuda</span>
-              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">Ramsko jezero</h1>
-              <p className="mt-3 text-lg text-white/70 max-w-xl">Jedno od najljepših jezera u Europi, okruženo strmim vijencem planinskih masiva</p>
+              <span className="inline-block text-sky-400 text-xs tracking-[0.25em] uppercase font-semibold mb-3">{t("hero_label")}</span>
+              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">{t("title")}</h1>
+              <p className="mt-3 text-lg text-white/70 max-w-xl">{t("hero_desc")}</p>
             </motion.div>
           </div>
         </div>
@@ -56,10 +58,10 @@ export default function RamskoJezero() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { icon: Ruler, value: "12 km", label: "Dužina" },
-              { icon: Anchor, value: "95m", label: "Dubina" },
-              { icon: Waves, value: "1500 ha", label: "Površina" },
-              { icon: Clock, value: "3 dana", label: "Program" },
+              { icon: Ruler, value: "12 km", label: t("highlight_length") },
+              { icon: Anchor, value: "95m", label: t("highlight_depth") },
+              { icon: Waves, value: "1500 ha", label: t("highlight_area") },
+              { icon: Clock, value: "3 dana", label: t("highlight_program") },
             ].map((item) => {
               const Icon = item.icon;
               return (
@@ -104,14 +106,14 @@ export default function RamskoJezero() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <span className="inline-block text-sky-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">O jezeru</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">Strme planine</h2>
+              <span className="inline-block text-sky-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("about_label")}</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">{t("about_heading")}</h2>
 
               <p className="text-[#3d3d3d] leading-relaxed mb-4">
-                Ramsko jezero je smješteno u gornjoramskoj kotlini na sjeveru Hercegovine, na području današnje općine Prozor-Rama. Okruženo je strmim vijencem planinskih masiva Raduše, Makljena, Ljubuše i Vrana. Iako je nastalo kao rezultat potapanja korita rijeke Rame 1968. godine, prizor Ramskoga jezera čini se nestvarnim i svrstava ga se u najljepša jezera u Europi.
+                {t("about_p1")}
               </p>
               <p className="text-[#3d3d3d] leading-relaxed">
-                Njegova maksimalna dužina je 12 kilometara, površina oko 1500 ha, najveća dubina oko 95 metara, dok su oscilacije vode i do 55 metara.
+                {t("about_p2")}
               </p>
             </motion.div>
           </div>
@@ -129,19 +131,19 @@ export default function RamskoJezero() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <span className="inline-block text-sky-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">Posebnosti</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">Nestvarna ljepota</h2>
+              <span className="inline-block text-sky-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("beauty_label")}</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">{t("beauty_heading")}</h2>
 
               <p className="text-[#3d3d3d] leading-relaxed mb-6">
-                Posebnu, nestvarnu ljepotu Ramskom jezeru daju otoci i poluotoci, među kojima je najpoznatiji poluotok Šćit, gdje se nalazi Franjevački samostan Rama-Šćit. Franjevci, koji u Bosni djeluju od kraja 13. stoljeća, podigli su samostan u Rami najvjerojatnije u 15. stoljeću, prije dolaska Turaka. Cestovna komunikacija do Ramskog jezera postoji iz Prozora asfaltiranom cestom, te iz Tomislavgrada, Livna i Splita novom asfaltiranom trasom otvorenom za promet 2006. godine, a iz Posušja se do jezera stiže preko Blidinja, Kedžare i Orašca, područja koje također vrijedi vidjeti.
+                {t("beauty_desc")}
               </p>
 
               <div className="flex flex-wrap gap-3">
                 <Link href={`/${locale}/planinarenje`} className="inline-flex items-center gap-2 text-sky-600 hover:text-sky-700 text-sm font-semibold transition-colors">
-                  <Mountain className="w-4 h-4" /> Planinarenje <ArrowRight className="w-3 h-3" />
+                  <Mountain className="w-4 h-4" /> {tn("hiking")} <ArrowRight className="w-3 h-3" />
                 </Link>
                 <Link href={`/${locale}/brdski-biciklizam`} className="inline-flex items-center gap-2 text-sky-600 hover:text-sky-700 text-sm font-semibold transition-colors">
-                  <MapPin className="w-4 h-4" /> Brdski biciklizam <ArrowRight className="w-3 h-3" />
+                  <MapPin className="w-4 h-4" /> {tn("cycling")} <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
             </motion.div>
@@ -169,8 +171,8 @@ export default function RamskoJezero() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-12">
-            <span className="inline-block text-sky-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">Raspored</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">Program</h2>
+            <span className="inline-block text-sky-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("program_label")}</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">{t("program_heading")}</h2>
           </motion.div>
 
           <div className="space-y-5">
@@ -178,7 +180,7 @@ export default function RamskoJezero() {
             <motion.div {...fadeInUp} className="bg-[#f2f3f4] rounded-xl p-5">
               <div className="flex items-center gap-3 mb-2">
                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#163c6f] text-white text-xs font-bold">D1</span>
-                <h3 className="font-heading font-bold text-[#163c6f]">Dan 1.</h3>
+                <h3 className="font-heading font-bold text-[#163c6f]">{t("day1_title")}</h3>
               </div>
               <div className="text-[#3d3d3d] text-sm leading-relaxed space-y-1.5">
                 <p>Polazak iz Splita u 06:30 h. Dolazak u hotel &quot;Adriaski&quot; do 08:30 h</p>
@@ -194,7 +196,7 @@ export default function RamskoJezero() {
             <motion.div {...fadeInUp} className="bg-[#f2f3f4] rounded-xl p-5">
               <div className="flex items-center gap-3 mb-2">
                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#163c6f] text-white text-xs font-bold">D2</span>
-                <h3 className="font-heading font-bold text-[#163c6f]">Dan 2.</h3>
+                <h3 className="font-heading font-bold text-[#163c6f]">{t("day2_title")}</h3>
               </div>
               <div className="text-[#3d3d3d] text-sm leading-relaxed space-y-1.5">
                 <p><span className="font-semibold">08:00 – 09:00 h</span> Doručak</p>
@@ -210,7 +212,7 @@ export default function RamskoJezero() {
             <motion.div {...fadeInUp} className="bg-[#f2f3f4] rounded-xl p-5">
               <div className="flex items-center gap-3 mb-2">
                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#163c6f] text-white text-xs font-bold">D3</span>
-                <h3 className="font-heading font-bold text-[#163c6f]">Dan 3.</h3>
+                <h3 className="font-heading font-bold text-[#163c6f]">{t("day3_title")}</h3>
               </div>
               <div className="text-[#3d3d3d] text-sm leading-relaxed space-y-1.5">
                 <p><span className="font-semibold">08:30 – 10:00 h</span> – Doručak</p>
@@ -241,14 +243,14 @@ export default function RamskoJezero() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b1d42]/90 to-[#163c6f]/80" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Otkrijte ljepotu Ramskog jezera</h2>
-            <p className="text-white/60 mb-8 max-w-xl mx-auto">Rezervirajte izlet i doživite jedno od najljepših jezera u Europi</p>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">{t("cta_heading")}</h2>
+            <p className="text-white/60 mb-8 max-w-xl mx-auto">{t("cta_subtitle")}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href={`/${locale}/kontakt`} className="inline-flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
-                Rezervirajte <ArrowRight className="w-4 h-4" />
+                {tc("reserve")} <ArrowRight className="w-4 h-4" />
               </Link>
               <Link href={`/${locale}/planinarenje`} className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
-                Planinarenje
+                {tn("hiking")}
               </Link>
             </div>
           </motion.div>

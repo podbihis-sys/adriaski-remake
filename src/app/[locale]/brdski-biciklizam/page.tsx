@@ -14,14 +14,6 @@ const fadeInUp = {
   transition: { duration: 0.6 },
 };
 
-const routes = [
-  { name: "ADRIA SKI – ŠUJICA", distance: "55 km", elevation: "970 m", minAlt: "909 m", maxAlt: "1.462 m", duration: "6 h", difficulty: "Zahtjevna", color: "bg-red-500" },
-  { name: "GAJ – KOLJEVKA – GATER", distance: "14 km", elevation: "370 m", minAlt: "891 m", maxAlt: "1.081 m", duration: "2 h", difficulty: "Lagana", color: "bg-green-500" },
-  { name: "ADRIA SKI – KUKAVIČJE JEZERO", distance: "71 km", elevation: "517 m", minAlt: "1.134 m", maxAlt: "1.326 m", duration: "7 h", difficulty: "Zahtjevna", color: "bg-red-500" },
-  { name: "RAMSKO JEZERO", distance: "37 km", elevation: "597 m", minAlt: "605 m", maxAlt: "940 m", duration: "4 h", difficulty: "Srednja", color: "bg-amber-500" },
-  { name: "SMILJANIĆ – KUKAVIČJE JEZERO", distance: "55 km", elevation: "460 m", minAlt: "1.134 m", maxAlt: "1.325 m", duration: "6 h", difficulty: "Zahtjevna", color: "bg-red-500" },
-];
-
 const galleryImages = [
   { src: "/images/bicikisti-1.jpg", alt: "Biciklisti 1" },
   { src: "/images/bicikisti-2.jpg", alt: "Biciklisti 2" },
@@ -33,8 +25,19 @@ const galleryImages = [
 ];
 
 export default function BrdskiBiciklizam() {
+  const t = useTranslations("cycling");
   const tc = useTranslations("common");
+  const tn = useTranslations("nav");
   const locale = useLocale();
+
+  const routes = [
+    { name: "ADRIA SKI – ŠUJICA", distance: "55 km", elevation: "970 m", minAlt: "909 m", maxAlt: "1.462 m", duration: "6 h", difficulty: t("difficulty_hard"), color: "bg-red-500" },
+    { name: "GAJ – KOLJEVKA – GATER", distance: "14 km", elevation: "370 m", minAlt: "891 m", maxAlt: "1.081 m", duration: "2 h", difficulty: t("difficulty_easy"), color: "bg-green-500" },
+    { name: "ADRIA SKI – KUKAVIČJE JEZERO", distance: "71 km", elevation: "517 m", minAlt: "1.134 m", maxAlt: "1.326 m", duration: "7 h", difficulty: t("difficulty_hard"), color: "bg-red-500" },
+    { name: "RAMSKO JEZERO", distance: "37 km", elevation: "597 m", minAlt: "605 m", maxAlt: "940 m", duration: "4 h", difficulty: t("difficulty_medium"), color: "bg-amber-500" },
+    { name: "SMILJANIĆ – KUKAVIČJE JEZERO", distance: "55 km", elevation: "460 m", minAlt: "1.134 m", maxAlt: "1.325 m", duration: "6 h", difficulty: t("difficulty_hard"), color: "bg-red-500" },
+  ];
+
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -44,9 +47,9 @@ export default function BrdskiBiciklizam() {
         <div className="absolute bottom-0 left-0 right-0 z-10 pb-12 md:pb-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              <span className="inline-block text-lime-400 text-xs tracking-[0.25em] uppercase font-semibold mb-3">Ljetna ponuda</span>
-              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">Brdski biciklizam</h1>
-              <p className="mt-3 text-lg text-white/70 max-w-xl">5 biciklističkih tura kroz prekrasne krajobraze Kupresa</p>
+              <span className="inline-block text-lime-400 text-xs tracking-[0.25em] uppercase font-semibold mb-3">{t("hero_label")}</span>
+              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">{t("title")}</h1>
+              <p className="mt-3 text-lg text-white/70 max-w-xl">{t("hero_desc")}</p>
             </motion.div>
           </div>
         </div>
@@ -57,10 +60,10 @@ export default function BrdskiBiciklizam() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { icon: Bike, value: "5", label: "Tura" },
-              { icon: Ruler, value: "232 km", label: "Ukupno staza" },
-              { icon: Mountain, value: "1.462m", label: "Max visina" },
-              { icon: Clock, value: "3 dana", label: "Program" },
+              { icon: Bike, value: "5", label: t("highlight_tours") },
+              { icon: Ruler, value: "232 km", label: t("highlight_total") },
+              { icon: Mountain, value: "1.462m", label: t("highlight_max_alt") },
+              { icon: Clock, value: "3 dana", label: t("highlight_program") },
             ].map((item) => {
               const Icon = item.icon;
               return (
@@ -94,7 +97,7 @@ export default function BrdskiBiciklizam() {
               </div>
               <div className="absolute -bottom-6 -right-4 md:-right-8 bg-lime-600 text-white rounded-xl p-5 shadow-xl hidden sm:block">
                 <Bike className="w-8 h-8 mb-1" />
-                <p className="text-sm font-semibold">5 tura</p>
+                <p className="text-sm font-semibold">5 {t("highlight_tours").toLowerCase()}</p>
               </div>
             </motion.div>
 
@@ -105,18 +108,18 @@ export default function BrdskiBiciklizam() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <span className="inline-block text-lime-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">Raspored</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">Program</h2>
+              <span className="inline-block text-lime-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("program_label")}</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">{t("program_heading")}</h2>
 
               <div className="space-y-5">
                 {/* Dan 1 */}
                 <div className="bg-[#f2f3f4] rounded-xl p-5">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#163c6f] text-white text-xs font-bold">D1</span>
-                    <h3 className="font-heading font-bold text-[#163c6f]">Dan 1.</h3>
+                    <h3 className="font-heading font-bold text-[#163c6f]">{t("day1_title")}</h3>
                   </div>
                   <p className="text-[#3d3d3d] text-sm leading-relaxed">
-                    Dolazak u hotel &quot;Adriaski&quot;, u poslijepodnevnim satima. Večera dobrodošlice na bazi švedskog stola s domaćim specijalitetima. Za večernju zabavu (ovisno o dogovoru) gosti će imati priliku birati između: folklornog nastupa lokalnih skupina, zabavu uz harmonikaša ili glazbu uživo.
+                    {t("day1_desc")}
                   </p>
                 </div>
 
@@ -124,15 +127,15 @@ export default function BrdskiBiciklizam() {
                 <div className="bg-[#f2f3f4] rounded-xl p-5">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#163c6f] text-white text-xs font-bold">D2</span>
-                    <h3 className="font-heading font-bold text-[#163c6f]">Dan 2.</h3>
+                    <h3 className="font-heading font-bold text-[#163c6f]">{t("day2_title")}</h3>
                   </div>
                   <div className="text-[#3d3d3d] text-sm leading-relaxed space-y-1.5">
-                    <p><span className="font-semibold">08:00 – 09:00 h</span> Doručak</p>
-                    <p><span className="font-semibold">09:00 – 13:00 h</span> Biciklističke ture – 5 različitih tura, shodno interesu i fizičkim mogućnostima</p>
-                    <p><span className="font-semibold">13:00 – 14:30 h</span> Ručak u prirodi</p>
-                    <p><span className="font-semibold">15:00 – 18:00 h</span> Slobodne aktivnosti</p>
-                    <p><span className="font-semibold">19:00 – 20:30 h</span> Večera – domaća zdrava hrana, mogućnost aktivnog uključivanja gostiju u pripremu večere u restoranu &quot;Ognjišta&quot;</p>
-                    <p><span className="font-semibold">20:30 h –</span> Zabava uz karaoke show</p>
+                    <p><span className="font-semibold">08:00 – 09:00 h</span> {t("day2_breakfast")}</p>
+                    <p><span className="font-semibold">09:00 – 13:00 h</span> {t("day2_tours")}</p>
+                    <p><span className="font-semibold">13:00 – 14:30 h</span> {t("day2_lunch")}</p>
+                    <p><span className="font-semibold">15:00 – 18:00 h</span> {t("day2_free")}</p>
+                    <p><span className="font-semibold">19:00 – 20:30 h</span> {t("day2_dinner")}</p>
+                    <p><span className="font-semibold">20:30 h –</span> {t("day2_entertainment")}</p>
                   </div>
                 </div>
 
@@ -140,19 +143,19 @@ export default function BrdskiBiciklizam() {
                 <div className="bg-[#f2f3f4] rounded-xl p-5">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#163c6f] text-white text-xs font-bold">D3</span>
-                    <h3 className="font-heading font-bold text-[#163c6f]">Dan 3.</h3>
+                    <h3 className="font-heading font-bold text-[#163c6f]">{t("day3_title")}</h3>
                   </div>
                   <div className="text-[#3d3d3d] text-sm leading-relaxed space-y-1.5">
-                    <p><span className="font-semibold">08:00 – 09:00 h</span> Doručak – domaća zdrava hrana</p>
-                    <p className="font-semibold">Odlazak iz hotela poslije doručka</p>
+                    <p><span className="font-semibold">08:00 – 09:00 h</span> {t("day3_breakfast")}</p>
+                    <p className="font-semibold">{t("day3_departure")}</p>
                   </div>
                 </div>
 
                 {/* Prijevoz */}
                 <div className="bg-lime-50 border border-lime-200 rounded-xl p-5">
-                  <h3 className="font-heading font-bold text-lime-700 mb-1">Prijevoz</h3>
-                  <p className="text-[#3d3d3d] text-sm">Program ne uključuje: Prijevoz (organizira se na upit).</p>
-                  <p className="text-[#3d3d3d] text-sm mt-1">Napomena: gosti mogu donijeti svoje bicikle ili ih mogu iznajmiti u hotelu u sklopu aranžmana.</p>
+                  <h3 className="font-heading font-bold text-lime-700 mb-1">{t("transport_title")}</h3>
+                  <p className="text-[#3d3d3d] text-sm">{t("transport_desc")}</p>
+                  <p className="text-[#3d3d3d] text-sm mt-1">{t("transport_note")}</p>
                 </div>
               </div>
             </motion.div>
@@ -164,8 +167,8 @@ export default function BrdskiBiciklizam() {
       <section className="py-20 bg-[#f2f3f4]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-12">
-            <span className="inline-block text-lime-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">Ture</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">Biciklističke ture</h2>
+            <span className="inline-block text-lime-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("routes_label")}</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">{t("routes_heading")}</h2>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -190,28 +193,28 @@ export default function BrdskiBiciklizam() {
                   <div className="flex items-center gap-2">
                     <Ruler className="w-4 h-4 text-lime-600 flex-shrink-0" />
                     <div>
-                      <p className="text-xs text-gray-500">Dužina</p>
+                      <p className="text-xs text-gray-500">{t("route_length")}</p>
                       <p className="text-sm font-bold text-[#163c6f]">{route.distance}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4 text-lime-600 flex-shrink-0" />
                     <div>
-                      <p className="text-xs text-gray-500">Trajanje</p>
+                      <p className="text-xs text-gray-500">{t("route_duration")}</p>
                       <p className="text-sm font-bold text-[#163c6f]">{route.duration}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <TrendingUp className="w-4 h-4 text-lime-600 flex-shrink-0" />
                     <div>
-                      <p className="text-xs text-gray-500">Uspon</p>
+                      <p className="text-xs text-gray-500">{t("route_ascent")}</p>
                       <p className="text-sm font-bold text-[#163c6f]">{route.elevation}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <Mountain className="w-4 h-4 text-lime-600 flex-shrink-0" />
                     <div>
-                      <p className="text-xs text-gray-500">Visina</p>
+                      <p className="text-xs text-gray-500">{t("route_altitude")}</p>
                       <p className="text-sm font-bold text-[#163c6f]">{route.minAlt} – {route.maxAlt}</p>
                     </div>
                   </div>
@@ -239,14 +242,14 @@ export default function BrdskiBiciklizam() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b1d42]/90 to-[#163c6f]/80" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Spremni za avanturu na dva kotača?</h2>
-            <p className="text-white/60 mb-8 max-w-xl mx-auto">Rezervirajte biciklistički paket i istražite Kupres</p>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">{t("cta_heading")}</h2>
+            <p className="text-white/60 mb-8 max-w-xl mx-auto">{t("cta_subtitle")}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href={`/${locale}/kontakt`} className="inline-flex items-center justify-center gap-2 bg-lime-600 hover:bg-lime-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
-                Rezervirajte <ArrowRight className="w-4 h-4" />
+                {tc("reserve")} <ArrowRight className="w-4 h-4" />
               </Link>
               <Link href={`/${locale}/planinarenje`} className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
-                Planinarenje
+                {tn("hiking")}
               </Link>
             </div>
           </motion.div>

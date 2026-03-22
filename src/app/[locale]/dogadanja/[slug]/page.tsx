@@ -9,6 +9,7 @@ import { events, getEventBySlug } from "@/lib/events";
 import { useTranslations, useLocale } from "next-intl";
 
 export default function EventArticlePage() {
+  const t = useTranslations("event_detail");
   const tc = useTranslations("common");
   const locale = useLocale();
   const params = useParams();
@@ -19,9 +20,9 @@ export default function EventArticlePage() {
     return (
       <main className="min-h-screen flex items-center justify-center bg-[#f2f3f4]">
         <div className="text-center">
-          <h1 className="text-4xl font-heading font-bold text-[#163c6f] mb-4">Članak nije pronađen</h1>
+          <h1 className="text-4xl font-heading font-bold text-[#163c6f] mb-4">{t("article_not_found")}</h1>
           <Link href={`/${locale}/dogadanja`} className="inline-flex items-center gap-2 text-[#00c0f7] font-semibold">
-            <ArrowLeft className="w-4 h-4" /> {tc("back")} na događanja
+            <ArrowLeft className="w-4 h-4" /> {tc("back")} {t("back_to_events")}
           </Link>
         </div>
       </main>
@@ -79,7 +80,7 @@ export default function EventArticlePage() {
             {/* Contact info */}
             {event.contact && (
               <div className="mt-10 bg-[#f2f3f4] rounded-xl p-6 border border-gray-200">
-                <h3 className="font-heading font-bold text-[#163c6f] mb-3">Kontakt</h3>
+                <h3 className="font-heading font-bold text-[#163c6f] mb-3">{t("contact")}</h3>
                 <div className="flex flex-wrap gap-4">
                   {event.contact.split(",").map((c, i) => {
                     const trimmed = c.trim();
@@ -114,7 +115,7 @@ export default function EventArticlePage() {
               >
                 <ArrowLeft className="w-5 h-5 text-gray-400 group-hover:text-[#00c0f7] transition-colors flex-shrink-0" />
                 <div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wider">Prethodni</p>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider">{t("previous")}</p>
                   <p className="text-sm font-semibold text-[#163c6f] group-hover:text-[#00c0f7] transition-colors line-clamp-1">{prevEvent.title}</p>
                 </div>
               </Link>
@@ -130,7 +131,7 @@ export default function EventArticlePage() {
                 className="group flex items-center gap-3 text-right hover:text-[#00c0f7] transition-colors"
               >
                 <div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wider">Sljedeći</p>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider">{t("next")}</p>
                   <p className="text-sm font-semibold text-[#163c6f] group-hover:text-[#00c0f7] transition-colors line-clamp-1">{nextEvent.title}</p>
                 </div>
                 <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-[#00c0f7] transition-colors flex-shrink-0" />

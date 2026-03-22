@@ -20,7 +20,9 @@ const galleryImages = Array.from({ length: 12 }, (_, i) => ({
 }));
 
 export default function Jahanje() {
+  const t = useTranslations("horseback");
   const tc = useTranslations("common");
+  const tn = useTranslations("nav");
   const locale = useLocale();
   return (
     <main>
@@ -31,9 +33,9 @@ export default function Jahanje() {
         <div className="absolute bottom-0 left-0 right-0 z-10 pb-12 md:pb-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              <span className="inline-block text-amber-400 text-xs tracking-[0.25em] uppercase font-semibold mb-3">Ljetna ponuda</span>
-              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">Jahanje</h1>
-              <p className="mt-3 text-lg text-white/70 max-w-xl">Obilježene jahaće staze kroz prekrasne krajobraze Kupresa</p>
+              <span className="inline-block text-amber-400 text-xs tracking-[0.25em] uppercase font-semibold mb-3">{t("hero_label")}</span>
+              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">{t("title")}</h1>
+              <p className="mt-3 text-lg text-white/70 max-w-xl">{t("hero_desc")}</p>
             </motion.div>
           </div>
         </div>
@@ -44,10 +46,10 @@ export default function Jahanje() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { icon: Ruler, value: "25-30 km", label: "Staza" },
-              { icon: MapPin, value: "50 KM", label: "Tura" },
-              { icon: Mountain, value: "1.200-1.800m", label: "Visina" },
-              { icon: Clock, value: "3 dana", label: "Program" },
+              { icon: Ruler, value: "25-30 km", label: t("highlight_trail") },
+              { icon: MapPin, value: "50 KM", label: t("highlight_tour") },
+              { icon: Mountain, value: "1.200-1.800m", label: t("highlight_altitude") },
+              { icon: Clock, value: "3 dana", label: t("highlight_program") },
             ].map((item) => {
               const Icon = item.icon;
               return (
@@ -81,7 +83,7 @@ export default function Jahanje() {
               </div>
               <div className="absolute -bottom-6 -right-4 md:-right-8 bg-amber-600 text-white rounded-xl p-5 shadow-xl hidden sm:block">
                 <Footprints className="w-8 h-8 mb-1" />
-                <p className="text-sm font-semibold">Jahaće staze</p>
+                <p className="text-sm font-semibold">{t("riding_trails_label")}</p>
               </div>
             </motion.div>
 
@@ -92,18 +94,18 @@ export default function Jahanje() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <span className="inline-block text-amber-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">Raspored</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">Program</h2>
+              <span className="inline-block text-amber-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("program_label")}</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">{t("program_heading")}</h2>
 
               <div className="space-y-5">
                 {/* Dan 1 */}
                 <div className="bg-[#f2f3f4] rounded-xl p-5">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#163c6f] text-white text-xs font-bold">D1</span>
-                    <h3 className="font-heading font-bold text-[#163c6f]">Dan 1.</h3>
+                    <h3 className="font-heading font-bold text-[#163c6f]">{t("day1_title")}</h3>
                   </div>
                   <p className="text-[#3d3d3d] text-sm leading-relaxed">
-                    Dolazak u hotel &quot;Adriaski&quot; u poslijepodnevnim satima. Večera dobrodošlice na bazi švedskog stola s domaćim specijalitetima. Za večernju zabavu (ovisno o dogovoru) gosti će imati priliku birati između: zabave uz harmonikaša, karaoke show ili zabavu uz glazbu uživo.
+                    {t("day1_desc")}
                   </p>
                 </div>
 
@@ -111,22 +113,22 @@ export default function Jahanje() {
                 <div className="bg-[#f2f3f4] rounded-xl p-5">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#163c6f] text-white text-xs font-bold">D2</span>
-                    <h3 className="font-heading font-bold text-[#163c6f]">Dan 2.</h3>
+                    <h3 className="font-heading font-bold text-[#163c6f]">{t("day2_title")}</h3>
                   </div>
                   <div className="text-[#3d3d3d] text-sm leading-relaxed space-y-1.5">
                     <p><span className="font-semibold">08:00 – 09:00 h</span> – Doručak</p>
                     <p><span className="font-semibold">09:00 – 13:00 h</span> – Prijepodnevni program:</p>
-                    <p className="font-semibold">ODLAZAK NA JAHALIŠTE NA ĆEVIĆIMA GDJE ĆE SE GOSTI SA VODIČEM DOGOVORITI O JAHAČKOJ RUTI ZA TAJ DAN:</p>
+                    <p className="font-semibold">{t("day2_ranch_note")}</p>
 
                     {/* Pricing card */}
                     <div className="bg-white rounded-xl p-4 shadow-sm border border-amber-100 my-3">
                       <div className="space-y-2">
                         <div className="flex justify-between items-center">
-                          <span><span className="font-semibold">Prijepodnevna tura</span> od 09,00-12,00 h</span>
+                          <span><span className="font-semibold">{t("morning_tour")}</span> {t("morning_tour_time")}</span>
                           <span className="font-bold text-amber-600">50,00 KM</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span><span className="font-semibold">Poslijepodnevna tura</span> od 18,00-19,00 h</span>
+                          <span><span className="font-semibold">{t("afternoon_tour")}</span> {t("afternoon_tour_time")}</span>
                           <span className="font-bold text-amber-600">25,00 KM</span>
                         </div>
                       </div>
@@ -143,7 +145,7 @@ export default function Jahanje() {
                 <div className="bg-[#f2f3f4] rounded-xl p-5">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#163c6f] text-white text-xs font-bold">D3</span>
-                    <h3 className="font-heading font-bold text-[#163c6f]">Dan 3.</h3>
+                    <h3 className="font-heading font-bold text-[#163c6f]">{t("day3_title")}</h3>
                   </div>
                   <div className="text-[#3d3d3d] text-sm leading-relaxed space-y-1.5">
                     <p><span className="font-semibold">08:00 – 09:30 h</span> – Doručak</p>
@@ -153,15 +155,15 @@ export default function Jahanje() {
 
                 {/* Cijena */}
                 <div className="bg-amber-50 border border-amber-200 rounded-xl p-5">
-                  <h3 className="font-heading font-bold text-amber-700 mb-1">Cijena</h3>
-                  <p className="text-[#3d3d3d] text-sm font-semibold">CIJENA UKLJUČUJE: 2 puna pansiona; osigurani su vodiči za sve navedene aktivnosti</p>
+                  <h3 className="font-heading font-bold text-amber-700 mb-1">{t("price_title")}</h3>
+                  <p className="text-[#3d3d3d] text-sm font-semibold">{t("price_desc")}</p>
                 </div>
 
                 {/* Dodatno */}
                 <div className="bg-amber-50 border border-amber-200 rounded-xl p-5">
-                  <h3 className="font-heading font-bold text-amber-700 mb-1">Dodatno</h3>
+                  <h3 className="font-heading font-bold text-amber-700 mb-1">{t("additional_title")}</h3>
                   <p className="text-[#3d3d3d] text-sm">
-                    UKOLIKO GOSTI BUDU BORAVILI 3 NOĆI, TREĆI DAN ĆE GOSTI IĆI ILI U RIBOLOV ILI NA KAMPIRANJE U PRIRODI – OVISNO O DOGOVORU, IMATI ĆE RUČAK I /ILI VEČERU U PRIRODI, A NAVEČER UKOLIKO NE BUDU IŠLI NA KAMPIRANJE ĆE IMATI VEČERU I ZABAVU U HOTELU &quot;ADRIA SKI&quot; UZ GLAZBU UŽIVO ILI UZ HARMONIKAŠA.
+                    {t("additional_desc")}
                   </p>
                 </div>
               </div>
@@ -181,10 +183,10 @@ export default function Jahanje() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <span className="inline-block text-amber-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">Staze</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">Lokalne staze</h2>
+              <span className="inline-block text-amber-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("trails_label")}</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">{t("trails_heading")}</h2>
               <p className="text-[#3d3d3d] leading-relaxed">
-                Prilagodili smo i obilježili veći broj jahaćih staza koje se razlikuju po dužini (25 km – 30 km) i visinskoj razlici (1200 m – 1800 m). Također se razlikuju i po nivou težine u smislu gustine raslinja i šume kroz koju se jaše i potrebi prejahivanja prepreka ili provlačenja kroz šumske prepreke. Kombinacijom različitih lokalnih jahaćih staza također možete jahati više sati, ne prolazeći kroz iste krajobraze, a uvijek ćete biti blizu ranča.
+                {t("trails_desc")}
               </p>
             </motion.div>
 
@@ -211,10 +213,10 @@ export default function Jahanje() {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="max-w-3xl mx-auto text-center">
-            <span className="inline-block text-amber-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">Iskustvo</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">Za jahače</h2>
+            <span className="inline-block text-amber-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("riders_label")}</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">{t("riders_heading")}</h2>
             <p className="text-[#3d3d3d] leading-relaxed text-lg">
-              Također ako želite osjetiti samo užitak terenskog jahanja i uz to napraviti novu cool profilku, tu su kratke jahaće ture po prirodi u trajanju od samo 20-tak minuta. Za sve vrste jahača željne novog iskustva imamo što za ponuditi. Naravno, za sve one koji ne žele jahati, ture su prikladne i za šetnju u prirodi.
+              {t("riders_desc")}
             </p>
           </motion.div>
         </div>
@@ -237,14 +239,14 @@ export default function Jahanje() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b1d42]/90 to-[#163c6f]/80" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Spremni za jahanje?</h2>
-            <p className="text-white/60 mb-8 max-w-xl mx-auto">Rezervirajte jahaći paket i istražite Kupres na konju</p>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">{t("cta_heading")}</h2>
+            <p className="text-white/60 mb-8 max-w-xl mx-auto">{t("cta_subtitle")}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href={`/${locale}/kontakt`} className="inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
-                Rezervirajte <ArrowRight className="w-4 h-4" />
+                {tc("reserve")} <ArrowRight className="w-4 h-4" />
               </Link>
               <Link href={`/${locale}/brdski-biciklizam`} className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
-                Brdski biciklizam
+                {tn("cycling")}
               </Link>
             </div>
           </motion.div>

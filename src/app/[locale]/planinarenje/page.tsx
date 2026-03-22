@@ -55,7 +55,9 @@ const galleryImages = [
 ];
 
 export default function Planinarenje() {
+  const t = useTranslations("hiking");
   const tc = useTranslations("common");
+  const tn = useTranslations("nav");
   const locale = useLocale();
   return (
     <main>
@@ -66,9 +68,9 @@ export default function Planinarenje() {
         <div className="absolute bottom-0 left-0 right-0 z-10 pb-12 md:pb-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              <span className="inline-block text-emerald-400 text-xs tracking-[0.25em] uppercase font-semibold mb-3">Ljetna ponuda</span>
-              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">Planinarenje</h1>
-              <p className="mt-3 text-lg text-white/70 max-w-xl">&quot;Istraživačko planinarenje za početnike sa mogućnošću biranja rute i odmorom na predivnim mjestima sa kojih puca prekrasan pogled&quot;</p>
+              <span className="inline-block text-emerald-400 text-xs tracking-[0.25em] uppercase font-semibold mb-3">{t("hero_label")}</span>
+              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">{t("title")}</h1>
+              <p className="mt-3 text-lg text-white/70 max-w-xl">&quot;{t("hero_desc")}&quot;</p>
             </motion.div>
           </div>
         </div>
@@ -79,10 +81,10 @@ export default function Planinarenje() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { icon: MapPin, value: "3", label: "Rute" },
-              { icon: Mountain, value: "1.826m", label: "Max visina" },
-              { icon: Clock, value: "3 dana", label: "Program" },
-              { icon: Footprints, value: "Vodiči", label: "Uključeno" },
+              { icon: MapPin, value: "3", label: t("highlight_routes") },
+              { icon: Mountain, value: "1.826m", label: t("highlight_max_alt") },
+              { icon: Clock, value: "3 dana", label: t("highlight_program") },
+              { icon: Footprints, value: t("guides_value"), label: t("highlight_guides") },
             ].map((item) => {
               const Icon = item.icon;
               return (
@@ -116,7 +118,7 @@ export default function Planinarenje() {
               </div>
               <div className="absolute -bottom-6 -right-4 md:-right-8 bg-emerald-600 text-white rounded-xl p-5 shadow-xl hidden sm:block">
                 <MapPin className="w-8 h-8 mb-1" />
-                <p className="text-sm font-semibold">3 rute</p>
+                <p className="text-sm font-semibold">3 {t("highlight_routes").toLowerCase()}</p>
               </div>
             </motion.div>
 
@@ -127,18 +129,18 @@ export default function Planinarenje() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <span className="inline-block text-emerald-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">Raspored</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">Program</h2>
+              <span className="inline-block text-emerald-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("program_label")}</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">{t("program_heading")}</h2>
 
               <div className="space-y-5">
                 {/* Dan 1 */}
                 <div className="bg-[#f2f3f4] rounded-xl p-5">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#163c6f] text-white text-xs font-bold">D1</span>
-                    <h3 className="font-heading font-bold text-[#163c6f]">Dan 1.</h3>
+                    <h3 className="font-heading font-bold text-[#163c6f]">{t("day1_title")}</h3>
                   </div>
                   <p className="text-[#3d3d3d] text-sm leading-relaxed">
-                    Dolazak u hotel &quot;Adriaski&quot; u poslijepodnevnim satima. Večera dobrodošlice na bazi švedskog stola s domaćim specijalitetima. Za večernju zabavu (ovisno o dogovoru) gosti će imati priliku birati između: folklornog nastupa lokalnih skupina, zabavu uz harmonikaša ili glazbu uživo.
+                    {t("day1_desc")}
                   </p>
                 </div>
 
@@ -146,15 +148,15 @@ export default function Planinarenje() {
                 <div className="bg-[#f2f3f4] rounded-xl p-5">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#163c6f] text-white text-xs font-bold">D2</span>
-                    <h3 className="font-heading font-bold text-[#163c6f]">Dan 2.</h3>
+                    <h3 className="font-heading font-bold text-[#163c6f]">{t("day2_title")}</h3>
                   </div>
                   <div className="text-[#3d3d3d] text-sm leading-relaxed space-y-1.5">
-                    <p><span className="font-semibold">08:00 – 09:00 h</span> Doručak</p>
-                    <p><span className="font-semibold">09:00 – 13:00 h</span> Tri pješačke opcije prema interesu i fizičkim mogućnostima</p>
-                    <p><span className="font-semibold">13:00 – 14:30 h</span> Ručak u prirodi</p>
-                    <p><span className="font-semibold">15:00 – 18:00 h</span> Slobodne aktivnosti</p>
-                    <p><span className="font-semibold">19:00 – 20:30 h</span> Večera – domaća zdrava hrana, mogućnost aktivnog uključivanja gostiju u pripremu večere u restoranu &quot;Ognjišta&quot;.</p>
-                    <p><span className="font-semibold">20.30 h –</span> Zabava uz karaoke show.</p>
+                    <p><span className="font-semibold">08:00 – 09:00 h</span> {t("day2_breakfast")}</p>
+                    <p><span className="font-semibold">09:00 – 13:00 h</span> {t("day2_options")}</p>
+                    <p><span className="font-semibold">13:00 – 14:30 h</span> {t("day2_lunch")}</p>
+                    <p><span className="font-semibold">15:00 – 18:00 h</span> {t("day2_free")}</p>
+                    <p><span className="font-semibold">19:00 – 20:30 h</span> {t("day2_dinner")}</p>
+                    <p><span className="font-semibold">20.30 h –</span> {t("day2_entertainment")}</p>
                   </div>
                 </div>
 
@@ -162,18 +164,18 @@ export default function Planinarenje() {
                 <div className="bg-[#f2f3f4] rounded-xl p-5">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#163c6f] text-white text-xs font-bold">D3</span>
-                    <h3 className="font-heading font-bold text-[#163c6f]">Dan 3.</h3>
+                    <h3 className="font-heading font-bold text-[#163c6f]">{t("day3_title")}</h3>
                   </div>
                   <div className="text-[#3d3d3d] text-sm leading-relaxed space-y-1.5">
-                    <p><span className="font-semibold">08:00 – 09:00 h</span> – doručak – domaća zdrava hrana</p>
-                    <p className="font-semibold">ODLAZAK IZ HOTELA POSLIJE DORUČKA</p>
+                    <p><span className="font-semibold">08:00 – 09:00 h</span> – {t("day3_breakfast")}</p>
+                    <p className="font-semibold">{t("day3_departure")}</p>
                   </div>
                 </div>
 
                 {/* Prijevoz */}
                 <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-5">
-                  <h3 className="font-heading font-bold text-emerald-700 mb-1">Prijevoz</h3>
-                  <p className="text-[#3d3d3d] text-sm">Program ne uključuje: Prijevoz (organizira se na upit).</p>
+                  <h3 className="font-heading font-bold text-emerald-700 mb-1">{t("transport_title")}</h3>
+                  <p className="text-[#3d3d3d] text-sm">{t("transport_desc")}</p>
                 </div>
               </div>
             </motion.div>
@@ -185,8 +187,8 @@ export default function Planinarenje() {
       <section className="py-20 bg-[#f2f3f4]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-12">
-            <span className="inline-block text-emerald-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">Rute</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">Pješačke rute</h2>
+            <span className="inline-block text-emerald-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("routes_label")}</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">{t("routes_heading")}</h2>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -201,35 +203,35 @@ export default function Planinarenje() {
               >
                 {/* Header */}
                 <div className="bg-gradient-to-r from-[#163c6f] to-[#23507a] px-5 py-4">
-                  <h3 className="text-sm font-bold text-white">Pješačka ruta {route.name}</h3>
+                  <h3 className="text-sm font-bold text-white">{t("route_walking")} {route.name}</h3>
                 </div>
                 {/* Stats */}
                 <div className="p-5 grid grid-cols-2 gap-3">
                   <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                     <div>
-                      <p className="text-xs text-gray-500">Trajanje</p>
+                      <p className="text-xs text-gray-500">{t("route_duration")}</p>
                       <p className="text-sm font-bold text-[#163c6f]">{route.duration}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                     <div>
-                      <p className="text-xs text-gray-500">Polazak</p>
+                      <p className="text-xs text-gray-500">{t("route_departure")}</p>
                       <p className="text-sm font-bold text-[#163c6f]">{route.departure}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <Ruler className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                     <div>
-                      <p className="text-xs text-gray-500">Udaljenost</p>
+                      <p className="text-xs text-gray-500">{t("route_distance")}</p>
                       <p className="text-sm font-bold text-[#163c6f]">{route.distance}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <TrendingUp className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                     <div>
-                      <p className="text-xs text-gray-500">Nadmorska visina</p>
+                      <p className="text-xs text-gray-500">{t("route_altitude")}</p>
                       <p className="text-sm font-bold text-[#163c6f]">{route.altitude}</p>
                     </div>
                   </div>
@@ -261,14 +263,14 @@ export default function Planinarenje() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b1d42]/90 to-[#163c6f]/80" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Spremni za planinarsku avanturu?</h2>
-            <p className="text-white/60 mb-8 max-w-xl mx-auto">Rezervirajte planinarski paket i istražite vrhove Kupresa</p>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">{t("cta_heading")}</h2>
+            <p className="text-white/60 mb-8 max-w-xl mx-auto">{t("cta_subtitle")}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href={`/${locale}/kontakt`} className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
-                Rezervirajte <ArrowRight className="w-4 h-4" />
+                {tc("reserve")} <ArrowRight className="w-4 h-4" />
               </Link>
               <Link href={`/${locale}/brdski-biciklizam`} className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
-                Brdski biciklizam
+                {tn("cycling")}
               </Link>
             </div>
           </motion.div>
