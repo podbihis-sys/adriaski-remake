@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Thermometer, Wind, Snowflake, Mountain, Clock, Camera } from "lucide-react";
+import { Thermometer, Wind, Snowflake, Mountain, Clock } from "lucide-react";
+import { usePathTranslations } from "@/lib/use-path-locale";
 
 interface WeatherData {
   temperature: number;
@@ -10,36 +11,6 @@ interface WeatherData {
   snowDepth: number;
   weatherCode: number;
   isDay: boolean;
-}
-
-function getWeatherDescription(code: number): string {
-  const descriptions: Record<number, string> = {
-    0: "Vedro",
-    1: "Pretežno vedro",
-    2: "Djelomično oblačno",
-    3: "Oblačno",
-    45: "Magla",
-    48: "Magla",
-    51: "Sitna kiša",
-    53: "Kiša",
-    55: "Jaka kiša",
-    61: "Kiša",
-    63: "Umjerena kiša",
-    65: "Jaka kiša",
-    71: "Slab snijeg",
-    73: "Umjeren snijeg",
-    75: "Jak snijeg",
-    77: "Snježna zrna",
-    80: "Pljuskovi",
-    81: "Umjereni pljuskovi",
-    82: "Jaki pljuskovi",
-    85: "Snježni pljuskovi",
-    86: "Jaki snježni pljuskovi",
-    95: "Grmljavina",
-    96: "Grmljavina s tučom",
-    99: "Grmljavina s jakom tučom",
-  };
-  return descriptions[code] || "Nepoznato";
 }
 
 function getWeatherIcon(code: number): string {
@@ -56,12 +27,13 @@ function getWeatherIcon(code: number): string {
 }
 
 export default function SkiStatus() {
+  const t = usePathTranslations("ski_status");
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(true);
   const [pisteOpen, setPisteOpen] = useState(false);
   const [openingDate, setOpeningDate] = useState("");
   const [countdown, setCountdown] = useState("");
-  const [cameraCount, setCameraCount] = useState({ online: 0, total: 0 });
+  const [, setCameraCount] = useState({ online: 0, total: 0 });
 
   useEffect(() => {
     async function fetchSettings() {
@@ -71,7 +43,6 @@ export default function SkiStatus() {
           const data = await res.json();
           setPisteOpen(data.piste_status?.open ?? false);
           setOpeningDate(data.piste_status?.openingDate || "");
-          // Count cameras
           if (data.cameras) {
             const cams = Object.values(data.cameras) as { active: boolean; visible: boolean }[];
             const visible = cams.filter(c => c.visible);
@@ -84,7 +55,6 @@ export default function SkiStatus() {
     fetchSettings();
   }, []);
 
-  // Countdown timer
   useEffect(() => {
     if (!openingDate || pisteOpen) { setCountdown(""); return; }
     const target = new Date(openingDate + "T09:00:00");
@@ -136,11 +106,17 @@ export default function SkiStatus() {
     fetchWeather();
   }, []);
 
+  function getWeatherDescription(code: number): string {
+    const key = `weather_${code}`;
+    const val = t(key);
+    return val !== key ? val : t("weather_unknown");
+  }
+
   if (loading) {
     return (
       <div className="bg-[#0b1d42] py-4">
         <div className="max-w-7xl mx-auto px-4 flex justify-center">
-          <div className="text-white/50 text-sm animate-pulse">Učitavanje podataka...</div>
+          <div className="text-white/50 text-sm animate-pulse">{t("loading")}</div>
         </div>
       </div>
     );
@@ -149,12 +125,12 @@ export default function SkiStatus() {
   const weatherItems = weather ? [
     { icon: null, emoji: getWeatherIcon(weather.weatherCode), text: getWeatherDescription(weather.weatherCode) },
     { icon: Thermometer, emoji: null, text: `${weather.temperature}°C` },
-    { icon: Snowflake, emoji: null, text: `Snijeg: ${weather.snowDepth} cm` },
-    { icon: Wind, emoji: null, text: `Vjetar: ${weather.windSpeed} km/h` },
+    { icon: Snowflake, emoji: null, text: `${t("snow")}: ${weather.snowDepth} cm` },
+    { icon: Wind, emoji: null, text: `${t("wind")}: ${weather.windSpeed} km/h` },
     { icon: Clock, emoji: null, text: `9:00 - 16:00` },
   ] : [];
 
-  const countdownItem = countdown && !pisteOpen ? `⏱ Otvaranje za: ${countdown}` : null;
+  const countdownItem = countdown && !pisteOpen ? `⏱ ${t("opening_in")}: ${countdown}` : null;
 
   return (
     <motion.div
@@ -163,16 +139,16 @@ export default function SkiStatus() {
       transition={{ duration: 0.5 }}
       className="bg-gradient-to-r from-[#0b1d42] via-[#163c6f] to-[#0b1d42]"
     >
-      {/* ===== DESKTOP: alles in einer Reihe ===== */}
+      {/* Desktop */}
       <div className="hidden md:block">
         <div className="max-w-7xl mx-auto px-4 py-3">
           <div className="flex items-center justify-center gap-x-3 lg:gap-x-4">
             <div className="flex items-center gap-1.5">
               <Mountain className="w-3.5 h-3.5 text-white/70" />
-              <span className="text-white/70 text-[13px]">Skijalište:</span>
+              <span className="text-white/70 text-[13px]">{t("ski_resort")}:</span>
               <span className={`text-[13px] font-bold flex items-center gap-1.5 ${pisteOpen ? "text-green-400" : "text-red-400"}`}>
                 <span className={`w-2 h-2 rounded-full ${pisteOpen ? "bg-green-400 animate-pulse" : "bg-red-400"}`} />
-                {pisteOpen ? "OTVORENO" : "ZATVORENO"}
+                {pisteOpen ? t("open") : t("closed")}
               </span>
             </div>
 
@@ -198,21 +174,19 @@ export default function SkiStatus() {
         </div>
       </div>
 
-      {/* ===== MOBILE: Ski-Status fix + Rest als Ticker ===== */}
+      {/* Mobile */}
       <div className="md:hidden">
         <div className="flex items-center px-3 py-2.5 gap-3">
-          {/* Fixed ski status */}
           <div className="flex items-center gap-1.5 flex-shrink-0">
             <Mountain className="w-3.5 h-3.5 text-white/70" />
             <span className={`text-[12px] font-bold flex items-center gap-1 ${pisteOpen ? "text-green-400" : "text-red-400"}`}>
               <span className={`w-1.5 h-1.5 rounded-full ${pisteOpen ? "bg-green-400 animate-pulse" : "bg-red-400"}`} />
-              {pisteOpen ? "OTVORENO" : "ZATVORENO"}
+              {pisteOpen ? t("open") : t("closed")}
             </span>
           </div>
 
           <div className="w-px h-4 bg-white/15 flex-shrink-0" />
 
-          {/* Scrolling ticker */}
           <div className="overflow-hidden flex-1">
             <div className="animate-ticker whitespace-nowrap inline-flex">
               {[0, 1].map((setIndex) => (
