@@ -1,0 +1,25 @@
+{
+  "name": "Adria Ski Admin",
+  "short_name": "Adria Admin",
+  "description": "Adria Ski Admin Panel",
+  "start_url": "/admin",
+  "scope": "/admin",
+  "display": "standalone",
+  "background_color": "#163c6f",
+  "theme_color": "#163c6f",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/images/logo-square.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/logo-square.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

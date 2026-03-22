@@ -28,9 +28,111 @@ interface AdminUser {
     settings: { manage: boolean };
     users: { manage: boolean };
   };
+  mustChangePassword?: boolean;
 }
 
-function LoginForm({ onLogin }: { onLogin: (token: string, user?: AdminUser) => void }) {
+function ForceChangePasswordDialog({
+  token,
+  onDone,
+}: {
+  token: string;
+  onDone: (newToken: string) => void;
+}) {
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [saving, setSaving] = useState(false);
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    setError("");
+
+    if (newPassword !== confirmPassword) {
+      setError("Lozinke se ne podudaraju.");
+      return;
+    }
+
+    setSaving(true);
+    try {
+      const res = await fetch("/api/admin/users/change-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-admin-token": token },
+        body: JSON.stringify({ newPassword, forceChange: true }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || "Greška.");
+        return;
+      }
+      if (data.token) {
+        localStorage.setItem("admin_token", data.token);
+      }
+      onDone(data.token);
+    } catch {
+      setError("Greška u komunikaciji.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+        <div className="flex flex-col items-center mb-6">
+          <div className="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mb-4">
+            <Lock className="w-8 h-8 text-amber-600" />
+          </div>
+          <h1 className="text-xl font-bold text-[#163c6f]">Promjena lozinke obavezna</h1>
+          <p className="text-gray-500 mt-1 text-sm text-center">
+            Administrator je postavio jednokratnu lozinku. Morate postaviti novu lozinku za nastavak.
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Nova lozinka</label>
+            <input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              required
+              minLength={10}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none transition"
+              placeholder="Minimalno 10 znakova"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Potvrda nove lozinke</label>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              minLength={10}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none transition"
+              placeholder="Ponovite lozinku"
+            />
+          </div>
+          <p className="text-xs text-gray-400">
+            Min. 10 znakova, veliko + malo slovo, broj ili poseban znak.
+          </p>
+          {error && (
+            <div className="bg-red-50 text-red-700 px-4 py-3 rounded-lg text-sm">{error}</div>
+          )}
+          <button
+            type="submit"
+            disabled={saving}
+            className="w-full bg-[#163c6f] text-white py-3 rounded-lg font-semibold hover:bg-[#1a4a87] transition disabled:opacity-50"
+          >
+            {saving ? "Spremam..." : "Postavi novu lozinku"}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+function LoginForm({ onLogin }: { onLogin: (token: string, user?: AdminUser, mustChangePassword?: boolean) => void }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -59,7 +161,7 @@ function LoginForm({ onLogin }: { onLogin: (token: string, user?: AdminUser) => 
       if (data.user) {
         localStorage.setItem("admin_user", JSON.stringify(data.user));
       }
-      onLogin(data.token, data.user);
+      onLogin(data.token, data.user, data.mustChangePassword);
     } catch {
       setError("Greška u komunikaciji sa serverom.");
     } finally {
@@ -154,7 +256,19 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [checking, setChecking] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [mustChangePassword, setMustChangePassword] = useState(false);
   const pathname = usePathname();
+
+  // Override manifest for admin PWA
+  useEffect(() => {
+    const existing = document.querySelector('link[rel="manifest"]');
+    if (existing) existing.setAttribute("href", "/admin-manifest.json");
+    const theme = document.querySelector('meta[name="theme-color"]');
+    if (theme) theme.setAttribute("content", "#163c6f");
+    return () => {
+      if (existing) existing.setAttribute("href", "/manifest.json");
+    };
+  }, []);
 
   useEffect(() => {
     const stored = localStorage.getItem("admin_token");
@@ -180,9 +294,10 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     setChecking(false);
   }, []);
 
-  function handleLogin(newToken: string, user?: AdminUser) {
+  function handleLogin(newToken: string, user?: AdminUser, forceChange?: boolean) {
     setToken(newToken);
     if (user) setAdminUser(user);
+    if (forceChange) setMustChangePassword(true);
   }
 
   function handleLogout() {
@@ -212,6 +327,18 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
   if (!token) {
     return <LoginForm onLogin={handleLogin} />;
+  }
+
+  if (mustChangePassword) {
+    return (
+      <ForceChangePasswordDialog
+        token={token}
+        onDone={(newToken) => {
+          setToken(newToken);
+          setMustChangePassword(false);
+        }}
+      />
+    );
   }
 
   return (

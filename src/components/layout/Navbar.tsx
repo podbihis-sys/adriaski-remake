@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 interface NavDropdownItem {
   label: string;
@@ -222,6 +223,11 @@ export function Navbar() {
                   )}
                 </div>
               ))}
+            </div>
+
+            {/* Language Switcher */}
+            <div className="text-white">
+              <LanguageSwitcher />
             </div>
 
             {/* Mobile Toggle */}

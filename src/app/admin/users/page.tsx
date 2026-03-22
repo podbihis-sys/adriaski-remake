@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, FormEvent } from "react";
-import { Plus, Pencil, Trash2, Shield, X } from "lucide-react";
+import { Plus, Pencil, Trash2, Shield, X, Key } from "lucide-react";
 import { useUnsavedChanges } from "@/hooks/useUnsavedChanges";
 
 interface Permission {
@@ -39,6 +39,10 @@ export default function UsersPage() {
   const [showForm, setShowForm] = useState(false);
   const [editingUser, setEditingUser] = useState<UserData | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [tempPwUser, setTempPwUser] = useState<UserData | null>(null);
+  const [tempPw, setTempPw] = useState("");
+  const [tempPwLoading, setTempPwLoading] = useState(false);
+  const [tempPwError, setTempPwError] = useState("");
 
   // Form state
   const [formUsername, setFormUsername] = useState("");
@@ -284,6 +288,13 @@ export default function UsersPage() {
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-end gap-2">
                       <button
+                        onClick={() => { setTempPwUser(user); setTempPw(""); setTempPwError(""); }}
+                        className="p-2 text-gray-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition"
+                        title="Jednokratna lozinka"
+                      >
+                        <Key className="w-4 h-4" />
+                      </button>
+                      <button
                         onClick={() => openEditForm(user)}
                         className="p-2 text-gray-400 hover:text-[#00c0f7] hover:bg-blue-50 rounded-lg transition"
                         title="Uredi"
@@ -329,6 +340,91 @@ export default function UsersPage() {
           </table>
         </div>
       </div>
+
+      {/* Temp password modal */}
+      {tempPwUser && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md">
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <h2 className="text-lg font-bold text-[#163c6f]">
+                Jednokratna lozinka za &quot;{tempPwUser.username}&quot;
+              </h2>
+              <button
+                onClick={() => setTempPwUser(null)}
+                className="p-2 text-gray-400 hover:text-gray-600 rounded-lg transition"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <form
+              onSubmit={async (e: FormEvent) => {
+                e.preventDefault();
+                setTempPwError("");
+                setTempPwLoading(true);
+                try {
+                  const res = await fetch(`/api/admin/users/${tempPwUser.id}`, {
+                    method: "PATCH",
+                    headers: {
+                      "Content-Type": "application/json",
+                      "x-admin-token": getToken(),
+                    },
+                    body: JSON.stringify({ tempPassword: tempPw }),
+                  });
+                  const data = await res.json();
+                  if (!res.ok) {
+                    setTempPwError(data.error || "Greška.");
+                    return;
+                  }
+                  setTempPwUser(null);
+                  setError("");
+                } catch {
+                  setTempPwError("Greška u komunikaciji.");
+                } finally {
+                  setTempPwLoading(false);
+                }
+              }}
+              className="p-6 space-y-4"
+            >
+              <p className="text-sm text-gray-500">
+                Korisnik će morati postaviti novu lozinku pri sljedećoj prijavi.
+              </p>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Jednokratna lozinka
+                </label>
+                <input
+                  type="text"
+                  value={tempPw}
+                  onChange={(e) => setTempPw(e.target.value)}
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none transition"
+                  placeholder="Minimalno 6 znakova"
+                  required
+                  minLength={6}
+                />
+              </div>
+              {tempPwError && (
+                <div className="bg-red-50 text-red-700 px-4 py-3 rounded-lg text-sm">{tempPwError}</div>
+              )}
+              <div className="flex gap-3">
+                <button
+                  type="submit"
+                  disabled={tempPwLoading}
+                  className="flex-1 bg-amber-600 text-white py-2.5 rounded-lg font-semibold hover:bg-amber-700 transition disabled:opacity-50"
+                >
+                  {tempPwLoading ? "Postavljam..." : "Postavi jednokratnu lozinku"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setTempPwUser(null)}
+                  className="px-6 py-2.5 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition"
+                >
+                  Odustani
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* User form modal */}
       {showForm && (

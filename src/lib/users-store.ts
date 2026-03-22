@@ -20,6 +20,7 @@ export interface User {
   permissions: Permission;
   createdAt: string;
   lastLogin?: string;
+  mustChangePassword?: boolean;
 }
 
 const DEFAULT_PERMISSIONS: Record<string, Permission> = {
@@ -218,6 +219,28 @@ export async function updateUserPermissions(id: string, role: string, permission
   user.permissions = permissions;
   await saveUsers(users);
   return user;
+}
+
+export async function setTemporaryPassword(id: string, tempPassword: string): Promise<boolean> {
+  const users = await getUsers();
+  const user = users.find((u) => u.id === id);
+  if (!user) return false;
+  user.passwordHash = hashPassword(tempPassword);
+  user.mustChangePassword = true;
+  await saveUsers(users);
+  return true;
+}
+
+export async function clearMustChangePassword(id: string, newPassword: string): Promise<string | null> {
+  const pwError = validatePassword(newPassword);
+  if (pwError) return pwError;
+  const users = await getUsers();
+  const user = users.find((u) => u.id === id);
+  if (!user) return "Korisnik nije pronađen.";
+  user.passwordHash = hashPassword(newPassword);
+  user.mustChangePassword = false;
+  await saveUsers(users);
+  return null; // success
 }
 
 export function getDefaultPermissions(): Record<string, Permission> {

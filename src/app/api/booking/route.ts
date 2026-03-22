@@ -1,42 +1,34 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { createServerClient } from '@/lib/supabase';
-import { bookingSchema, sanitize } from '@/lib/validations';
-import { rateLimit } from '@/lib/rate-limit';
+import { NextRequest, NextResponse } from "next/server";
+import { createServerClient } from "@/lib/supabase";
+import { bookingSchema, sanitize } from "@/lib/validations";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(request: NextRequest) {
   try {
-    // Rate limiting: 5 per hour per IP
-    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
-      || request.headers.get('x-real-ip')
-      || 'unknown';
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip") ||
+      "unknown";
 
-    const rateLimitResult = rateLimit(ip, 5, 60 * 60 * 1000);
+    const { success, remaining } = await rateLimit(`booking:${ip}`, 5, 60 * 60 * 1000);
 
-    if (!rateLimitResult.success) {
+    if (!success) {
       return NextResponse.json(
-        { success: false, message: 'Zu viele Anfragen. Bitte versuchen Sie es später erneut.' },
-        {
-          status: 429,
-          headers: {
-            'Retry-After': String(Math.ceil((rateLimitResult.resetAt - Date.now()) / 1000)),
-            'X-RateLimit-Remaining': '0',
-          }
-        }
+        { success: false, message: "Previše zahtjeva. Pokušajte ponovo kasnije." },
+        { status: 429, headers: { "X-RateLimit-Remaining": String(remaining) } }
       );
     }
 
     const body = await request.json();
 
-    // Validate with Zod
     const result = bookingSchema.safeParse(body);
     if (!result.success) {
       return NextResponse.json(
-        { success: false, message: 'Validierungsfehler', errors: result.error.flatten().fieldErrors },
+        { success: false, message: "Greška u validaciji.", errors: result.error.flatten().fieldErrors },
         { status: 400 }
       );
     }
 
-    // Sanitize all string inputs
     const sanitized = {
       ...result.data,
       name: sanitize(result.data.name),
@@ -47,23 +39,23 @@ export async function POST(request: NextRequest) {
     };
 
     const supabase = createServerClient();
-    const { error } = await supabase.from('bookings').insert(sanitized);
+    const { error } = await supabase.from("bookings").insert(sanitized);
 
     if (error) {
-      console.error('Supabase error:', error);
+      console.error("Supabase error:", error);
       return NextResponse.json(
-        { success: false, message: 'Fehler beim Speichern der Buchung.' },
+        { success: false, message: "Greška pri spremanju rezervacije." },
         { status: 500 }
       );
     }
 
     return NextResponse.json(
-      { success: true, message: 'Ihre Buchungsanfrage wurde erfolgreich gesendet!' },
-      { status: 201, headers: { 'X-RateLimit-Remaining': String(rateLimitResult.remaining) } }
+      { success: true, message: "Vaša rezervacija je uspješno poslana!" },
+      { status: 201, headers: { "X-RateLimit-Remaining": String(remaining) } }
     );
   } catch {
     return NextResponse.json(
-      { success: false, message: 'Ein unerwarteter Fehler ist aufgetreten.' },
+      { success: false, message: "Neočekivana greška." },
       { status: 500 }
     );
   }

@@ -50,8 +50,26 @@ export default function RootLayout({
       lang="bs"
       className={`${inter.variable} ${playfairDisplay.variable} ${montserrat.variable}`}
     >
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#163c6f" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link rel="apple-touch-icon" href="/images/logo-square.png" />
+      </head>
       <body className="font-body bg-light text-dark antialiased">
         <SiteShell>{children}</SiteShell>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                  navigator.serviceWorker.register('/sw.js');
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );
