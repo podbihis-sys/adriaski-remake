@@ -1,0 +1,37 @@
+{
+  "slug": "fitness",
+  "title": "Fitness",
+  "sections": [
+    {
+      "id": "header-image",
+      "type": "image",
+      "content": "/images/headerFitness.jpg",
+      "label": "Slika header"
+    },
+    {
+      "id": "heading-1",
+      "type": "heading",
+      "content": "Zabava i rekreacija",
+      "label": "Naslov"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "content": "U velikoj i suvremeno opremljenoj dvorani za fitness možete se zabaviti i rekreirati uz grupne treninge. Fitness je opremljen najmodernijim spravama, koje pojedinačno ili u kombinaciji više njih, nude mogućnost za oblikovanje svakog dijela tijela i dosezanje svakog sportsko-natjecateljskog cilja.",
+      "label": "Opis fitnessa"
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "content": "\"Adria ski\" je u svim aktivnostima opredjeljen na svoje klijente. Od ulaska u naše prostore i elementarnih uputa koje dajemo početnicima, do izrade specifičnih programa treninga, prilagođenih željama i mogućnostima svakog člana i posjetioca.",
+      "label": "Opis pristupa klijentima"
+    },
+    {
+      "id": "image-1",
+      "type": "image",
+      "content": "/images/fitness-1.jpg",
+      "label": "Slika - Fitness centar"
+    }
+  ],
+  "updatedAt": "2026-03-20T00:00:00.000Z"
+}

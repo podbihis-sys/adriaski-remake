@@ -1,0 +1,29 @@
+{
+  "piste_status": {
+    "open": false,
+    "openingDate": "2026-03-28"
+  },
+  "cameras": {
+    "adriaski": {
+      "name": "Hotel Adria Ski",
+      "description": "Pogled na hotel i podnožje staza",
+      "url": "https://g0.ipcamlive.com/player/player.php?alias=adriaski",
+      "active": false,
+      "visible": true
+    },
+    "sidrokamera": {
+      "name": "Sidro / Vučnica",
+      "description": "Pogled na ski lift Sidro",
+      "url": "https://g0.ipcamlive.com/player/player.php?alias=sidrokamera",
+      "active": false,
+      "visible": true
+    },
+    "tikvice": {
+      "name": "Motel Tikvice",
+      "description": "Pogled sa vrha staza, 1.560m",
+      "url": "https://g0.ipcamlive.com/player/player.php?alias=tikvice",
+      "active": false,
+      "visible": true
+    }
+  }
+}

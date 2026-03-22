@@ -1,0 +1,37 @@
+{
+  "slug": "skola-skijanja",
+  "title": "Škola skijanja i snowboarda",
+  "sections": [
+    {
+      "id": "header-image",
+      "type": "image",
+      "content": "/images/headerSkolaSkijanja.jpg",
+      "label": "Slika header"
+    },
+    {
+      "id": "heading-1",
+      "type": "heading",
+      "content": "Kvalificirani ski-instruktori",
+      "label": "Naslov - Naš tim"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "content": "U našoj posebnoj ponudi je i škola skijanja \"Adria Ski\". U školi rade kvalificirani ski-instruktori koji će Vas uvesti u sve tajne skijanja. U sklopu škole djeluje i \"ski-vrtić\", dodatna pogodnost za djecu i roditelje. Osim učenja prvih koraka na skijama u vrtiću se djeca mogu zabaviti i igrama na snijegu uz prisustvo animatora te sanjkanjem. Ski-vrtiću mogu pristupiti djeca od 3-6 godina starosti.",
+      "label": "Opis škole skijanja"
+    },
+    {
+      "id": "heading-2",
+      "type": "heading",
+      "content": "Dugogodišnje iskustvo",
+      "label": "Naslov - Iskustvo"
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "content": "Pristup školi skijanja imaju pravo sve osobe starije od 5 godina. Oboružani dugogodišnjim iskustvom preporučamo Vam da izbor metoda, oblik rada, izbor terena i sve preostalo prepustite Vašem učitelju skijanja čije će Vas znanje i iskustvo idealnim putem (stazom) dovesti do željenog cilja.",
+      "label": "Opis iskustva"
+    }
+  ],
+  "updatedAt": "2026-03-20T00:00:00.000Z"
+}

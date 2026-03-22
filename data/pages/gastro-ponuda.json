@@ -1,0 +1,43 @@
+{
+  "slug": "gastro-ponuda",
+  "title": "Gastro ponuda",
+  "sections": [
+    {
+      "id": "header-image",
+      "type": "image",
+      "content": "/images/headerGastro.jpg",
+      "label": "Slika header"
+    },
+    {
+      "id": "heading-1",
+      "type": "heading",
+      "content": "Naša ponuda",
+      "label": "Naslov - Jelovnik"
+    },
+    {
+      "id": "heading-2",
+      "type": "heading",
+      "content": "A la carte ponuda",
+      "label": "Naslov - A la carte"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "content": "Hotelski restoran pruža usluge doručka i večere za goste hotela kao i cjelodnevnu a la carte ponudu. Osim kvalitetne i ukusne hrane u ponudi je i bogata vinska karta koja će zadovoljiti i najzahtjevnije ljubitelje dobre kapljice. Specijalizirani smo za sve vrste cateringa i organizacije velikih eventa.",
+      "label": "Opis a la carte ponude"
+    },
+    {
+      "id": "heading-3",
+      "type": "heading",
+      "content": "Posebna ponuda",
+      "label": "Naslov - Posebna ponuda"
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "content": "Pozivamo Vas da kušate naše specijalitete koji se baziraju na tradicionalnim narodnim jelima pripremljenim po suvremenim tehnologijama u skladu s HACCP-om. Nezaobilazni Kupreški pršut i sir kao početak svakog dobrog obroka te zapečena \"Kupreška plata\" kao njegov vrhunac samo su dio naše ponude po kojoj smo prepoznatljivi.",
+      "label": "Opis specijaliteta"
+    }
+  ],
+  "updatedAt": "2026-03-20T00:00:00.000Z"
+}

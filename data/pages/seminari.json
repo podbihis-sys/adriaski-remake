@@ -1,0 +1,37 @@
+{
+  "slug": "seminari",
+  "title": "Seminari",
+  "sections": [
+    {
+      "id": "header-image",
+      "type": "image",
+      "content": "/images/headerRecepcija.jpg",
+      "label": "Slika header"
+    },
+    {
+      "id": "heading-1",
+      "type": "heading",
+      "content": "Mala sala",
+      "label": "Naslov - Mala sala"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "content": "Jedan od segmeneta našeg poslovanja kojim se ponosimo i koji iz dana u dan razvijamo te dižemo na višu razinu je organizacija svih vrsta seminara i tematskih skupova. Za skupove do 60 osoba idealna je mala sala koja se nalazi tik do restorana na nultoj razini hotela. Budući da stolovi nisu fiksni moguće je organizirati predavanje ili panel diskusiju ovisno o potrebama klijenta.",
+      "label": "Opis male sale"
+    },
+    {
+      "id": "heading-2",
+      "type": "heading",
+      "content": "Velika sala",
+      "label": "Naslov - Velika sala"
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "content": "Za veće skupove idealna je sala u podzemnoj razini hotela. Sa smještajnim kapacitetom do 250 osoba, polivalentim rasporedom stolica te oblikom koji omogućava formiranje odvojenih radnih skupina, u potpunosti zadovoljava uvjete za višednevne seminare ili skupove. Sala je u potpunosti opremljena audio i video tehnikom, a u njenom sklopu se nalazi i šank za kratku i brzu okrijepu.",
+      "label": "Opis velike sale"
+    }
+  ],
+  "updatedAt": "2026-03-20T00:00:00.000Z"
+}

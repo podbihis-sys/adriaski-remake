@@ -1,0 +1,43 @@
+{
+  "slug": "restoran-ognjista",
+  "title": "Restoran Ognjišta",
+  "sections": [
+    {
+      "id": "header-image",
+      "type": "image",
+      "content": "/images/headerOgnjista.jpg",
+      "label": "Slika header"
+    },
+    {
+      "id": "heading-1",
+      "type": "heading",
+      "content": "Tradicionalna jela",
+      "label": "Naslov - Ponuda"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "content": "Ispod završetka skijaških staza nalazi se restoran Ognjišta koji u planinskom ambijentu nudi gotova jela za brzu okrijepu i nastavak skijanja bez ulaska u hotel.",
+      "label": "Opis tradicionalnih jela"
+    },
+    {
+      "id": "image-1",
+      "type": "image",
+      "content": "/images/ognjista-1.jpg",
+      "label": "Slika - Tradicionalna jela"
+    },
+    {
+      "id": "heading-2",
+      "type": "heading",
+      "content": "Planinski ugođaj",
+      "label": "Naslov - Ambijent"
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "content": "Uz veliki otvoreni kamin koji daje pravi zimski ugođaj restoranu možete uživati u raznovrsnim domaćim jelima, a dodatnu toplinu će osigurati dobra šalica domaćeg kuhanog vina.",
+      "label": "Opis ambijenta"
+    }
+  ],
+  "updatedAt": "2026-03-20T00:00:00.000Z"
+}

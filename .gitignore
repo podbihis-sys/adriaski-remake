@@ -40,3 +40,6 @@ next-env.d.ts
 screenshots/
 screenshots.mjs
 content-map.json
+
+# user data (contains password hashes)
+data/users.json

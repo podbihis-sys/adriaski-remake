@@ -1,0 +1,25 @@
+[   18680ms] [WARNING] [TikTok Pixel] - Missing 'content_id' paramter
+Issue: The 'content_id' parameter isn't being received. This is required for Video Shopping Ads (VSA).
+Suggestion: Include the 'content_id' parameter in your source code. This is required for Video Shopping Ads (VSA). See https://ads.tiktok.com/help/article/standard-events-parameters?redirected=2 for more information. @ https://analytics.tiktok.com/i18n/pixel/static/main.MTEwMjY2ZTExMA.js:0
+[   18681ms] [WARNING] [TikTok Pixel] - Missing value for content ID
+Issue: Include a value for your 'content_id' parameter. This is required for Video Shopping Ads (VSA).
+Suggestion: If you are or plan to run Video Shopping Ads (VSA), go to your source code and include a value for the 'content_id' parameter. See https://ads.tiktok.com/help/article/standard-events-parameters?redirected=2 for more information. @ https://analytics.tiktok.com/i18n/pixel/static/main.MTEwMjY2ZTExMA.js:0
+[   18681ms] [WARNING] [TikTok Pixel] - Missing "value" parameter
+Issue: Events shared are missing a 'value' parameter'. This is used calculate ROAS for people and the bid for your highest value customers. 
+Suggestion: Go to your source code and include the "value" parameter. See https://ads.tiktok.com/help/article/standard-events-parameters?redirected=2 for more information. @ https://analytics.tiktok.com/i18n/pixel/static/main.MTEwMjY2ZTExMA.js:0
+[   19026ms] [ERROR] Attestation check for Attribution Reporting on https://www.facebook.com failed. @ https://www.strato.de/?gclsrc=aw.ds&&itc=IG409WHL-TH53Y8-&swtssa=gerpaggse0000ad000000btex&em_src=kw&em_cmp=google/DE/BT-EX&utm_campaign=&utm_source=google&utm_medium=cpc&gad_source=1&gad_campaignid=134913619&gbraid=0AAAAADqweiC1uc4g8azYx62dnaSJ2613b&gclid=EAIaIQobChMIypTKm-mxkwMVJab9BR2xHSMjEAAYASAAEgKKs_D_BwE:0
+[   20273ms] [ERROR] Failed to load resource: the server responded with a status of 900 () @ https://www.strato.de/faq/disturbance/skl:0
+[  380292ms] TypeError: Cannot read properties of null (reading 'classList')
+    at u (https://www.strato.de/assets/auguste/Login/dist/handleChangePassword.min.js?v=990da103de7e3136dcc5d1c394a56e06:1:634)
+    at https://www.strato.de/assets/auguste/Login/dist/handleChangePassword.min.js?v=990da103de7e3136dcc5d1c394a56e06:1:812
+    at Array.forEach (<anonymous>)
+    at b (https://www.strato.de/assets/auguste/Login/dist/handleChangePassword.min.js?v=990da103de7e3136dcc5d1c394a56e06:1:794)
+    at https://www.strato.de/assets/auguste/Login/dist/handleChangePassword.min.js?v=990da103de7e3136dcc5d1c394a56e06:1:1116
+    at async L (https://www.strato.de/assets/auguste/Login/dist/handleChangePassword.min.js?v=990da103de7e3136dcc5d1c394a56e06:1:1033)
+[  385045ms] TypeError: Cannot read properties of null (reading 'classList')
+    at u (https://www.strato.de/assets/auguste/Login/dist/handleChangePassword.min.js?v=990da103de7e3136dcc5d1c394a56e06:1:634)
+    at https://www.strato.de/assets/auguste/Login/dist/handleChangePassword.min.js?v=990da103de7e3136dcc5d1c394a56e06:1:812
+    at Array.forEach (<anonymous>)
+    at b (https://www.strato.de/assets/auguste/Login/dist/handleChangePassword.min.js?v=990da103de7e3136dcc5d1c394a56e06:1:794)
+    at https://www.strato.de/assets/auguste/Login/dist/handleChangePassword.min.js?v=990da103de7e3136dcc5d1c394a56e06:1:1116
+    at async L (https://www.strato.de/assets/auguste/Login/dist/handleChangePassword.min.js?v=990da103de7e3136dcc5d1c394a56e06:1:1033)

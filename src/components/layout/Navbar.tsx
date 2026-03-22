@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -19,30 +19,41 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: "Početna", href: "/" },
+  { label: "Home", href: "/" },
   {
     label: "O nama",
     dropdown: [
-      { label: "Hotel Adria Ski", href: "/ueber-uns" },
-      { label: "Skijalište", href: "/skigebiet" },
-      { label: "Restoran Ognjišta", href: "/restaurant" },
-      { label: "Škola skijanja", href: "/skischule" },
-      { label: "Bazen & Wellness", href: "/wellness" },
+      { label: "Hotel Adria ski", href: "/hotel-adria-ski" },
+      { label: "Motel Tikvice", href: "/motel-tikvice" },
+      { label: "Skijališta", href: "/skijalista" },
+      { label: "Restoran Ognjišta", href: "/restoran-ognjista" },
+      { label: "Škola skijanja", href: "/skola-skijanja" },
     ],
   },
   {
     label: "Ponuda",
     dropdown: [
-      { label: "Zimski paketi", href: "/angebote" },
-      { label: "Ljetna ponuda", href: "/sommer" },
-      { label: "Cjenik", href: "/preisliste" },
-      { label: "Gastro ponuda", href: "/gastro" },
-      { label: "Svadbeni salon", href: "/hochzeit" },
-      { label: "Seminari", href: "/seminare" },
-      { label: "Sportske pripreme", href: "/sport" },
+      { label: "Kamera live", href: "/kamera-live" },
+      { label: "Gastro ponuda", href: "/gastro-ponuda" },
+      { label: "Svadbeni salon", href: "/svadbeni-salon" },
+      { label: "Sportske pripreme", href: "/sportske-pripreme" },
+      { label: "Seminari", href: "/seminari" },
+      { label: "Bazen", href: "/bazen" },
+      { label: "Fitness", href: "/fitness" },
     ],
   },
-  { label: "Događanja", href: "/events" },
+  {
+    label: "Ljetna ponuda",
+    dropdown: [
+      { label: "Brdski biciklizam", href: "/brdski-biciklizam" },
+      { label: "Planinarenje", href: "/planinarenje" },
+      { label: "Ramsko jezero", href: "/ramsko-jezero" },
+      { label: "Jahanje", href: "/jahanje" },
+      { label: "Enduro turizam", href: "/enduro-turizam" },
+    ],
+  },
+  { label: "Događanja", href: "/dogadanja" },
+  { label: "Cjenik", href: "/cjenik" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 
@@ -57,17 +68,17 @@ function DesktopDropdown({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
+          initial={{ opacity: 0, y: -5 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.2 }}
-          className="absolute top-full left-0 mt-2 w-60 rounded-2xl bg-white/95 backdrop-blur-xl shadow-2xl shadow-dark/10 border border-gray-100 p-2 z-50"
+          exit={{ opacity: 0, y: -5 }}
+          transition={{ duration: 0.15 }}
+          className="absolute top-full left-0 mt-0 w-56 bg-white shadow-lg border border-gray-200 z-50"
         >
           {items.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="block px-4 py-3 text-sm text-dark/70 hover:text-accent-600 hover:bg-accent-50 rounded-lg transition-colors duration-200"
+              className="block px-5 py-3 text-sm text-[#163c6f] hover:text-[#00c0f7] hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-0"
             >
               {item.label}
             </Link>
@@ -93,12 +104,12 @@ function MobileAccordion({
     <div>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full text-2xl font-heading text-white py-3"
+        className="flex items-center justify-between w-full text-lg text-white py-3 border-b border-white/10"
       >
         {label}
         <ChevronDown
           className={cn(
-            "w-5 h-5 transition-transform duration-300",
+            "w-4 h-4 transition-transform duration-300",
             isOpen && "rotate-180"
           )}
         />
@@ -117,7 +128,7 @@ function MobileAccordion({
                 key={item.href}
                 href={item.href}
                 onClick={onLinkClick}
-                className="block py-2 text-lg text-white/70 hover:text-accent transition-colors duration-200"
+                className="block py-2.5 text-sm text-white/70 hover:text-[#00c0f7] transition-colors duration-200"
               >
                 {item.label}
               </Link>
@@ -130,19 +141,9 @@ function MobileAccordion({
 }
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     if (isMobileOpen) {
@@ -156,9 +157,7 @@ export function Navbar() {
   }, [isMobileOpen]);
 
   const handleMouseEnter = (label: string) => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setOpenDropdown(label);
   };
 
@@ -168,35 +167,26 @@ export function Navbar() {
     }, 150);
   };
 
-  const closeMobile = () => {
-    setIsMobileOpen(false);
-  };
+  const closeMobile = () => setIsMobileOpen(false);
 
   return (
     <>
-      <nav
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled
-            ? "bg-dark/80 backdrop-blur-xl border-b border-white/10 shadow-lg"
-            : "bg-transparent"
-        )}
-      >
+      <nav className="bg-[#163c6f] relative z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-[70px]">
             {/* Logo */}
-            <Link href="/" className="flex items-center group hover:opacity-80 transition">
+            <Link href="/" className="flex items-center">
               <Image
-                src="https://www.adriaski.net/wp-content/uploads/2016/05/logo_adria_ski.png"
+                src="/images/logo.png"
                 alt="Adria Ski"
                 width={150}
                 height={40}
-                className="h-12 w-auto"
+                className="h-10 w-auto"
               />
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-2">
+            <div className="hidden lg:flex items-center">
               {navItems.map((item) => (
                 <div
                   key={item.label}
@@ -209,16 +199,16 @@ export function Navbar() {
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className="px-5 py-2.5 text-base font-accent font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border-b-2 border-transparent hover:border-accent-500"
+                      className="px-4 py-6 text-sm font-medium text-white hover:text-[#00c0f7] transition-colors duration-200"
                     >
                       {item.label}
                     </Link>
                   ) : (
-                    <button className="flex items-center gap-1.5 px-5 py-2.5 text-base font-accent font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border-b-2 border-transparent hover:border-accent-500">
+                    <button className="flex items-center gap-1 px-4 py-6 text-sm font-medium text-white hover:text-[#00c0f7] transition-colors duration-200">
                       {item.label}
                       <ChevronDown
                         className={cn(
-                          "w-4 h-4 transition-transform duration-200",
+                          "w-3.5 h-3.5 transition-transform duration-200",
                           openDropdown === item.label && "rotate-180"
                         )}
                       />
@@ -234,32 +224,23 @@ export function Navbar() {
               ))}
             </div>
 
-            {/* CTA + Mobile Toggle */}
-            <div className="flex items-center gap-4">
-              <Link
-                href="/kontakt"
-                className="hidden lg:inline-flex items-center px-7 py-3 bg-accent text-dark font-accent font-semibold text-base rounded-full hover:bg-accent-400 hover:scale-105 transition-all duration-300 shadow-lg shadow-accent-500/25 hover:shadow-xl hover:shadow-accent-500/30"
-              >
-                Rezervacija
-              </Link>
-
-              <button
-                onClick={() => setIsMobileOpen(!isMobileOpen)}
-                className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors duration-200"
-                aria-label="Toggle menu"
-              >
-                {isMobileOpen ? (
-                  <X className="w-6 h-6" />
-                ) : (
-                  <Menu className="w-6 h-6" />
-                )}
-              </button>
-            </div>
+            {/* Mobile Toggle */}
+            <button
+              onClick={() => setIsMobileOpen(!isMobileOpen)}
+              className="lg:hidden p-2 text-white"
+              aria-label="Toggle menu"
+            >
+              {isMobileOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
@@ -267,10 +248,10 @@ export function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-dark/95 backdrop-blur-xl lg:hidden"
+            className="fixed inset-0 z-40 bg-[#212121] lg:hidden"
           >
-            <div className="flex flex-col h-full pt-24 px-8 pb-8 overflow-y-auto">
-              <div className="flex-1 space-y-2">
+            <div className="flex flex-col h-full pt-20 px-6 pb-8 overflow-y-auto">
+              <div className="flex-1">
                 {navItems.map((item) =>
                   item.dropdown ? (
                     <MobileAccordion
@@ -284,22 +265,12 @@ export function Navbar() {
                       key={item.label}
                       href={item.href!}
                       onClick={closeMobile}
-                      className="block text-2xl font-heading text-white py-3 hover:text-accent transition-colors duration-200"
+                      className="block text-lg text-white py-3 border-b border-white/10 hover:text-[#00c0f7] transition-colors duration-200"
                     >
                       {item.label}
                     </Link>
                   )
                 )}
-              </div>
-
-              <div className="pt-8 border-t border-white/10">
-                <Link
-                  href="/kontakt"
-                  onClick={closeMobile}
-                  className="block w-full text-center px-6 py-4 bg-accent text-dark font-accent font-bold text-lg rounded-full hover:bg-accent-400 transition-all duration-300"
-                >
-                  Rezervacija
-                </Link>
               </div>
             </div>
           </motion.div>

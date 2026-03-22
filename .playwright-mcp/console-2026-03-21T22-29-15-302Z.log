@@ -1,0 +1,99 @@
+[     375ms] Error: Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at t5 (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:24670)
+    at iZ (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:120535)
+    at ia (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:95162)
+    at http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:91088
+    at http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:91095
+    at oZ (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:91200)
+    at MessagePort.T (http://localhost:3001/_next/static/chunks/117-1e15a8f0d5718472.js:1:83990)
+[     382ms] Error: Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at t5 (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:24670)
+    at iZ (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:120535)
+    at ia (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:95162)
+    at http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:91088
+    at http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:91095
+    at oZ (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:91200)
+    at MessagePort.T (http://localhost:3001/_next/static/chunks/117-1e15a8f0d5718472.js:1:83990)
+[     384ms] Error: Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at t5 (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:24670)
+    at iZ (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:120535)
+    at ia (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:95162)
+    at http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:91088
+    at http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:91095
+    at oZ (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:91200)
+    at MessagePort.T (http://localhost:3001/_next/static/chunks/117-1e15a8f0d5718472.js:1:83990)
+[     393ms] Error: Minified React error #423; visit https://react.dev/errors/423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at iZ (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:118349)
+    at ia (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:95162)
+    at http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:94984
+    at il (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:94991)
+    at oJ (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:92347)
+    at oZ (http://localhost:3001/_next/static/chunks/fd9d1056-ac47f7b4a1759b90.js:1:91766)
+    at MessagePort.T (http://localhost:3001/_next/static/chunks/117-1e15a8f0d5718472.js:1:83990)
+[     403ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/favicon.ico:0
+[    1233ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3001/datenschutz?_rsc=1wtp7:0
+[   30076ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3001/impressum?_rsc=1wtp7:0
+[  320043ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/?_rsc=1wtp7:0
+[  320577ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/:0
+[  320628ms] [ERROR] Refused to apply style from 'http://localhost:3001/_next/static/css/app/layout.css?v=1774132475808' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. @ http://localhost:3001/:0
+[  320664ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/app-pages-internals.js:0
+[  320664ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/app-pages-internals.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  320664ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/main-app.js?v=1774132475808:0
+[  320664ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/main-app.js?v=1774132475808' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  322518ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/:0
+[  322565ms] [ERROR] Refused to apply style from 'http://localhost:3001/_next/static/css/app/layout.css?v=1774132477796' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. @ http://localhost:3001/:0
+[  322579ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/main-app.js?v=1774132477796:0
+[  322579ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/main-app.js?v=1774132477796' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  322580ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/app-pages-internals.js:0
+[  322580ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/app-pages-internals.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  324269ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/:0
+[  324308ms] [ERROR] Refused to apply style from 'http://localhost:3001/_next/static/css/app/layout.css?v=1774132479557' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. @ http://localhost:3001/:0
+[  324321ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/app-pages-internals.js:0
+[  324321ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/app-pages-internals.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  324321ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/main-app.js?v=1774132479557:0
+[  324321ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/main-app.js?v=1774132479557' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  327337ms] [WARNING] The resource http://localhost:3001/_next/static/media/28a2004cf8372660-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  327337ms] [WARNING] The resource http://localhost:3001/_next/static/media/904be59b21bd51cb-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  327337ms] [WARNING] The resource http://localhost:3001/_next/static/media/eaead17c7dbfcd5d-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  327337ms] [WARNING] The resource http://localhost:3001/_next/static/media/8e9860b6e62d6359-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  327338ms] [WARNING] The resource http://localhost:3001/_next/static/media/1f173e5e25f3efee-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  327338ms] [WARNING] The resource http://localhost:3001/_next/static/media/e4af272ccee01ff0-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  328274ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/:0
+[  328313ms] [ERROR] Refused to apply style from 'http://localhost:3001/_next/static/css/app/layout.css?v=1774132483555' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. @ http://localhost:3001/:0
+[  328325ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/main-app.js?v=1774132483555:0
+[  328325ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/main-app.js?v=1774132483555' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  328326ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/app-pages-internals.js:0
+[  328326ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/app-pages-internals.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  331348ms] [WARNING] The resource http://localhost:3001/_next/static/media/28a2004cf8372660-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  331348ms] [WARNING] The resource http://localhost:3001/_next/static/media/904be59b21bd51cb-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  331348ms] [WARNING] The resource http://localhost:3001/_next/static/media/eaead17c7dbfcd5d-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  331348ms] [WARNING] The resource http://localhost:3001/_next/static/media/8e9860b6e62d6359-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  331348ms] [WARNING] The resource http://localhost:3001/_next/static/media/1f173e5e25f3efee-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  331348ms] [WARNING] The resource http://localhost:3001/_next/static/media/e4af272ccee01ff0-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  380453ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3001/:0
+[  380509ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/fallback/main.js:0
+[  380509ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/fallback/main.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  380510ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/fallback/webpack.js:0
+[  380510ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/fallback/webpack.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  380511ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/fallback/react-refresh.js:0
+[  380511ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/fallback/react-refresh.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  380512ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/fallback/pages/_app.js:0
+[  380512ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/fallback/pages/_app.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  380512ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/fallback/pages/_error.js:0
+[  380513ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/fallback/pages/_error.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  382339ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3001/:0
+[  382396ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/fallback/main.js:0
+[  382396ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/fallback/main.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  382397ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/fallback/webpack.js:0
+[  382397ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/fallback/webpack.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  382398ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/fallback/pages/_app.js:0
+[  382398ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/fallback/pages/_app.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  382399ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/fallback/react-refresh.js:0
+[  382399ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/fallback/react-refresh.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  382400ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/_next/static/chunks/fallback/pages/_error.js:0
+[  382400ms] [ERROR] Refused to execute script from 'http://localhost:3001/_next/static/chunks/fallback/pages/_error.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:3001/:0
+[  385402ms] [WARNING] The resource http://localhost:3001/_next/static/media/28a2004cf8372660-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  385402ms] [WARNING] The resource http://localhost:3001/_next/static/media/904be59b21bd51cb-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  385402ms] [WARNING] The resource http://localhost:3001/_next/static/media/1f173e5e25f3efee-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  385402ms] [WARNING] The resource http://localhost:3001/_next/static/media/e4af272ccee01ff0-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  385402ms] [WARNING] The resource http://localhost:3001/_next/static/media/8e9860b6e62d6359-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0

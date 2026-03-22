@@ -1,0 +1,43 @@
+{
+  "slug": "bazen",
+  "title": "Bazen",
+  "sections": [
+    {
+      "id": "header-image",
+      "type": "image",
+      "content": "/images/headerBazen.jpg",
+      "label": "Slika header"
+    },
+    {
+      "id": "heading-1",
+      "type": "heading",
+      "content": "Bazen 25m x 8m",
+      "label": "Naslov"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "content": "Bazenska voda za kupanje zahtjeva punu funkcionalnost i pouzdanost u radu svih sustava strojarskog pogona, svih sustava elektro pogona i svih sustava mjerno regulacionog pogona. Adria ski za korisnike bazena osigurava korištenje tuševa i nogopera, što uključuje higijenu prije ulaska u bazenski prostor. Svi korisnici koji ulaze na bazen moraju se obavezno istuširati i u sanitarnom propusniku dezinficirati noge.",
+      "label": "Opis bazena - Higijena"
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "content": "Sva ugrađena oprema u normalnim uvjetima korištenja održava fizikalna, kemijska i mikrobiološka svojstva bazenske vode za kupanje u propisanim vrijednostima zdravstvene ispravnosti prema analitičkim zahtjevima Zavoda za javno zdravstvo. Kontinuirano se vrše mjerenja temperature, slobodnog klora, redoks potencijala i pH vrijednosti bazenske vode, a automatskim uređajima za doziranje vrši se kontinuirana korekcija svih vrijednosti unutar zadanih parametara. Bazenskom tehnikom ispiru se pješčani filteri nakon svakih četrdesetosam sati kontinuiranog rada.",
+      "label": "Opis bazena - Tehnika"
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "content": "Nakon aktivno provedenog dana u skijanju itekako će Vam dobro doći opuštanje i plivanje u bazenu koji se nalazi u sklopu wellness centra hotela \"Adria ski\".",
+      "label": "Opis bazena - Opuštanje"
+    },
+    {
+      "id": "image-1",
+      "type": "image",
+      "content": "/images/bazen-1.jpg",
+      "label": "Slika - Bazen"
+    }
+  ],
+  "updatedAt": "2026-03-20T00:00:00.000Z"
+}

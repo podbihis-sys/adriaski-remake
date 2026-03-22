@@ -1,0 +1,55 @@
+{
+  "slug": "skijalista",
+  "title": "Skijališta",
+  "sections": [
+    {
+      "id": "header-image",
+      "type": "image",
+      "content": "/images/headerSkijalista.jpg",
+      "label": "Slika header"
+    },
+    {
+      "id": "heading-1",
+      "type": "heading",
+      "content": "Preko 13 km staza",
+      "label": "Naslov - Staze"
+    },
+    {
+      "id": "ski-stats",
+      "type": "stats",
+      "content": "[{\"value\":\"13+ km\",\"label\":\"Ski staza\"},{\"value\":\"5\",\"label\":\"Ski liftova\"},{\"value\":\"09-16h\",\"label\":\"Radno vrijeme\"},{\"value\":\"✓\",\"label\":\"Topovi za snijeg\"}]",
+      "label": "Statistika skijališta"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "content": "U sezoni 2023/2024 dodajemo za 2 nova ski lifta. U pitanju su ski liftovi VUČNICE/SIDRO oko 1150 metara dužine. Skijaši svakodnevno mogu od 09,00-16,00 sati uživati na preko 13 kilometara odlično pripremljenih skijaških staza sa 5 ski-liftova. Ono što je bitno napomenuti je da su sve staze međusobno povezane i udaljene nekoliko desetaka metara od liftova i kompleksa hotela. Staze su raznolike tako da i početnici i skijaši sa višegodišnjim stažom u skijanju mogu pronaći ono što im najviše odgovara. Ljubazno osoblje na terenu će Vam se u svakom trenutku naći pri ruci bilo da se radi o pomoći pri ulasku na ski lift ili dodatnim objašnjenjima vezanim za ski staze.",
+      "label": "Opis staza"
+    },
+    {
+      "id": "image-1",
+      "type": "image",
+      "content": "/images/staze-1.jpg",
+      "label": "Slika - Staze"
+    },
+    {
+      "id": "heading-2",
+      "type": "heading",
+      "content": "Topovi za snijeg",
+      "label": "Naslov - Zasnježivanje"
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "content": "Četvorosjed u dužini od 1850 metara, jedna sjedežnica (dvosjed) u dužini od 980 metara, dvije \"sidro\" vučnice u dužini od 1080 i 1150 metara, te jedan baby lift dužine 300 metara. Topovi za umjetni snijeg za čiju su svrhu izgrađena dodatna umjetna jezera, omogućavaju umjetno zasnježivanje kako bi se spriječio nedostatak snijega ili vode.",
+      "label": "Opis topova za snijeg"
+    },
+    {
+      "id": "image-2",
+      "type": "image",
+      "content": "/images/headerSkijalista.jpg",
+      "label": "Slika - Topovi za snijeg"
+    }
+  ],
+  "updatedAt": "2026-03-20T00:00:00.000Z"
+}

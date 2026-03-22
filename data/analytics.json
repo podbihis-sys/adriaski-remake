@@ -1,0 +1,111 @@
+{
+  "pageViews": [
+    {
+      "path": "/",
+      "count": 51,
+      "label": "Pocetna"
+    },
+    {
+      "path": "/skijalista",
+      "count": 4,
+      "label": "Skijalista"
+    },
+    {
+      "path": "/kamera-live",
+      "count": 21,
+      "label": "Kamera live"
+    },
+    {
+      "path": "/cjenik",
+      "count": 3,
+      "label": "Cjenik"
+    },
+    {
+      "path": "/hotel-adria-ski",
+      "count": 1,
+      "label": "Hotel Adria Ski"
+    },
+    {
+      "path": "/kontakt",
+      "count": 2,
+      "label": "Kontakt"
+    },
+    {
+      "path": "/dogadanja",
+      "count": 0,
+      "label": "Dogadanja"
+    },
+    {
+      "path": "/bazen",
+      "count": 1,
+      "label": "Bazen"
+    },
+    {
+      "path": "/motel-tikvice",
+      "count": 0,
+      "label": "Motel Tikvice"
+    },
+    {
+      "path": "/restoran-ognjista",
+      "count": 0,
+      "label": "Restoran Ognjista"
+    },
+    {
+      "path": "/gastro-ponuda",
+      "count": 0,
+      "label": "Gastro ponuda"
+    },
+    {
+      "path": "/skola-skijanja",
+      "count": 0,
+      "label": "Skola skijanja"
+    },
+    {
+      "path": "/fitness",
+      "count": 0,
+      "label": "Fitness"
+    },
+    {
+      "path": "/svadbeni-salon",
+      "count": 0,
+      "label": "Svadbeni salon"
+    },
+    {
+      "path": "/sportske-pripreme",
+      "count": 0,
+      "label": "Sportske pripreme"
+    },
+    {
+      "path": "/seminari",
+      "count": 0,
+      "label": "Seminari"
+    },
+    {
+      "path": "/brdski-biciklizam",
+      "count": 3,
+      "label": "Brdski biciklizam"
+    },
+    {
+      "path": "/planinarenje",
+      "count": 0,
+      "label": "Planinarenje"
+    },
+    {
+      "path": "/ramsko-jezero",
+      "count": 0,
+      "label": "Ramsko jezero"
+    },
+    {
+      "path": "/jahanje",
+      "count": 0,
+      "label": "Jahanje"
+    },
+    {
+      "path": "/enduro-turizam",
+      "count": 0,
+      "label": "Enduro turizam"
+    }
+  ],
+  "totalVisits": 86,
+  "lastUpdated": "2026-03-21T21:59:11.642Z"
+}

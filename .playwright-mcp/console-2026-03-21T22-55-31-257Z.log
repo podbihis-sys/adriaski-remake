@@ -1,0 +1,4 @@
+[    6494ms] [ERROR] Failed to load resource: the server responded with a status of 400 (400) @ https://hed.ionos.de/brands/IONOS/producers/shop/events:0
+[    6495ms] [ERROR] Failed to load resource: the server responded with a status of 400 (400) @ https://hed.ionos.de/brands/IONOS/producers/shop/events:0
+[    8028ms] [ERROR] %cCan't register plugin %cJourney%c -- Name is already taken @ https://www.ionos.de/_next/static/chunks/524e2519d7de1081.js:1654
+[    8029ms] [ERROR] %cCan't register plugin %cJourney%c -- Name is already taken @ https://www.ionos.de/_next/static/chunks/524e2519d7de1081.js:1654

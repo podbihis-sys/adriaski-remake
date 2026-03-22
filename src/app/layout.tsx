@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { SiteShell } from "@/components/layout/SiteShell";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,8 +26,8 @@ export const metadata: Metadata = {
   description:
     "Hotel Adria Ski u Kupresu nudi premium smještaj, skijalište, wellness, bazen i restoran. Idealna destinacija za zimski odmor, ljetni odmor, seminare i sportske pripreme u srcu Bosne i Hercegovine.",
   icons: {
-    icon: "https://www.adriaski.net/wp-content/uploads/2016/05/logo160x160.png",
-    apple: "https://www.adriaski.net/wp-content/uploads/2016/05/logo160x160.png",
+    icon: "/images/logo-square.png",
+    apple: "/images/logo-square.png",
   },
   openGraph: {
     title: "Hotel Adria Ski | Premium Ski & Wellness Resort | Kupres, BiH",
@@ -52,9 +51,7 @@ export default function RootLayout({
       className={`${inter.variable} ${playfairDisplay.variable} ${montserrat.variable}`}
     >
       <body className="font-body bg-light text-dark antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );

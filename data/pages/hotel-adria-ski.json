@@ -1,0 +1,55 @@
+{
+  "slug": "hotel-adria-ski",
+  "title": "Hotel Adria Ski",
+  "sections": [
+    {
+      "id": "header-image",
+      "type": "image",
+      "content": "/images/headerHotel.jpg",
+      "label": "Slika header"
+    },
+    {
+      "id": "heading-1",
+      "type": "heading",
+      "content": "Prekrasan pogled",
+      "label": "Naslov - Smještaj"
+    },
+    {
+      "id": "hotel-stats",
+      "type": "stats",
+      "content": "[{\"value\":\"256\",\"label\":\"Ležajeva\"},{\"value\":\"25m\",\"label\":\"Olimpijski bazen\"},{\"value\":\"30+\",\"label\":\"Fitness sprava\"},{\"value\":\"2\",\"label\":\"Restorana\"},{\"value\":\"2\",\"label\":\"Saune\"},{\"value\":\"24/7\",\"label\":\"Recepcija\"}]",
+      "label": "Statistika hotela"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "content": "Kapacitet hotela Adria Ski je 256 ležajeva. Sve sobe opremljene su telefonom te TV uređajima sa digitalnim satelitskim sustavom. Svaka soba ima zasebno kupatilo. Hotel je opremljen malim olimpijskim bazenom (25m x 8m) koji zimi pruža jedinstveni pogled na snijegom prekrivenu borovu šumu. U sklopu bazena su dvije saune, usluge masaže i veliki fitness centar u kojem istovremeno može vježbati 30-ak osoba. Centar je opremljen spravama za vježbu i rastezanje svih dijelova tijela, a za svaku vježbu na raspolaganju su najmanje tri istovrsne sprave, što omogućuje brzo izmjenično vježbanje većih organiziranih grupa i momčadi.",
+      "label": "Opis hotela"
+    },
+    {
+      "id": "image-1",
+      "type": "image",
+      "content": "/images/hotel-01.jpg",
+      "label": "Slika - Prekrasan pogled"
+    },
+    {
+      "id": "heading-2",
+      "type": "heading",
+      "content": "Udobnost",
+      "label": "Naslov - Usluge"
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "content": "U sklopu hotela je restoran koji Vam nudi tradicionalna autohtona jela, te jela po narudžbi. Jela spravljaju vrhunski kuhari uz bogatu ponudu stranih i domaćih vina. Pokraj restorana nalazi se caffe bar u kojem možete uz jutarnju kavu pročitati dnevni tisak.\n\nNetom ispod završetka skijaških staza nalazi se restoran Ognjišta koji u planinskom ambijentu nudi gotova jela za brzu okrijepu i nastavak skijanja bez ulaska u hotel. Odmah preko puta restorana \"Ognjišta\" se nalazi zasebna zgrada gdje možete iznajmiti komletnu ski opremu, kao i dvije škole skijanja u kojima profesionalno obučeni treneri održavaju satove skijanja za sve zainteresirane.",
+      "label": "Opis udobnosti"
+    },
+    {
+      "id": "image-2",
+      "type": "image",
+      "content": "/images/headerHotel.jpg",
+      "label": "Slika - Udobnost"
+    }
+  ],
+  "updatedAt": "2026-03-20T00:00:00.000Z"
+}

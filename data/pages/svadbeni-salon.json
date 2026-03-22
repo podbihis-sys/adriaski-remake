@@ -1,0 +1,49 @@
+{
+  "slug": "svadbeni-salon",
+  "title": "Svadbeni salon",
+  "sections": [
+    {
+      "id": "header-image",
+      "type": "image",
+      "content": "/images/headerSvadbeniSalon.jpg",
+      "label": "Slika header"
+    },
+    {
+      "id": "heading-1",
+      "type": "heading",
+      "content": "Svadbeni salon",
+      "label": "Naslov"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "content": "Svako vjenčanje je priča za sebe, stoga i mi tako pristupamo svakom vjenčanju. Pogledajte neke preporučene jelovnike. Da bi naši mladenci dobili potpunu uslugu, za njih i njihove goste tu je vrhunski opremljen restoran hotela Adria ski. Želite da Vam vaše vjenčanje ili neka druga svečana prigoda ostanu u nezaboravnom sjećanju, obratite nam se s povjerenjem.",
+      "label": "Opis svadbenog salona"
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "content": "Ovaj je prelijepo uređeni svadbeni salon mjesto u kojem su mnogi mladi bračni parovi zaplesali svoj prvi zajednički ples i sretni i zadovoljni krenuli u novi život.",
+      "label": "Opis salona - Povijest"
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "content": "Nadamo se da će fotografije koje možete vidjeti na stranici našeg svadbenog salona najbolje dočarati što možete očekivati kada dođete u salon gdje ćete doživjeti nezaboravnu i \"najluđu\" noć u svom životu.",
+      "label": "Opis salona - Fotografije"
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "content": "Dragi mladenci, iz gore ponuđenih jelovnika slobodni ste formirati svoj osobni jelovnik i kombinirati ponuđena jela kako odgovara Vam i vašem ukusu.",
+      "label": "Napomena za mladence"
+    },
+    {
+      "id": "image-1",
+      "type": "image",
+      "content": "/images/svadbeniSalon-1.jpg",
+      "label": "Slika - Svadbeni salon"
+    }
+  ],
+  "updatedAt": "2026-03-20T00:00:00.000Z"
+}

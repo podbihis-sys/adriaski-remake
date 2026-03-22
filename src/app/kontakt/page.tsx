@@ -2,671 +2,195 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState, FormEvent } from "react";
-import { MapPin, Phone, Mail, Clock, Check, AlertCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.1 },
-  transition: { duration: 0.5, ease: "easeOut" },
+  viewport: { once: true },
+  transition: { duration: 0.6 },
 };
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-};
-
-const fieldVariants = {
-  hidden: { opacity: 0, y: 15 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
-
-const contactItems = [
-  {
-    icon: MapPin,
-    label: "Adresa",
-    value: "Čajuša bb, 80 320 Kupres, BiH",
-  },
-  {
-    icon: Phone,
-    label: "Telefon",
-    value: "+387 (0) 34 275 100",
-  },
-  {
-    icon: Phone,
-    label: "Fax",
-    value: "Fax: +387 (0) 34 274 951",
-  },
-  {
-    icon: Mail,
-    label: "Email",
-    value: "info@adriaski.net",
-    href: "mailto:info@adriaski.net",
-  },
-  {
-    icon: Mail,
-    label: "Recepcija email",
-    value: "recepcija@adriaski.net",
-    href: "mailto:recepcija@adriaski.net",
-  },
-  {
-    icon: Clock,
-    label: "Radno vrijeme",
-    value: "Recepcija: 0-24 (svaki dan)",
-  },
-];
-
-const inputClasses =
-  "w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 bg-white text-dark hover:border-gray-300 text-base";
-
-const labelClasses = "block text-sm font-accent font-semibold text-gray-600 mb-2.5 uppercase tracking-wide";
-
-export default function KontaktPage() {
-  const [activeTab, setActiveTab] = useState<"booking" | "contact">("booking");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    "idle" | "success" | "error"
-  >("idle");
-  const [errorMessage, setErrorMessage] = useState("");
-
-  // Booking form state
-  const [bookingForm, setBookingForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    checkIn: "",
-    checkOut: "",
-    guests: "",
-    package: "",
-    message: "",
-  });
-
-  // Contact form state
-  const [contactForm, setContactForm] = useState({
-    lastName: "",
-    firstName: "",
-    email: "",
-    message: "",
-  });
-
-  const handleBookingSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
-
-    try {
-      const res = await fetch("/api/booking", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bookingForm),
-      });
-
-      if (!res.ok) throw new Error("Greška pri slanju rezervacije.");
-
-      setSubmitStatus("success");
-      setBookingForm({
-        name: "",
-        email: "",
-        phone: "",
-        checkIn: "",
-        checkOut: "",
-        guests: "",
-        package: "",
-        message: "",
-      });
-
-      setTimeout(() => setSubmitStatus("idle"), 3000);
-    } catch (err) {
-      setSubmitStatus("error");
-      setErrorMessage(
-        err instanceof Error ? err.message : "Nešto je pošlo krivo."
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleContactSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contactForm),
-      });
-
-      if (!res.ok) throw new Error("Greška pri slanju poruke.");
-
-      setSubmitStatus("success");
-      setContactForm({
-        lastName: "",
-        firstName: "",
-        email: "",
-        message: "",
-      });
-
-      setTimeout(() => setSubmitStatus("idle"), 3000);
-    } catch (err) {
-      setSubmitStatus("error");
-      setErrorMessage(
-        err instanceof Error ? err.message : "Nešto je pošlo krivo."
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
+export default function Kontakt() {
   return (
-    <>
-      {/* Hero Section */}
-      <section className="relative py-36 flex items-center justify-center overflow-hidden">
-        <Image
-          src="https://www.adriaski.net/wp-content/uploads/hotel-03.jpg"
-          alt="Hotel Adria Ski"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-primary/70 to-dark/90" />
-
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <span className="inline-block font-accent text-xs tracking-widest text-accent-500 uppercase mb-6 px-4 py-2 rounded-full border border-accent-500/30 bg-accent-500/10">
-              KONTAKT
-            </span>
-          </motion.div>
-
-          <motion.h1
-            className="font-heading text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-6"
-            style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-          >
-            Kontaktirajte nas
-          </motion.h1>
-
-          <motion.p
-            className="text-xl text-white/80 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            Ispunite obrazac ili nas kontaktirajte direktno
-          </motion.p>
-        </div>
-      </section>
-
-      {/* Contact Form + Info */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-12">
-            {/* LEFT SIDE - Form */}
-            <motion.div
-              className="lg:w-7/12"
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.05 }}
-              transition={{ duration: 0.7 }}
-            >
-              {/* Tabs */}
-              <div className="flex mb-10 bg-light/80 backdrop-blur-sm rounded-xl p-1.5 shadow-sm">
-                <button
-                  onClick={() => {
-                    setActiveTab("booking");
-                    setSubmitStatus("idle");
-                  }}
-                  className={`flex-1 py-3 px-6 rounded-lg font-accent font-semibold text-sm transition-all duration-300 ${
-                    activeTab === "booking"
-                      ? "bg-primary text-white shadow-lg shadow-primary/25"
-                      : "text-gray-500 hover:text-dark hover:bg-white/50"
-                  }`}
-                >
-                  Rezervacija
-                </button>
-                <button
-                  onClick={() => {
-                    setActiveTab("contact");
-                    setSubmitStatus("idle");
-                  }}
-                  className={`flex-1 py-3 px-6 rounded-lg font-accent font-semibold text-sm transition-all duration-300 ${
-                    activeTab === "contact"
-                      ? "bg-primary text-white shadow-lg shadow-primary/25"
-                      : "text-gray-500 hover:text-dark hover:bg-white/50"
-                  }`}
-                >
-                  Kontakt
-                </button>
-              </div>
-
-              {/* Success State */}
-              {submitStatus === "success" && (
-                <motion.div
-                  className="mb-8 bg-green-50 border border-green-200 rounded-2xl p-6 flex items-center gap-4"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-accent font-semibold text-green-800">
-                      Uspješno poslano!
-                    </p>
-                    <p className="text-green-600 text-sm mt-1">
-                      Javit ćemo Vam se u najkraćem roku.
-                    </p>
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Error State */}
-              {submitStatus === "error" && (
-                <motion.div
-                  className="mb-8 bg-red-50 border border-red-200 rounded-2xl p-6 flex items-center gap-4"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <div className="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0">
-                    <AlertCircle className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-accent font-semibold text-red-800">
-                      Greška!
-                    </p>
-                    <p className="text-red-600 text-sm mt-1">{errorMessage}</p>
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Booking Form */}
-              {activeTab === "booking" && (
-                <motion.form
-                  onSubmit={handleBookingSubmit}
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                  key="booking-form"
-                  className="space-y-5"
-                >
-                  <motion.div variants={fieldVariants}>
-                    <label htmlFor="b-name" className={labelClasses}>
-                      Ime i prezime
-                    </label>
-                    <input
-                      id="b-name"
-                      type="text"
-                      required
-                      className={inputClasses}
-                      value={bookingForm.name}
-                      onChange={(e) =>
-                        setBookingForm({ ...bookingForm, name: e.target.value })
-                      }
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    variants={fieldVariants}
-                    className="grid grid-cols-1 sm:grid-cols-2 gap-5"
-                  >
-                    <div>
-                      <label htmlFor="b-email" className={labelClasses}>
-                        Email
-                      </label>
-                      <input
-                        id="b-email"
-                        type="email"
-                        required
-                        className={inputClasses}
-                        value={bookingForm.email}
-                        onChange={(e) =>
-                          setBookingForm({
-                            ...bookingForm,
-                            email: e.target.value,
-                          })
-                        }
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="b-phone" className={labelClasses}>
-                        Telefon
-                      </label>
-                      <input
-                        id="b-phone"
-                        type="tel"
-                        className={inputClasses}
-                        value={bookingForm.phone}
-                        onChange={(e) =>
-                          setBookingForm({
-                            ...bookingForm,
-                            phone: e.target.value,
-                          })
-                        }
-                      />
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    variants={fieldVariants}
-                    className="grid grid-cols-1 sm:grid-cols-2 gap-5"
-                  >
-                    <div>
-                      <label htmlFor="b-checkin" className={labelClasses}>
-                        Datum dolaska
-                      </label>
-                      <input
-                        id="b-checkin"
-                        type="date"
-                        required
-                        className={inputClasses}
-                        value={bookingForm.checkIn}
-                        onChange={(e) =>
-                          setBookingForm({
-                            ...bookingForm,
-                            checkIn: e.target.value,
-                          })
-                        }
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="b-checkout" className={labelClasses}>
-                        Datum odlaska
-                      </label>
-                      <input
-                        id="b-checkout"
-                        type="date"
-                        required
-                        className={inputClasses}
-                        value={bookingForm.checkOut}
-                        onChange={(e) =>
-                          setBookingForm({
-                            ...bookingForm,
-                            checkOut: e.target.value,
-                          })
-                        }
-                      />
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    variants={fieldVariants}
-                    className="grid grid-cols-1 sm:grid-cols-2 gap-5"
-                  >
-                    <div>
-                      <label htmlFor="b-guests" className={labelClasses}>
-                        Broj osoba
-                      </label>
-                      <input
-                        id="b-guests"
-                        type="number"
-                        min="1"
-                        className={inputClasses}
-                        value={bookingForm.guests}
-                        onChange={(e) =>
-                          setBookingForm({
-                            ...bookingForm,
-                            guests: e.target.value,
-                          })
-                        }
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="b-package" className={labelClasses}>
-                        Paket
-                      </label>
-                      <select
-                        id="b-package"
-                        className={inputClasses}
-                        value={bookingForm.package}
-                        onChange={(e) =>
-                          setBookingForm({
-                            ...bookingForm,
-                            package: e.target.value,
-                          })
-                        }
-                      >
-                        <option value="">Odaberite paket</option>
-                        <option value="ski-stay">Ski & Stay</option>
-                        <option value="family">Obiteljski</option>
-                        <option value="wellness">Wellness</option>
-                        <option value="summer">Ljetni</option>
-                        <option value="enduro">Enduro</option>
-                        <option value="other">Ostalo</option>
-                      </select>
-                    </div>
-                  </motion.div>
-
-                  <motion.div variants={fieldVariants}>
-                    <label htmlFor="b-message" className={labelClasses}>
-                      Poruka
-                    </label>
-                    <textarea
-                      id="b-message"
-                      rows={4}
-                      className={inputClasses + " resize-none"}
-                      value={bookingForm.message}
-                      onChange={(e) =>
-                        setBookingForm({
-                          ...bookingForm,
-                          message: e.target.value,
-                        })
-                      }
-                    />
-                  </motion.div>
-
-                  <motion.div variants={fieldVariants}>
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-accent hover:bg-accent-600 text-dark font-semibold py-4.5 rounded-xl font-accent transition-all duration-300 shadow-lg shadow-accent-500/25 hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-lg"
-                    >
-                      {isSubmitting ? "Šalje se..." : "Pošaljite rezervaciju"}
-                    </button>
-                  </motion.div>
-                </motion.form>
-              )}
-
-              {/* Contact Form */}
-              {activeTab === "contact" && (
-                <motion.form
-                  onSubmit={handleContactSubmit}
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                  key="contact-form"
-                  className="space-y-5"
-                >
-                  <motion.div
-                    variants={fieldVariants}
-                    className="grid grid-cols-1 sm:grid-cols-2 gap-5"
-                  >
-                    <div>
-                      <label htmlFor="c-lastname" className={labelClasses}>
-                        Prezime
-                      </label>
-                      <input
-                        id="c-lastname"
-                        type="text"
-                        required
-                        className={inputClasses}
-                        value={contactForm.lastName}
-                        onChange={(e) =>
-                          setContactForm({
-                            ...contactForm,
-                            lastName: e.target.value,
-                          })
-                        }
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="c-firstname" className={labelClasses}>
-                        Ime
-                      </label>
-                      <input
-                        id="c-firstname"
-                        type="text"
-                        required
-                        className={inputClasses}
-                        value={contactForm.firstName}
-                        onChange={(e) =>
-                          setContactForm({
-                            ...contactForm,
-                            firstName: e.target.value,
-                          })
-                        }
-                      />
-                    </div>
-                  </motion.div>
-
-                  <motion.div variants={fieldVariants}>
-                    <label htmlFor="c-email" className={labelClasses}>
-                      Email
-                    </label>
-                    <input
-                      id="c-email"
-                      type="email"
-                      required
-                      className={inputClasses}
-                      value={contactForm.email}
-                      onChange={(e) =>
-                        setContactForm({
-                          ...contactForm,
-                          email: e.target.value,
-                        })
-                      }
-                    />
-                  </motion.div>
-
-                  <motion.div variants={fieldVariants}>
-                    <label htmlFor="c-message" className={labelClasses}>
-                      Poruka
-                    </label>
-                    <textarea
-                      id="c-message"
-                      rows={6}
-                      required
-                      className={inputClasses + " resize-none"}
-                      value={contactForm.message}
-                      onChange={(e) =>
-                        setContactForm({
-                          ...contactForm,
-                          message: e.target.value,
-                        })
-                      }
-                    />
-                  </motion.div>
-
-                  <motion.div variants={fieldVariants}>
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-accent hover:bg-accent-600 text-dark font-semibold py-4.5 rounded-xl font-accent transition-all duration-300 shadow-lg shadow-accent-500/25 hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-lg"
-                    >
-                      {isSubmitting ? "Šalje se..." : "Pošaljite poruku"}
-                    </button>
-                  </motion.div>
-                </motion.form>
-              )}
-            </motion.div>
-
-            {/* RIGHT SIDE - Contact Info */}
-            <motion.div
-              className="lg:w-5/12"
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.05 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-            >
-              <div className="rounded-2xl bg-gradient-to-br from-light to-white border border-gray-100 p-8 shadow-lg">
-                <div className="relative h-48 -mx-8 -mt-8 mb-8 rounded-t-2xl overflow-hidden shadow-sm">
-                  <Image
-                    src="https://www.adriaski.net/wp-content/uploads/hotel-03.jpg"
-                    alt="Hotel Adria Ski"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="font-heading text-2xl text-dark mb-8">
-                  Kontakt informacije
-                </h3>
-
-                <div className="space-y-6">
-                  {contactItems.map((item, i) => {
-                    const Icon = item.icon;
-                    return (
-                      <motion.div
-                        key={i}
-                        className="flex items-start gap-4"
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: i * 0.1 }}
-                      >
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-[#0EA5E9]/10 flex items-center justify-center flex-shrink-0">
-                          <Icon className="w-5 h-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="text-xs font-accent uppercase tracking-widest text-gray-400 mb-1">
-                            {item.label}
-                          </p>
-                          {"href" in item && item.href ? (
-                            <a
-                              href={item.href}
-                              className="text-dark hover:text-primary transition-colors font-medium"
-                            >
-                              {item.value}
-                            </a>
-                          ) : (
-                            <p className="text-dark font-medium">
-                              {item.value}
-                            </p>
-                          )}
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </div>
+    <main>
+      {/* ===== HERO ===== */}
+      <section className="relative h-[40vh] min-h-[280px] md:h-[45vh] overflow-hidden">
+        <Image src="/images/headerRecepcija.jpg" alt="Kontakt" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0b1d42] via-[#0b1d42]/50 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 z-10 pb-10 md:pb-14">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+              <span className="inline-block text-[#00c0f7] text-xs tracking-[0.25em] uppercase font-semibold mb-3">Kontakt</span>
+              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">Kontaktirajte nas</h1>
+              <p className="mt-3 text-lg text-white/70">Stojimo vam na raspolaganju 24/7</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="py-12">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* ===== CONTACT CARDS ===== */}
+      <section className="bg-white relative z-10 -mt-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <motion.div
-            className="rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-gray-50 to-white border border-gray-100"
-            {...fadeInUp}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-3"
           >
-            <div className="h-96 flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="w-12 h-12 text-primary/30 mx-auto mb-4" />
-                <p className="text-gray-500 font-accent text-lg">
-                  Google Maps - Čajuša bb, Kupres, BiH
-                </p>
-                <p className="text-gray-400 text-sm mt-2">
-                  Karta će biti dostupna kada se postavi API ključ
-                </p>
-              </div>
-            </div>
+            {[
+              { icon: MapPin, label: "Čajuša bb", sub: "80 320 Kupres, BiH" },
+              { icon: Phone, label: "+387 34 275 100", sub: "24/7 Rezervacije" },
+              { icon: Mail, label: "recepcija@adriaski.net", sub: "24/7 Email" },
+              { icon: Clock, label: "Recepcija", sub: "0 - 24h" },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.label} className="bg-white rounded-xl p-5 shadow-lg border border-gray-100 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-[#163c6f]/10 mb-2">
+                    <Icon className="w-5 h-5 text-[#163c6f]" />
+                  </div>
+                  <p className="text-sm font-bold text-[#163c6f]">{item.label}</p>
+                  <p className="text-xs text-gray-500 mt-0.5">{item.sub}</p>
+                </div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
-    </>
+
+      {/* ===== FORM + INFO ===== */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Left: Info + Map */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">Info</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-8">Kontaktirajte nas</h2>
+
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-[#163c6f]/10 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 text-[#163c6f]" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[#163c6f] text-sm uppercase tracking-wider mb-1">Adresa</h3>
+                    <p className="text-[#3d3d3d] text-[15px]">Hotel Adria ski<br />Čajuša bb<br />80 320 Kupres, BiH</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-[#163c6f]/10 flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-5 h-5 text-[#163c6f]" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[#163c6f] text-sm uppercase tracking-wider mb-1">24/7 Rezervacije telefonom</h3>
+                    <p className="text-[#3d3d3d] text-[15px]">
+                      <a href="tel:+38734275100" className="hover:text-[#00c0f7] transition-colors">T. +387 34 275 100</a><br />
+                      F. +387 34 274 951
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-[#163c6f]/10 flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-5 h-5 text-[#163c6f]" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[#163c6f] text-sm uppercase tracking-wider mb-1">24/7 Rezervacije mail-om</h3>
+                    <p className="text-[15px]">
+                      <a href="mailto:recepcija@adriaski.net" className="text-[#00c0f7] hover:underline">recepcija@adriaski.net</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-10 rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2877.5!2d17.2847!3d43.9614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475f9a0e0b0b0001%3A0x0!2sHotel%20Adria%20Ski!5e0!3m2!1sbs!2sba!4v1700000000000!5m2!1sbs!2sba"
+                  width="100%"
+                  height="280"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Hotel Adria Ski lokacija"
+                />
+              </div>
+            </motion.div>
+
+            {/* Right: Form */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">Obrazac</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-2">Ispunite obrazac</h2>
+              <p className="text-gray-500 text-sm mb-8">Ukoliko imate bilo kakvih pitanja ili želite saznati više</p>
+
+              <form className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="prezime" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">Prezime *</label>
+                    <input type="text" id="prezime" name="prezime" required className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
+                  </div>
+                  <div>
+                    <label htmlFor="ime" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">Ime *</label>
+                    <input type="text" id="ime" name="ime" required className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="ulica" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">Ulica *</label>
+                  <input type="text" id="ulica" name="ulica" required className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="postanskiBroj" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">Poštanski broj *</label>
+                    <input type="text" id="postanskiBroj" name="postanskiBroj" required className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
+                  </div>
+                  <div>
+                    <label htmlFor="grad" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">Grad *</label>
+                    <input type="text" id="grad" name="grad" required className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="drzava" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">Država *</label>
+                  <input type="text" id="drzava" name="drzava" required className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">E-Mail adresa *</label>
+                  <input type="email" id="email" name="email" required className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
+                </div>
+
+                <div>
+                  <label htmlFor="emailConfirm" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">Potvrda E-Mail *</label>
+                  <input type="email" id="emailConfirm" name="emailConfirm" required className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
+                </div>
+
+                <div>
+                  <label htmlFor="poruka" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">Vaša poruka *</label>
+                  <textarea id="poruka" name="poruka" rows={5} required className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all resize-none" />
+                </div>
+
+                <button type="submit" className="w-full bg-[#163c6f] hover:bg-[#0b1d42] text-white font-semibold py-3.5 px-8 rounded-lg transition-all duration-300 text-sm">
+                  Pošaljite poruku
+                </button>
+              </form>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

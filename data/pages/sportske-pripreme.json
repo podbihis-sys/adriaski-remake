@@ -1,0 +1,43 @@
+{
+  "slug": "sportske-pripreme",
+  "title": "Sportske pripreme",
+  "sections": [
+    {
+      "id": "header-image",
+      "type": "image",
+      "content": "/images/headerPripreme.jpg",
+      "label": "Slika header"
+    },
+    {
+      "id": "heading-1",
+      "type": "heading",
+      "content": "Planinski zrak",
+      "label": "Naslov - Uvjeti"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "content": "Idealni atmosferski uvjeti, planinski zrak bogat kisikom kojeg dodatno obogaćuje gusta šuma, veliki fitness centar te unutarnji bazen od početka su u našoj ponudi. Novost je veliko nogometno igralište pokraj samog hotela koje sa svakodnevno njegovanom travom (i za vrijeme zime) omogućava nogometnim momčadima rad s loptom u tijeku kondicijskih priprema.",
+      "label": "Opis uvjeta"
+    },
+    {
+      "id": "heading-2",
+      "type": "heading",
+      "content": "Potpisani ugovori o izgradnji sportskih terena na Čajuši",
+      "label": "Naslov - Ugovori"
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "content": "U zgradi općine Kupres (17.05.2017.) potpisani su ugovori o izgradnji sportskih terena na Čajuši vrijednosti 102 000 KM (71.000,00 KM naknada za zemljište i 31.000,00 KM za prenamjenu zemljišta) dok će cijela investicija u konačnici iznositi oko 10 miliona KM.",
+      "label": "Opis ugovora"
+    },
+    {
+      "id": "image-1",
+      "type": "image",
+      "content": "/images/20170701_094613.jpg",
+      "label": "Slika - Sportski tereni"
+    }
+  ],
+  "updatedAt": "2026-03-20T00:00:00.000Z"
+}

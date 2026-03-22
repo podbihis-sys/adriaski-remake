@@ -1,0 +1,37 @@
+{
+  "slug": "motel-tikvice",
+  "title": "Motel Tikvice",
+  "sections": [
+    {
+      "id": "header-image",
+      "type": "image",
+      "content": "/images/headerTikvice.jpg",
+      "label": "Slika header"
+    },
+    {
+      "id": "heading-1",
+      "type": "heading",
+      "content": "Planinski raj",
+      "label": "Naslov"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "content": "Dragi gosti, djelatnici hotela Adria Ski nastavljaju sa svojom tradicijom poboljšanja usluga, u sklopu kojih Vam predstavljamo MOTEL TIKVICE, koji se nalazi na 1560 metara nadmorske visine (na vrhu staza), sa restoranom, 4 Apartmana sa kuhinjom, 1 trokrevetnom sobom i 2 dvokrevetne sobe. Osim restorana uređenog u planinskom stilu gdje također možete uživati u domaćim jelima i piću, sa terase smještene ispred motela okruženog borovom šumom, možete uživati u sunčevim zrakama i pogledu na predivno kupreško polje.",
+      "label": "Opis motela"
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "content": "S obzirom na to da je motel smješten tik do skijaških staza koje vode u podnožje hotela \"Adria ski\", možete ne gubeći vrijeme iskombinirati skijanje sa ručkom u motelu i uživati u izvrsnoj šalici domaćeg kuhanog vina.",
+      "label": "Opis lokacije"
+    },
+    {
+      "id": "image-1",
+      "type": "image",
+      "content": "/images/motelTikvice-05.jpg",
+      "label": "Slika - Motel Tikvice"
+    }
+  ],
+  "updatedAt": "2026-03-20T00:00:00.000Z"
+}
