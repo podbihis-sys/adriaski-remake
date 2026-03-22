@@ -92,13 +92,8 @@ export default function SkiStatus() {
           isDay: data.current.is_day === 1,
         });
       } catch {
-        setWeather({
-          temperature: -3,
-          windSpeed: 12,
-          snowDepth: 45,
-          weatherCode: 3,
-          isDay: true,
-        });
+        // API failed — show no weather data instead of fake values
+        setWeather(null);
       } finally {
         setLoading(false);
       }
