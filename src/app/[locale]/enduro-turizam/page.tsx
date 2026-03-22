@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Bike, Mountain, Clock, Flame, TrendingUp, Gauge } from "lucide-react";
 import { ImageGallery } from "@/components/layout/ImageGallery";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -21,6 +21,7 @@ const galleryImages = Array.from({ length: 8 }, (_, i) => ({
 
 export default function EnduroTurizam() {
   const tc = useTranslations("common");
+  const locale = useLocale();
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -229,10 +230,10 @@ export default function EnduroTurizam() {
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Spremni za enduro avanturu?</h2>
             <p className="text-white/60 mb-8 max-w-xl mx-auto">Rezervirajte enduro paket i istražite brdske staze Kupresa</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/kontakt" className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
+              <Link href={`/${locale}/kontakt`} className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
                 Rezervirajte <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link href="/jahanje" className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
+              <Link href={`/${locale}/jahanje`} className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
                 Jahanje
               </Link>
             </div>

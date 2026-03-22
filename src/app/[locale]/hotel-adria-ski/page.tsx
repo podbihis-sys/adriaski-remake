@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Bed, Waves, Dumbbell, UtensilsCrossed, Snowflake, Phone } from "lucide-react";
 import { ImageGallery } from "@/components/layout/ImageGallery";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -17,6 +17,7 @@ const fadeInUp = {
 export default function HotelAdriaSki() {
   const t = useTranslations("hotel");
   const tc = useTranslations("common");
+  const locale = useLocale();
 
   const highlights = [
     { icon: Bed, value: "256", label: t("beds"), color: "from-blue-500 to-blue-600" },
@@ -195,13 +196,13 @@ export default function HotelAdriaSki() {
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <Link
-                  href="/restoran-ognjista"
+                  href={`/${locale}/restoran-ognjista`}
                   className="inline-flex items-center gap-2 text-sm text-[#00c0f7] font-semibold hover:gap-3 transition-all duration-300"
                 >
                   Restoran Ognjišta <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
-                  href="/skola-skijanja"
+                  href={`/${locale}/skola-skijanja`}
                   className="inline-flex items-center gap-2 text-sm text-[#00c0f7] font-semibold hover:gap-3 transition-all duration-300"
                 >
                   Škola skijanja <ArrowRight className="w-4 h-4" />
@@ -244,7 +245,7 @@ export default function HotelAdriaSki() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <Link href={card.link} className="group block relative rounded-2xl overflow-hidden aspect-[16/10] shadow-lg">
+                <Link href={`/${locale}${card.link}`} className="group block relative rounded-2xl overflow-hidden aspect-[16/10] shadow-lg">
                   <Image src={card.img} alt={card.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b1d42]/80 via-[#0b1d42]/30 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-5">
@@ -288,13 +289,13 @@ export default function HotelAdriaSki() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/kontakt"
+                href={`/${locale}/kontakt`}
                 className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
                 {tc("contact_us")} <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/cjenik"
+                href={`/${locale}/cjenik`}
                 className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
                 {tc("view_pricing")}

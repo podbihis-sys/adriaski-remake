@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Waves, Ruler, Mountain, Clock, MapPin, Anchor } from "lucide-react";
 import { ImageGallery } from "@/components/layout/ImageGallery";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -33,6 +33,7 @@ const galleryImages = [
 
 export default function RamskoJezero() {
   const tc = useTranslations("common");
+  const locale = useLocale();
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -136,10 +137,10 @@ export default function RamskoJezero() {
               </p>
 
               <div className="flex flex-wrap gap-3">
-                <Link href="/planinarenje" className="inline-flex items-center gap-2 text-sky-600 hover:text-sky-700 text-sm font-semibold transition-colors">
+                <Link href={`/${locale}/planinarenje`} className="inline-flex items-center gap-2 text-sky-600 hover:text-sky-700 text-sm font-semibold transition-colors">
                   <Mountain className="w-4 h-4" /> Planinarenje <ArrowRight className="w-3 h-3" />
                 </Link>
-                <Link href="/brdski-biciklizam" className="inline-flex items-center gap-2 text-sky-600 hover:text-sky-700 text-sm font-semibold transition-colors">
+                <Link href={`/${locale}/brdski-biciklizam`} className="inline-flex items-center gap-2 text-sky-600 hover:text-sky-700 text-sm font-semibold transition-colors">
                   <MapPin className="w-4 h-4" /> Brdski biciklizam <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
@@ -243,10 +244,10 @@ export default function RamskoJezero() {
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Otkrijte ljepotu Ramskog jezera</h2>
             <p className="text-white/60 mb-8 max-w-xl mx-auto">Rezervirajte izlet i doživite jedno od najljepših jezera u Europi</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/kontakt" className="inline-flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
+              <Link href={`/${locale}/kontakt`} className="inline-flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
                 Rezervirajte <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link href="/planinarenje" className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
+              <Link href={`/${locale}/planinarenje`} className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
                 Planinarenje
               </Link>
             </div>

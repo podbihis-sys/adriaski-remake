@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Flame, Wine, Mountain, UtensilsCrossed, Clock, MapPin } from "lucide-react";
 import { ImageGallery } from "@/components/layout/ImageGallery";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -30,6 +30,7 @@ const galleryImages = [1, 4, 6, 7, 8, 9, 10, 11, 12].map((n) => ({
 
 export default function RestoranOgnjista() {
   const tc = useTranslations("common");
+  const locale = useLocale();
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -171,13 +172,13 @@ export default function RestoranOgnjista() {
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <Link
-                  href="/gastro-ponuda"
+                  href={`/${locale}/gastro-ponuda`}
                   className="inline-flex items-center gap-2 text-sm text-amber-600 font-semibold hover:gap-3 transition-all duration-300"
                 >
                   Pogledajte gastro ponudu <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
-                  href="/hotel-adria-ski"
+                  href={`/${locale}/hotel-adria-ski`}
                   className="inline-flex items-center gap-2 text-sm text-[#00c0f7] font-semibold hover:gap-3 transition-all duration-300"
                 >
                   Više o hotelu <ArrowRight className="w-4 h-4" />
@@ -271,13 +272,13 @@ export default function RestoranOgnjista() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/gastro-ponuda"
+                href={`/${locale}/gastro-ponuda`}
                 className="inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
                 Pogledajte jelovnik <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/kontakt"
+                href={`/${locale}/kontakt`}
                 className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
                 {tc("contact_us")}

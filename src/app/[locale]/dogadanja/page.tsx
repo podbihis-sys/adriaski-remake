@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Phone } from "lucide-react";
 import { events } from "@/lib/events";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -17,6 +17,7 @@ const fadeInUp = {
 export default function Dogadanja() {
   const t = useTranslations("events");
   const tc = useTranslations("common");
+  const locale = useLocale();
   const pinnedEvent = events.find((e) => e.pinned);
   const otherEvents = events.filter((e) => !e.pinned);
 
@@ -41,7 +42,7 @@ export default function Dogadanja() {
       {pinnedEvent && (
         <section className="py-12 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <Link href={`/dogadanja/${pinnedEvent.slug}`}>
+            <Link href={`/${locale}/dogadanja/${pinnedEvent.slug}`}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -89,7 +90,7 @@ export default function Dogadanja() {
                 transition={{ duration: 0.4, delay: i * 0.08 }}
               >
                 <Link
-                  href={`/dogadanja/${event.slug}`}
+                  href={`/${locale}/dogadanja/${event.slug}`}
                   className="group block bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="relative h-48 overflow-hidden">
@@ -135,7 +136,7 @@ export default function Dogadanja() {
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Budite u toku</h2>
             <p className="text-white/60 mb-8 max-w-xl mx-auto">Kontaktirajte nas za informacije o nadolazećim događanjima</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/kontakt" className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
+              <Link href={`/${locale}/kontakt`} className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
                 {tc("contact_us")} <ArrowRight className="w-4 h-4" />
               </Link>
               <a href="https://www.facebook.com/adriaski" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Mountain, Clock, Ruler, Snowflake, Cable, Baby } from "lucide-react";
 import { ImageGallery } from "@/components/layout/ImageGallery";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -17,6 +17,7 @@ const fadeInUp = {
 export default function Skijalista() {
   const t = useTranslations("ski");
   const tc = useTranslations("common");
+  const locale = useLocale();
 
   const highlights = [
     { icon: Ruler, value: "13+ km", label: t("slopes") },
@@ -331,13 +332,13 @@ export default function Skijalista() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/cjenik"
+                href={`/${locale}/cjenik`}
                 className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
                 {tc("view_pricing")} <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/kontakt"
+                href={`/${locale}/kontakt`}
                 className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
                 {tc("contact_us")}

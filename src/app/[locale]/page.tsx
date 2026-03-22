@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Waves, Mountain, Hotel, ChevronDown, Calendar } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 
 import { events as allEvents } from "@/lib/events";
@@ -57,6 +57,7 @@ const galleryImages = [
 export default function HomePage() {
   const t = useTranslations("home");
   const tc = useTranslations("common");
+  const locale = useLocale();
 
   const stats = [
     { value: "256", label: t("beds"), icon: Hotel },
@@ -151,14 +152,14 @@ export default function HomePage() {
             className="mt-10 flex flex-col sm:flex-row gap-4"
           >
             <Link
-              href="/kontakt"
+              href={`/${locale}/kontakt`}
               className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#00c0f7]/25"
             >
               {tc("book_now")}
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/hotel-adria-ski"
+              href={`/${locale}/hotel-adria-ski`}
               className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
             >
               {tc("learn_more")}
@@ -241,7 +242,7 @@ export default function HomePage() {
               </div>
 
               <Link
-                href="/hotel-adria-ski"
+                href={`/${locale}/hotel-adria-ski`}
                 className="inline-flex items-center gap-2 mt-6 text-[#00c0f7] font-semibold hover:gap-3 transition-all duration-300"
               >
                 {tc("learn_more")}
@@ -274,7 +275,7 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: index * 0.15 }}
               >
                 <Link
-                  href={feature.link}
+                  href={`/${locale}${feature.link}`}
                   className="group block bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-gray-100 text-center"
                 >
                   <div className="flex items-center justify-center mb-6">
@@ -357,7 +358,7 @@ export default function HomePage() {
               </h2>
             </div>
             <Link
-              href="/dogadanja"
+              href={`/${locale}/dogadanja`}
               className="hidden md:inline-flex items-center gap-2 text-[#00c0f7] font-semibold text-sm hover:gap-3 transition-all duration-300"
             >
               {tc("all_events")} <ArrowRight className="w-4 h-4" />
@@ -374,7 +375,7 @@ export default function HomePage() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
                 <Link
-                  href={news.href}
+                  href={`/${locale}${news.href}`}
                   className="group block bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="relative h-48 overflow-hidden">
@@ -406,7 +407,7 @@ export default function HomePage() {
           </div>
 
           <Link
-            href="/dogadanja"
+            href={`/${locale}/dogadanja`}
             className="md:hidden inline-flex items-center gap-2 mt-8 text-[#00c0f7] font-semibold text-sm"
           >
             Svi događaji <ArrowRight className="w-4 h-4" />
@@ -434,14 +435,14 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/kontakt"
+                href={`/${locale}/kontakt`}
                 className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-10 py-4 rounded-lg transition-all duration-300 text-lg shadow-lg shadow-[#00c0f7]/20"
               >
                 {tc("contact_us")}
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
-                href="/cjenik"
+                href={`/${locale}/cjenik`}
                 className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-10 py-4 rounded-lg transition-all duration-300 text-lg"
               >
                 {tc("view_pricing")}

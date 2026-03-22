@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { usePathTranslations } from "@/lib/use-path-locale";
+import { usePathTranslations, usePathLocale } from "@/lib/use-path-locale";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 interface NavDropdownItem {
@@ -20,44 +20,45 @@ interface NavItem {
   dropdown?: NavDropdownItem[];
 }
 
-function getNavItems(t: (key: string) => string): NavItem[] {
+function getNavItems(t: (key: string) => string, locale: string): NavItem[] {
+  const p = (path: string) => `/${locale}${path}`;
   return [
-    { label: t("home"), href: "/" },
+    { label: t("home"), href: p("/") },
     {
       label: t("about"),
       dropdown: [
-        { label: t("hotel"), href: "/hotel-adria-ski" },
-        { label: t("motel_tikvice"), href: "/motel-tikvice" },
-        { label: t("ski_slopes"), href: "/skijalista" },
-        { label: t("restaurant"), href: "/restoran-ognjista" },
-        { label: t("ski_school"), href: "/skola-skijanja" },
+        { label: t("hotel"), href: p("/hotel-adria-ski") },
+        { label: t("motel_tikvice"), href: p("/motel-tikvice") },
+        { label: t("ski_slopes"), href: p("/skijalista") },
+        { label: t("restaurant"), href: p("/restoran-ognjista") },
+        { label: t("ski_school"), href: p("/skola-skijanja") },
       ],
     },
     {
       label: t("offer"),
       dropdown: [
-        { label: t("camera_live"), href: "/kamera-live" },
-        { label: t("gastro"), href: "/gastro-ponuda" },
-        { label: t("wedding_hall"), href: "/svadbeni-salon" },
-        { label: t("sports_prep"), href: "/sportske-pripreme" },
-        { label: t("seminars"), href: "/seminari" },
-        { label: t("pool"), href: "/bazen" },
-        { label: t("fitness"), href: "/fitness" },
+        { label: t("camera_live"), href: p("/kamera-live") },
+        { label: t("gastro"), href: p("/gastro-ponuda") },
+        { label: t("wedding_hall"), href: p("/svadbeni-salon") },
+        { label: t("sports_prep"), href: p("/sportske-pripreme") },
+        { label: t("seminars"), href: p("/seminari") },
+        { label: t("pool"), href: p("/bazen") },
+        { label: t("fitness"), href: p("/fitness") },
       ],
     },
     {
       label: t("summer_offer"),
       dropdown: [
-        { label: t("cycling"), href: "/brdski-biciklizam" },
-        { label: t("hiking"), href: "/planinarenje" },
-        { label: t("lake"), href: "/ramsko-jezero" },
-        { label: t("horseback"), href: "/jahanje" },
-        { label: t("enduro"), href: "/enduro-turizam" },
+        { label: t("cycling"), href: p("/brdski-biciklizam") },
+        { label: t("hiking"), href: p("/planinarenje") },
+        { label: t("lake"), href: p("/ramsko-jezero") },
+        { label: t("horseback"), href: p("/jahanje") },
+        { label: t("enduro"), href: p("/enduro-turizam") },
       ],
     },
-    { label: t("events"), href: "/dogadanja" },
-    { label: t("pricing"), href: "/cjenik" },
-    { label: t("contact"), href: "/kontakt" },
+    { label: t("events"), href: p("/dogadanja") },
+    { label: t("pricing"), href: p("/cjenik") },
+    { label: t("contact"), href: p("/kontakt") },
   ];
 }
 
@@ -146,7 +147,8 @@ function MobileAccordion({
 
 export function Navbar() {
   const t = usePathTranslations("nav");
-  const navItems = getNavItems(t);
+  const locale = usePathLocale();
+  const navItems = getNavItems(t, locale);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);

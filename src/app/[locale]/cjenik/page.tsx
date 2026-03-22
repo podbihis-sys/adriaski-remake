@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Bed, Mountain, Wrench, Home } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -41,6 +41,7 @@ function PriceTable({ headers, rows, className = "" }: { headers: string[]; rows
 export default function Cjenik() {
   const t = useTranslations("pricing");
   const tc = useTranslations("common");
+  const locale = useLocale();
 
   return (
     <main>
@@ -226,7 +227,7 @@ export default function Cjenik() {
           <motion.div {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Rezervirajte sada</h2>
             <p className="text-white/60 mb-8">Kontaktirajte nas za posebne ponude i grupne popuste</p>
-            <Link href="/kontakt" className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
+            <Link href={`/${locale}/kontakt`} className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
               {tc("contact_us")} <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>

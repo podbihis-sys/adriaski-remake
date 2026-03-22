@@ -18,7 +18,7 @@ function getLocaleFromPath(pathname: string): string {
   if (segments[0] && localeCodes.includes(segments[0])) {
     return segments[0];
   }
-  return "hr"; // default
+  return "hr";
 }
 
 export default function LanguageSwitcher() {
@@ -37,16 +37,14 @@ export default function LanguageSwitcher() {
   }, []);
 
   function switchLocale(newLocale: string) {
+    // Strip current locale prefix
     const segments = pathname.split("/").filter(Boolean);
     const hasLocalePrefix = localeCodes.includes(segments[0]);
-    const pathWithoutLocale = hasLocalePrefix
-      ? "/" + segments.slice(1).join("/")
-      : pathname;
+    const pathSegments = hasLocalePrefix ? segments.slice(1) : segments;
+    const pagePath = pathSegments.length > 0 ? "/" + pathSegments.join("/") : "";
 
-    const newPath =
-      newLocale === "hr"
-        ? pathWithoutLocale || "/"
-        : `/${newLocale}${pathWithoutLocale || "/"}`;
+    // Always use prefix (localePrefix: "always")
+    const newPath = `/${newLocale}${pagePath}`;
     router.push(newPath);
     setOpen(false);
   }

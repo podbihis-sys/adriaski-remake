@@ -6,10 +6,11 @@ import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Phone, Mail, ArrowRight } from "lucide-react";
 import { events, getEventBySlug } from "@/lib/events";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function EventArticlePage() {
   const tc = useTranslations("common");
+  const locale = useLocale();
   const params = useParams();
   const slug = params.slug as string;
   const event = getEventBySlug(slug);
@@ -19,7 +20,7 @@ export default function EventArticlePage() {
       <main className="min-h-screen flex items-center justify-center bg-[#f2f3f4]">
         <div className="text-center">
           <h1 className="text-4xl font-heading font-bold text-[#163c6f] mb-4">Članak nije pronađen</h1>
-          <Link href="/dogadanja" className="inline-flex items-center gap-2 text-[#00c0f7] font-semibold">
+          <Link href={`/${locale}/dogadanja`} className="inline-flex items-center gap-2 text-[#00c0f7] font-semibold">
             <ArrowLeft className="w-4 h-4" /> {tc("back")} na događanja
           </Link>
         </div>
@@ -43,7 +44,7 @@ export default function EventArticlePage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
               <Link
-                href="/dogadanja"
+                href={`/${locale}/dogadanja`}
                 className="inline-flex items-center gap-2 text-white/60 text-sm hover:text-white transition-colors mb-4"
               >
                 <ArrowLeft className="w-4 h-4" /> {tc("all_events")}
@@ -108,7 +109,7 @@ export default function EventArticlePage() {
           <div className="flex items-center justify-between">
             {prevEvent ? (
               <Link
-                href={`/dogadanja/${prevEvent.slug}`}
+                href={`/${locale}/dogadanja/${prevEvent.slug}`}
                 className="group flex items-center gap-3 text-left hover:text-[#00c0f7] transition-colors"
               >
                 <ArrowLeft className="w-5 h-5 text-gray-400 group-hover:text-[#00c0f7] transition-colors flex-shrink-0" />
@@ -119,13 +120,13 @@ export default function EventArticlePage() {
               </Link>
             ) : <div />}
 
-            <Link href="/dogadanja" className="text-sm text-gray-500 hover:text-[#00c0f7] transition-colors hidden md:block">
+            <Link href={`/${locale}/dogadanja`} className="text-sm text-gray-500 hover:text-[#00c0f7] transition-colors hidden md:block">
               {tc("all_events")}
             </Link>
 
             {nextEvent ? (
               <Link
-                href={`/dogadanja/${nextEvent.slug}`}
+                href={`/${locale}/dogadanja/${nextEvent.slug}`}
                 className="group flex items-center gap-3 text-right hover:text-[#00c0f7] transition-colors"
               >
                 <div>

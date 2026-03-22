@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Video, MapPin, Phone, Mountain, Clock, Snowflake, Thermometer, Wind, Camera } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -49,6 +49,7 @@ function getWeatherDescription(code: number): string {
 
 export default function KameraLivePage() {
   const tc = useTranslations("common");
+  const locale = useLocale();
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [cameras, setCameras] = useState<CameraItem[]>(defaultCameras);
   const [activeCamera, setActiveCamera] = useState(0);
@@ -303,7 +304,7 @@ export default function KameraLivePage() {
               </div>
 
               <Link
-                href="/skijalista"
+                href={`/${locale}/skijalista`}
                 className="inline-flex items-center gap-2 mt-6 text-[#00c0f7] text-sm font-semibold hover:gap-3 transition-all duration-300"
               >
                 Više o stazama <ArrowRight className="w-3.5 h-3.5" />

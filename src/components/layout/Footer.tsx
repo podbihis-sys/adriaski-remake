@@ -2,25 +2,27 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathTranslations } from "@/lib/use-path-locale";
-
-const exploreHrefs = [
-  { key: "home", href: "/" },
-  { key: "camera_live", href: "/kamera-live" },
-  { key: "pricing", href: "/cjenik" },
-  { key: "contact", href: "/kontakt" },
-];
-
-const recentPosts = [
-  { labelKey: "ski_season_2026", fallback: "Otvaramo skijašku sezonu 2026", href: "/dogadanja" },
-  { labelKey: "new_year", fallback: "Doček Nove godine", href: "/dogadanja" },
-  { labelKey: "adria_ski_cup", fallback: "Adria Ski Cup 2024", href: "/dogadanja" },
-];
+import { usePathTranslations, usePathLocale } from "@/lib/use-path-locale";
 
 export function Footer() {
   const tf = usePathTranslations("footer");
   const tn = usePathTranslations("nav");
   const tc = usePathTranslations("common");
+  const locale = usePathLocale();
+  const p = (path: string) => `/${locale}${path}`;
+
+  const exploreHrefs = [
+    { key: "home", href: p("/") },
+    { key: "camera_live", href: p("/kamera-live") },
+    { key: "pricing", href: p("/cjenik") },
+    { key: "contact", href: p("/kontakt") },
+  ];
+
+  const recentPosts = [
+    { fallback: "Otvaramo skijašku sezonu 2026", href: p("/dogadanja") },
+    { fallback: "Doček Nove godine", href: p("/dogadanja") },
+    { fallback: "Adria Ski Cup 2024", href: p("/dogadanja") },
+  ];
 
   return (
     <footer className="bg-[#163c6f] text-white">
@@ -30,7 +32,7 @@ export function Footer() {
           {/* Column 1: About */}
           <div>
             <div className="mb-4">
-              <Link href="/">
+              <Link href={p("/")}>
                 <Image
                   src="/images/logo-square.png"
                   alt="Adria Ski"

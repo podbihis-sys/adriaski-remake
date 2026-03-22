@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Mountain, Dumbbell, Waves, TreePine, Trophy, Users } from "lucide-react";
 import { ImageGallery } from "@/components/layout/ImageGallery";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -61,6 +61,7 @@ const galleryImages = [
 
 export default function SportskePripremePage() {
   const tc = useTranslations("common");
+  const locale = useLocale();
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -331,13 +332,13 @@ export default function SportskePripremePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/kontakt"
+                href={`/${locale}/kontakt`}
                 className="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
                 {tc("contact_us")} <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/fitness"
+                href={`/${locale}/fitness`}
                 className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
                 Fitness centar
