@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, CheckCircle, XCircle } from "lucide-react";
 import Link from "next/link";
 import ImageUpload from "@/components/admin/ImageUpload";
+import { useUnsavedChanges } from "@/hooks/useUnsavedChanges";
 
 export default function NewEventPage() {
   const router = useRouter();
@@ -23,6 +24,7 @@ export default function NewEventPage() {
     type: "success" | "error";
   } | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const { markDirty, markClean } = useUnsavedChanges();
 
   function validate(): boolean {
     const newErrors: Record<string, string> = {};
@@ -61,6 +63,7 @@ export default function NewEventPage() {
         return;
       }
 
+      markClean();
       setToast({ message: "Događaj uspješno kreiran!", type: "success" });
       setTimeout(() => router.push("/admin/events"), 1500);
     } catch {
@@ -108,7 +111,7 @@ export default function NewEventPage() {
           <input
             type="text"
             value={form.title}
-            onChange={(e) => setForm({ ...form, title: e.target.value })}
+            onChange={(e) => { setForm({ ...form, title: e.target.value }); markDirty(); }}
             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none transition ${
               errors.title ? "border-red-400" : "border-gray-300"
             }`}
@@ -127,7 +130,7 @@ export default function NewEventPage() {
             <input
               type="text"
               value={form.date}
-              onChange={(e) => setForm({ ...form, date: e.target.value })}
+              onChange={(e) => { setForm({ ...form, date: e.target.value }); markDirty(); }}
               className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none transition ${
                 errors.date ? "border-red-400" : "border-gray-300"
               }`}
@@ -141,7 +144,7 @@ export default function NewEventPage() {
 
         <ImageUpload
           value={form.image}
-          onChange={(url) => setForm({ ...form, image: url })}
+          onChange={(url) => { setForm({ ...form, image: url }); markDirty(); }}
           label="Slika *"
         />
         {errors.image && (
@@ -154,7 +157,7 @@ export default function NewEventPage() {
           </label>
           <textarea
             value={form.summary}
-            onChange={(e) => setForm({ ...form, summary: e.target.value })}
+            onChange={(e) => { setForm({ ...form, summary: e.target.value }); markDirty(); }}
             rows={2}
             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none transition resize-y ${
               errors.summary ? "border-red-400" : "border-gray-300"
@@ -172,7 +175,7 @@ export default function NewEventPage() {
           </label>
           <textarea
             value={form.body}
-            onChange={(e) => setForm({ ...form, body: e.target.value })}
+            onChange={(e) => { setForm({ ...form, body: e.target.value }); markDirty(); }}
             rows={8}
             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none transition resize-y ${
               errors.body ? "border-red-400" : "border-gray-300"
@@ -191,7 +194,7 @@ export default function NewEventPage() {
           <input
             type="text"
             value={form.contact}
-            onChange={(e) => setForm({ ...form, contact: e.target.value })}
+            onChange={(e) => { setForm({ ...form, contact: e.target.value }); markDirty(); }}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none transition"
             placeholder="npr. +387 34 275 100, info@adriaski.net"
           />
@@ -202,7 +205,7 @@ export default function NewEventPage() {
             type="checkbox"
             id="pinned"
             checked={form.pinned}
-            onChange={(e) => setForm({ ...form, pinned: e.target.checked })}
+            onChange={(e) => { setForm({ ...form, pinned: e.target.checked }); markDirty(); }}
             className="w-5 h-5 text-[#00c0f7] border-gray-300 rounded focus:ring-[#00c0f7]"
           />
           <label htmlFor="pinned" className="text-sm text-gray-700">

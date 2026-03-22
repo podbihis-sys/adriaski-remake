@@ -9,6 +9,7 @@ import {
   Type, AlignLeft, ImageIcon, Images, BarChart3,
 } from "lucide-react";
 import ImageUpload from "@/components/admin/ImageUpload";
+import { useUnsavedChanges } from "@/hooks/useUnsavedChanges";
 
 interface PageSection {
   id: string;
@@ -41,6 +42,7 @@ export default function AdminPageEditorPage() {
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState<{ type: "success" | "error"; message: string } | null>(null);
   const [showAddMenu, setShowAddMenu] = useState<number | null>(null);
+  const { markDirty, markClean } = useUnsavedChanges();
 
   const fetchPage = useCallback(async () => {
     try {
@@ -67,6 +69,7 @@ export default function AdminPageEditorPage() {
     const sections = [...page.sections];
     sections[index] = { ...sections[index], content };
     setPage({ ...page, sections });
+    markDirty();
   }
 
   function updateSectionLabel(index: number, label: string) {
@@ -74,6 +77,7 @@ export default function AdminPageEditorPage() {
     const sections = [...page.sections];
     sections[index] = { ...sections[index], label };
     setPage({ ...page, sections });
+    markDirty();
   }
 
   function moveSection(index: number, direction: "up" | "down") {
@@ -83,6 +87,7 @@ export default function AdminPageEditorPage() {
     if (targetIndex < 0 || targetIndex >= sections.length) return;
     [sections[index], sections[targetIndex]] = [sections[targetIndex], sections[index]];
     setPage({ ...page, sections });
+    markDirty();
   }
 
   function addSection(afterIndex: number, type: PageSection["type"]) {
@@ -104,6 +109,7 @@ export default function AdminPageEditorPage() {
     });
     setPage({ ...page, sections });
     setShowAddMenu(null);
+    markDirty();
   }
 
   function removeSection(index: number) {
@@ -112,6 +118,7 @@ export default function AdminPageEditorPage() {
     const sections = [...page.sections];
     sections.splice(index, 1);
     setPage({ ...page, sections });
+    markDirty();
   }
 
   function addGalleryImage(sectionIndex: number) {
@@ -148,6 +155,7 @@ export default function AdminPageEditorPage() {
       });
       if (!res.ok) throw new Error((await res.json()).error || "Greška.");
       setPage(await res.json());
+      markClean();
       setToast({ type: "success", message: "Stranica uspješno spremljena!" });
     } catch (err) {
       setToast({ type: "error", message: err instanceof Error ? err.message : "Greška." });

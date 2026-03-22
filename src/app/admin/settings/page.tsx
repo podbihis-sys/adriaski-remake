@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Shield, Key, CheckCircle, XCircle, User } from "lucide-react";
+import { useUnsavedChanges } from "@/hooks/useUnsavedChanges";
 
 function Toast({ message, type, onClose }: { message: string; type: "success" | "error"; onClose: () => void }) {
   useEffect(() => { const t = setTimeout(onClose, 4000); return () => clearTimeout(t); }, [onClose]);
@@ -21,6 +22,7 @@ export default function AdminSettingsPage() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [saving, setSaving] = useState(false);
+  const { markDirty, markClean } = useUnsavedChanges();
   const [username, setUsername] = useState("admin");
   const [role, setRole] = useState("Super Admin");
 
@@ -72,6 +74,7 @@ export default function AdminSettingsPage() {
       if (data.token) {
         localStorage.setItem("admin_token", data.token);
       }
+      markClean();
       setToast({ message: "Lozinka uspješno promijenjena!", type: "success" });
       setCurrentPassword(""); setNewPassword(""); setConfirmPassword("");
     } catch {
@@ -126,17 +129,17 @@ export default function AdminSettingsPage() {
         <form onSubmit={handlePasswordChange} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Trenutna lozinka</label>
-            <input type="password" value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} required
+            <input type="password" value={currentPassword} onChange={e => { setCurrentPassword(e.target.value); markDirty(); }} required
               className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none transition text-sm" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Nova lozinka</label>
-            <input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} required minLength={10}
+            <input type="password" value={newPassword} onChange={e => { setNewPassword(e.target.value); markDirty(); }} required minLength={10}
               className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none transition text-sm" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Potvrda nove lozinke</label>
-            <input type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required minLength={10}
+            <input type="password" value={confirmPassword} onChange={e => { setConfirmPassword(e.target.value); markDirty(); }} required minLength={10}
               className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none transition text-sm" />
           </div>
           <button type="submit" disabled={saving} className="w-full bg-[#163c6f] text-white py-2.5 rounded-lg font-medium hover:bg-[#1a4a87] transition disabled:opacity-50 text-sm">

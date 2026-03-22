@@ -2,6 +2,7 @@
 
 import { useState, useEffect, FormEvent } from "react";
 import { Plus, Pencil, Trash2, Shield, X } from "lucide-react";
+import { useUnsavedChanges } from "@/hooks/useUnsavedChanges";
 
 interface Permission {
   events: { create: boolean; edit: boolean; delete: boolean };
@@ -46,6 +47,7 @@ export default function UsersPage() {
   const [formPermissions, setFormPermissions] = useState<Permission>(EMPTY_PERMISSIONS);
   const [formError, setFormError] = useState("");
   const [formLoading, setFormLoading] = useState(false);
+  const { markDirty, markClean, confirmDiscard } = useUnsavedChanges();
 
   function getToken() {
     return localStorage.getItem("admin_token") || "";
@@ -78,6 +80,7 @@ export default function UsersPage() {
     setFormRole("Editor");
     setFormPermissions(defaultPermissions["Editor"] || EMPTY_PERMISSIONS);
     setFormError("");
+    markClean();
     setShowForm(true);
   }
 
@@ -88,6 +91,7 @@ export default function UsersPage() {
     setFormRole(ROLE_OPTIONS.includes(user.role) ? user.role : "Custom");
     setFormPermissions(user.permissions);
     setFormError("");
+    markClean();
     setShowForm(true);
   }
 
@@ -95,9 +99,8 @@ export default function UsersPage() {
     setFormRole(role);
     if (role !== "Custom" && defaultPermissions[role]) {
       setFormPermissions(defaultPermissions[role]);
-    } else if (role === "Custom") {
-      // Keep current permissions when switching to Custom
     }
+    markDirty();
   }
 
   function updatePermission(category: string, action: string, value: boolean) {
@@ -108,8 +111,8 @@ export default function UsersPage() {
         [action]: value,
       },
     }));
-    // Switch to Custom if permissions don't match any preset
     setFormRole("Custom");
+    markDirty();
   }
 
   async function handleSubmit(e: FormEvent) {
@@ -154,6 +157,7 @@ export default function UsersPage() {
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "Greška pri kreiranju.");
       }
+      markClean();
       setShowForm(false);
       await fetchUsers();
     } catch (err) {
@@ -335,7 +339,7 @@ export default function UsersPage() {
                 {editingUser ? "Uredi korisnika" : "Novi korisnik"}
               </h2>
               <button
-                onClick={() => setShowForm(false)}
+                onClick={() => { if (confirmDiscard()) setShowForm(false); }}
                 className="p-2 text-gray-400 hover:text-gray-600 rounded-lg transition"
               >
                 <X className="w-5 h-5" />
@@ -351,7 +355,7 @@ export default function UsersPage() {
                 <input
                   type="text"
                   value={formUsername}
-                  onChange={(e) => setFormUsername(e.target.value)}
+                  onChange={(e) => { setFormUsername(e.target.value); markDirty(); }}
                   disabled={!!editingUser}
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none transition disabled:bg-gray-100 disabled:text-gray-500"
                   placeholder="korisnicko_ime"
@@ -367,7 +371,7 @@ export default function UsersPage() {
                 <input
                   type="password"
                   value={formPassword}
-                  onChange={(e) => setFormPassword(e.target.value)}
+                  onChange={(e) => { setFormPassword(e.target.value); markDirty(); }}
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none transition"
                   placeholder={editingUser ? "••••••" : "Minimalno 6 znakova"}
                   required={!editingUser}
@@ -522,7 +526,7 @@ export default function UsersPage() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setShowForm(false)}
+                  onClick={() => { if (confirmDiscard()) setShowForm(false); }}
                   className="px-6 py-2.5 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition"
                 >
                   Odustani

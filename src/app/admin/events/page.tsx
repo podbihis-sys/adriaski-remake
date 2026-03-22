@@ -13,6 +13,7 @@ import {
   X,
 } from "lucide-react";
 import ImageUpload from "@/components/admin/ImageUpload";
+import { useUnsavedChanges } from "@/hooks/useUnsavedChanges";
 
 interface EventItem {
   id: string;
@@ -69,6 +70,7 @@ function EditModal({
   const [form, setForm] = useState(event);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const { hasUnsavedChanges, markDirty, markClean, confirmDiscard } = useUnsavedChanges();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -94,6 +96,7 @@ function EditModal({
       }
 
       const updated = await res.json();
+      markClean();
       onSave(updated);
     } catch {
       setError("Greška u komunikaciji.");
@@ -108,7 +111,7 @@ function EditModal({
         <div className="p-6 border-b border-gray-100 flex items-center justify-between">
           <h2 className="text-xl font-bold text-gray-900">Uredi događaj</h2>
           <button
-            onClick={onClose}
+            onClick={() => { if (confirmDiscard()) onClose(); }}
             className="text-gray-400 hover:text-gray-600"
           >
             <X className="w-6 h-6" />
@@ -122,7 +125,7 @@ function EditModal({
             <input
               type="text"
               value={form.title}
-              onChange={(e) => setForm({ ...form, title: e.target.value })}
+              onChange={(e) => { setForm({ ...form, title: e.target.value }); markDirty(); }}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none"
               required
             />
@@ -135,14 +138,14 @@ function EditModal({
               <input
                 type="text"
                 value={form.date}
-                onChange={(e) => setForm({ ...form, date: e.target.value })}
+                onChange={(e) => { setForm({ ...form, date: e.target.value }); markDirty(); }}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none"
                 required
               />
             </div>
             <ImageUpload
               value={form.image}
-              onChange={(url) => setForm({ ...form, image: url })}
+              onChange={(url) => { setForm({ ...form, image: url }); markDirty(); }}
               label="Slika *"
             />
           </div>
@@ -152,7 +155,7 @@ function EditModal({
             </label>
             <textarea
               value={form.summary}
-              onChange={(e) => setForm({ ...form, summary: e.target.value })}
+              onChange={(e) => { setForm({ ...form, summary: e.target.value }); markDirty(); }}
               rows={2}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none resize-y"
               required
@@ -164,7 +167,7 @@ function EditModal({
             </label>
             <textarea
               value={form.body}
-              onChange={(e) => setForm({ ...form, body: e.target.value })}
+              onChange={(e) => { setForm({ ...form, body: e.target.value }); markDirty(); }}
               rows={6}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none resize-y"
               required
@@ -177,7 +180,7 @@ function EditModal({
             <input
               type="text"
               value={form.contact || ""}
-              onChange={(e) => setForm({ ...form, contact: e.target.value })}
+              onChange={(e) => { setForm({ ...form, contact: e.target.value }); markDirty(); }}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00c0f7] focus:border-transparent outline-none"
             />
           </div>
@@ -186,7 +189,7 @@ function EditModal({
               type="checkbox"
               id="edit-pinned"
               checked={form.pinned || false}
-              onChange={(e) => setForm({ ...form, pinned: e.target.checked })}
+              onChange={(e) => { setForm({ ...form, pinned: e.target.checked }); markDirty(); }}
               className="w-4 h-4 text-[#00c0f7] border-gray-300 rounded focus:ring-[#00c0f7]"
             />
             <label htmlFor="edit-pinned" className="text-sm text-gray-700">
@@ -203,7 +206,7 @@ function EditModal({
           <div className="flex justify-end gap-3 pt-2">
             <button
               type="button"
-              onClick={onClose}
+              onClick={() => { if (confirmDiscard()) onClose(); }}
               className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition"
             >
               Odustani
