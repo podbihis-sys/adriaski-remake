@@ -1,11 +1,10 @@
-import { readFile, writeFile, mkdir, readdir } from 'fs/promises';
-import path from 'path';
+import { getRedis } from "./redis";
 
-const PAGES_DIR = path.join(process.cwd(), 'data', 'pages');
+const PAGES_KEY = "adriaski:pages";
 
 export interface PageSection {
   id: string;
-  type: 'text' | 'image' | 'heading' | 'gallery';
+  type: "text" | "image" | "heading" | "gallery";
   content: string;
   label: string;
 }
@@ -17,53 +16,37 @@ export interface PageContent {
   updatedAt: string;
 }
 
-async function ensureDir() {
-  try {
-    await mkdir(PAGES_DIR, { recursive: true });
-  } catch {}
-}
+// Store all pages as a hash: adriaski:pages -> { slug: PageContent }
 
 export async function getPageContent(slug: string): Promise<PageContent | null> {
   try {
-    await ensureDir();
-    const filePath = path.join(PAGES_DIR, `${slug}.json`);
-    const data = await readFile(filePath, 'utf-8');
-    return JSON.parse(data) as PageContent;
+    const redis = getRedis();
+    const data = await redis.hget<PageContent>(PAGES_KEY, slug);
+    return data || null;
   } catch {
     return null;
   }
 }
 
 export async function savePageContent(slug: string, content: PageContent): Promise<void> {
-  await ensureDir();
-  const filePath = path.join(PAGES_DIR, `${slug}.json`);
+  const redis = getRedis();
   content.updatedAt = new Date().toISOString();
-  await writeFile(filePath, JSON.stringify(content, null, 2));
+  await redis.hset(PAGES_KEY, { [slug]: content });
 }
 
 export async function listPages(): Promise<{ slug: string; title: string; updatedAt: string }[]> {
-  await ensureDir();
   try {
-    const files = await readdir(PAGES_DIR);
-    const pages: { slug: string; title: string; updatedAt: string }[] = [];
+    const redis = getRedis();
+    const all = await redis.hgetall<Record<string, PageContent>>(PAGES_KEY);
+    if (!all) return [];
 
-    for (const file of files) {
-      if (!file.endsWith('.json')) continue;
-      try {
-        const filePath = path.join(PAGES_DIR, file);
-        const data = await readFile(filePath, 'utf-8');
-        const content = JSON.parse(data) as PageContent;
-        pages.push({
-          slug: content.slug,
-          title: content.title,
-          updatedAt: content.updatedAt,
-        });
-      } catch {
-        // skip invalid files
-      }
-    }
-
-    return pages.sort((a, b) => a.title.localeCompare(b.title));
+    return Object.values(all)
+      .map((content) => ({
+        slug: content.slug,
+        title: content.title,
+        updatedAt: content.updatedAt,
+      }))
+      .sort((a, b) => a.title.localeCompare(b.title));
   } catch {
     return [];
   }

@@ -12,6 +12,11 @@ const nextConfig = {
         hostname: "www.adriaski.net",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+        pathname: "/**",
+      },
     ],
   },
   async headers() {

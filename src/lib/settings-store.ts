@@ -1,8 +1,6 @@
-import { readFile, writeFile, mkdir } from 'fs/promises';
-import path from 'path';
+import { getRedis } from "./redis";
 
-const DATA_DIR = path.join(process.cwd(), 'data');
-const SETTINGS_FILE = path.join(DATA_DIR, 'settings.json');
+const SETTINGS_KEY = "adriaski:settings";
 
 export interface SiteSettings {
   piste_status: { open: boolean };
@@ -18,26 +16,20 @@ const DEFAULT_SETTINGS: SiteSettings = {
   },
 };
 
-async function ensureDir() {
-  try {
-    await mkdir(DATA_DIR, { recursive: true });
-  } catch {}
-}
-
 export async function getSettings(): Promise<SiteSettings> {
   try {
-    await ensureDir();
-    const data = await readFile(SETTINGS_FILE, 'utf-8');
-    return { ...DEFAULT_SETTINGS, ...JSON.parse(data) };
+    const redis = getRedis();
+    const data = await redis.get<SiteSettings>(SETTINGS_KEY);
+    return data ? { ...DEFAULT_SETTINGS, ...data } : DEFAULT_SETTINGS;
   } catch {
     return DEFAULT_SETTINGS;
   }
 }
 
 export async function updateSettings(key: string, value: unknown): Promise<SiteSettings> {
-  await ensureDir();
+  const redis = getRedis();
   const current = await getSettings();
   const updated = { ...current, [key]: value };
-  await writeFile(SETTINGS_FILE, JSON.stringify(updated, null, 2));
+  await redis.set(SETTINGS_KEY, updated);
   return updated;
 }
