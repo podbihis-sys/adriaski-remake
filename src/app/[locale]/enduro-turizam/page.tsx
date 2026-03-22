@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Bike, Mountain, Clock, Flame, TrendingUp, Gauge } from "lucide-react";
 import { ImageGallery } from "@/components/layout/ImageGallery";
+import { useTranslations } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -19,6 +20,7 @@ const galleryImages = Array.from({ length: 8 }, (_, i) => ({
 }));
 
 export default function EnduroTurizam() {
+  const tc = useTranslations("common");
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -211,8 +213,8 @@ export default function EnduroTurizam() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-12">
-            <span className="inline-block text-red-500 text-xs tracking-[0.2em] uppercase font-semibold mb-3">Fotografije</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">Galerija</h2>
+            <span className="inline-block text-red-500 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{tc("photos")}</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">{tc("gallery")}</h2>
           </motion.div>
           <ImageGallery images={galleryImages} />
         </div>

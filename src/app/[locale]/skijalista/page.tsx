@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Mountain, Clock, Ruler, Snowflake, Cable, Baby } from "lucide-react";
 import { ImageGallery } from "@/components/layout/ImageGallery";
+import { useTranslations } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -13,29 +14,32 @@ const fadeInUp = {
   transition: { duration: 0.6 },
 };
 
-const highlights = [
-  { icon: Ruler, value: "13+ km", label: "Ski staza" },
-  { icon: Cable, value: "5", label: "Ski liftova" },
-  { icon: Clock, value: "09-16h", label: "Radno vrijeme" },
-  { icon: Snowflake, value: "✓", label: "Topovi za snijeg" },
-];
-
-const lifts = [
-  { name: "Četvorosjed", length: "1.850 m", difficulty: "Plava / Crvena", color: "from-blue-500 to-red-500" },
-  { name: "Dvosjed (sjedežnica)", length: "980 m", difficulty: "Plava", color: "from-blue-400 to-blue-600" },
-  { name: "Vučnica / Sidro 1", length: "1.150 m", difficulty: "Plava", color: "from-blue-400 to-blue-600" },
-  { name: "Vučnica / Sidro 2", length: "1.080 m", difficulty: "Plava / Crvena", color: "from-blue-500 to-red-500" },
-  { name: "Baby lift", length: "300 m", difficulty: "Plava", color: "from-sky-400 to-sky-500" },
-];
-
-const galleryImages = [
-  1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 19, 20,
-].map((n) => ({
-  src: `/images/staze-${n}.jpg`,
-  alt: `Skijaške staze ${n}`,
-}));
-
 export default function Skijalista() {
+  const t = useTranslations("ski");
+  const tc = useTranslations("common");
+
+  const highlights = [
+    { icon: Ruler, value: "13+ km", label: t("slopes") },
+    { icon: Cable, value: "5", label: t("lifts") },
+    { icon: Clock, value: "09-16h", label: t("working_hours") },
+    { icon: Snowflake, value: "✓", label: t("snow_cannons") },
+  ];
+
+  const lifts = [
+    { name: t("chairlift_4"), length: "1.850 m", difficulty: `${t("blue")} / ${t("red")}`, color: "from-blue-500 to-red-500" },
+    { name: t("chairlift_2"), length: "980 m", difficulty: t("blue"), color: "from-blue-400 to-blue-600" },
+    { name: t("drag_lift_1"), length: "1.150 m", difficulty: t("blue"), color: "from-blue-400 to-blue-600" },
+    { name: t("drag_lift_2"), length: "1.080 m", difficulty: `${t("blue")} / ${t("red")}`, color: "from-blue-500 to-red-500" },
+    { name: t("baby_lift"), length: "300 m", difficulty: t("blue"), color: "from-sky-400 to-sky-500" },
+  ];
+
+  const galleryImages = [
+    1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 19, 20,
+  ].map((n) => ({
+    src: `/images/staze-${n}.jpg`,
+    alt: `Skijaške staze ${n}`,
+  }));
+
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -57,10 +61,10 @@ export default function Skijalista() {
               transition={{ duration: 0.7 }}
             >
               <span className="inline-block text-[#00c0f7] text-xs tracking-[0.25em] uppercase font-semibold mb-3">
-                Skijalište Kupres
+                {t("title")}
               </span>
               <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">
-                Skijališta
+                {t("subtitle")}
               </h1>
               <p className="mt-3 text-lg text-white/70 max-w-xl">
                 Preko 13 kilometara staza sa 5 ski liftova
@@ -135,7 +139,7 @@ export default function Skijalista() {
                 Staze
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">
-                Preko 13 km staza
+                {t("over_13km")}
               </h2>
               <div className="text-[#3d3d3d] leading-relaxed space-y-4 text-[15px]">
                 <p>
@@ -161,7 +165,7 @@ export default function Skijalista() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-12">
             <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-              Infrastruktura
+              {t("infrastructure")}
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">
               Ski liftovi
@@ -214,7 +218,7 @@ export default function Skijalista() {
                 Zasnježivanje
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">
-                Topovi za snijeg
+                {t("snow_cannons")}
               </h2>
               <div className="text-[#3d3d3d] leading-relaxed space-y-4 text-[15px]">
                 <p>
@@ -230,13 +234,13 @@ export default function Skijalista() {
               {/* Info badges */}
               <div className="mt-6 flex flex-wrap gap-3">
                 <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-sm font-medium px-3 py-1.5 rounded-full">
-                  <Snowflake className="w-3.5 h-3.5" /> Umjetni snijeg
+                  <Snowflake className="w-3.5 h-3.5" /> {t("artificial_snow")}
                 </span>
                 <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-sm font-medium px-3 py-1.5 rounded-full">
                   <Mountain className="w-3.5 h-3.5" /> Dvosjed &amp; Četvorosjed
                 </span>
                 <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-sm font-medium px-3 py-1.5 rounded-full">
-                  <Baby className="w-3.5 h-3.5" /> Baby lift
+                  <Baby className="w-3.5 h-3.5" /> {t("baby_lift")}
                 </span>
               </div>
             </motion.div>
@@ -283,7 +287,7 @@ export default function Skijalista() {
                     <h3 className="text-lg font-heading font-bold text-white mb-1">{card.title}</h3>
                     <p className="text-sm text-white/70">{card.desc}</p>
                     <span className="inline-flex items-center gap-1 mt-2 text-[#00c0f7] text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      Saznaj više <ArrowRight className="w-3.5 h-3.5" />
+                      {tc("learn_more")} <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </Link>
@@ -298,10 +302,10 @@ export default function Skijalista() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-12">
             <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-              Fotografije
+              {tc("photos")}
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">
-              Galerija
+              {tc("gallery")}
             </h2>
           </motion.div>
           <ImageGallery images={galleryImages} />
@@ -320,7 +324,7 @@ export default function Skijalista() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              Spremni za skijanje?
+              {tc("ready_for_skiing")}
             </h2>
             <p className="text-white/60 mb-8 max-w-xl mx-auto">
               Pogledajte cjenik ski karata i rezervirajte svoj boravak
@@ -330,13 +334,13 @@ export default function Skijalista() {
                 href="/cjenik"
                 className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
-                Pogledajte cjenik <ArrowRight className="w-4 h-4" />
+                {tc("view_pricing")} <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/kontakt"
                 className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
-                Kontaktirajte nas
+                {tc("contact_us")}
               </Link>
             </div>
           </motion.div>

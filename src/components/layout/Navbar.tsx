@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { usePathTranslations } from "@/lib/use-path-locale";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 interface NavDropdownItem {
@@ -19,44 +20,46 @@ interface NavItem {
   dropdown?: NavDropdownItem[];
 }
 
-const navItems: NavItem[] = [
-  { label: "Home", href: "/" },
-  {
-    label: "O nama",
-    dropdown: [
-      { label: "Hotel Adria ski", href: "/hotel-adria-ski" },
-      { label: "Motel Tikvice", href: "/motel-tikvice" },
-      { label: "Skijališta", href: "/skijalista" },
-      { label: "Restoran Ognjišta", href: "/restoran-ognjista" },
-      { label: "Škola skijanja", href: "/skola-skijanja" },
-    ],
-  },
-  {
-    label: "Ponuda",
-    dropdown: [
-      { label: "Kamera live", href: "/kamera-live" },
-      { label: "Gastro ponuda", href: "/gastro-ponuda" },
-      { label: "Svadbeni salon", href: "/svadbeni-salon" },
-      { label: "Sportske pripreme", href: "/sportske-pripreme" },
-      { label: "Seminari", href: "/seminari" },
-      { label: "Bazen", href: "/bazen" },
-      { label: "Fitness", href: "/fitness" },
-    ],
-  },
-  {
-    label: "Ljetna ponuda",
-    dropdown: [
-      { label: "Brdski biciklizam", href: "/brdski-biciklizam" },
-      { label: "Planinarenje", href: "/planinarenje" },
-      { label: "Ramsko jezero", href: "/ramsko-jezero" },
-      { label: "Jahanje", href: "/jahanje" },
-      { label: "Enduro turizam", href: "/enduro-turizam" },
-    ],
-  },
-  { label: "Događanja", href: "/dogadanja" },
-  { label: "Cjenik", href: "/cjenik" },
-  { label: "Kontakt", href: "/kontakt" },
-];
+function getNavItems(t: (key: string) => string): NavItem[] {
+  return [
+    { label: t("home"), href: "/" },
+    {
+      label: t("about"),
+      dropdown: [
+        { label: t("hotel"), href: "/hotel-adria-ski" },
+        { label: t("motel_tikvice"), href: "/motel-tikvice" },
+        { label: t("ski_slopes"), href: "/skijalista" },
+        { label: t("restaurant"), href: "/restoran-ognjista" },
+        { label: t("ski_school"), href: "/skola-skijanja" },
+      ],
+    },
+    {
+      label: t("offer"),
+      dropdown: [
+        { label: t("camera_live"), href: "/kamera-live" },
+        { label: t("gastro"), href: "/gastro-ponuda" },
+        { label: t("wedding_hall"), href: "/svadbeni-salon" },
+        { label: t("sports_prep"), href: "/sportske-pripreme" },
+        { label: t("seminars"), href: "/seminari" },
+        { label: t("pool"), href: "/bazen" },
+        { label: t("fitness"), href: "/fitness" },
+      ],
+    },
+    {
+      label: t("summer_offer"),
+      dropdown: [
+        { label: t("cycling"), href: "/brdski-biciklizam" },
+        { label: t("hiking"), href: "/planinarenje" },
+        { label: t("lake"), href: "/ramsko-jezero" },
+        { label: t("horseback"), href: "/jahanje" },
+        { label: t("enduro"), href: "/enduro-turizam" },
+      ],
+    },
+    { label: t("events"), href: "/dogadanja" },
+    { label: t("pricing"), href: "/cjenik" },
+    { label: t("contact"), href: "/kontakt" },
+  ];
+}
 
 function DesktopDropdown({
   items,
@@ -142,6 +145,8 @@ function MobileAccordion({
 }
 
 export function Navbar() {
+  const t = usePathTranslations("nav");
+  const navItems = getNavItems(t);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);

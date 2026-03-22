@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Waves, Thermometer, ShieldCheck, Droplets, Clock, Sparkles } from "lucide-react";
 import { ImageGallery } from "@/components/layout/ImageGallery";
+import { useTranslations } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -19,6 +20,9 @@ const galleryImages = Array.from({ length: 8 }, (_, i) => ({
 }));
 
 export default function BazenPage() {
+  const t = useTranslations("pool");
+  const tc = useTranslations("common");
+
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -28,8 +32,8 @@ export default function BazenPage() {
         <div className="absolute bottom-0 left-0 right-0 z-10 pb-12 md:pb-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              <span className="inline-block text-cyan-400 text-xs tracking-[0.25em] uppercase font-semibold mb-3">Wellness</span>
-              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">Bazen</h1>
+              <span className="inline-block text-cyan-400 text-xs tracking-[0.25em] uppercase font-semibold mb-3">{t("title")}</span>
+              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">{t("subtitle")}</h1>
               <p className="mt-3 text-lg text-white/70 max-w-xl">Olimpijski bazen 25m x 8m u sklopu wellness centra</p>
             </motion.div>
           </div>
@@ -42,10 +46,10 @@ export default function BazenPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="grid grid-cols-3 md:grid-cols-6 gap-3">
             {[
               { icon: Waves, label: "25m x 8m" },
-              { icon: Thermometer, label: "2 Saune" },
-              { icon: Sparkles, label: "Masaže" },
-              { icon: Droplets, label: "Tuševi" },
-              { icon: ShieldCheck, label: "Higijena" },
+              { icon: Thermometer, label: `2 ${t("saunas")}` },
+              { icon: Sparkles, label: t("massages") },
+              { icon: Droplets, label: t("showers") },
+              { icon: ShieldCheck, label: t("hygiene") },
               { icon: Clock, label: "08-20h" },
             ].map((item) => {
               const Icon = item.icon;
@@ -88,7 +92,7 @@ export default function BazenPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <span className="inline-block text-cyan-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">Opuštanje</span>
+              <span className="inline-block text-cyan-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("relaxation")}</span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-6">Bazen 25m x 8m</h2>
               <div className="text-[#3d3d3d] leading-relaxed space-y-4 text-[15px]">
                 <p>
@@ -110,8 +114,8 @@ export default function BazenPage() {
       <section className="py-20 bg-[#f2f3f4]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-12">
-            <span className="inline-block text-cyan-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">Fotografije</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">Galerija</h2>
+            <span className="inline-block text-cyan-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">{tc("photos")}</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">{tc("gallery")}</h2>
           </motion.div>
           <ImageGallery images={galleryImages} />
         </div>

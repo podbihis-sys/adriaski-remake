@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Bed, Mountain, Wrench, Home } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -38,6 +39,9 @@ function PriceTable({ headers, rows, className = "" }: { headers: string[]; rows
 }
 
 export default function Cjenik() {
+  const t = useTranslations("pricing");
+  const tc = useTranslations("common");
+
   return (
     <main>
       {/* ===== HERO ===== */}
@@ -47,9 +51,9 @@ export default function Cjenik() {
         <div className="absolute bottom-0 left-0 right-0 z-10 pb-10 md:pb-14">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              <span className="inline-block text-[#00c0f7] text-xs tracking-[0.25em] uppercase font-semibold mb-3">Cijene</span>
-              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">Cjenik</h1>
-              <p className="mt-3 text-lg text-white/70">Sezona 2025/26</p>
+              <span className="inline-block text-[#00c0f7] text-xs tracking-[0.25em] uppercase font-semibold mb-3">{t("title")}</span>
+              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">{t("subtitle")}</h1>
+              <p className="mt-3 text-lg text-white/70">{t("season")}</p>
             </motion.div>
           </div>
         </div>
@@ -60,10 +64,10 @@ export default function Cjenik() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex gap-1 overflow-x-auto py-3">
             {[
-              { icon: Bed, label: "Smještaj", href: "#smjestaj" },
-              { icon: Mountain, label: "Skijalište", href: "#skijaliste" },
-              { icon: Wrench, label: "Oprema", href: "#oprema" },
-              { icon: Home, label: "Tikvice", href: "#tikvice" },
+              { icon: Bed, label: t("accommodation"), href: "#smjestaj" },
+              { icon: Mountain, label: t("ski_resort"), href: "#skijaliste" },
+              { icon: Wrench, label: t("equipment"), href: "#oprema" },
+              { icon: Home, label: t("tikvice"), href: "#tikvice" },
             ].map((tab) => {
               const Icon = tab.icon;
               return (
@@ -80,8 +84,8 @@ export default function Cjenik() {
       <section id="smjestaj" className="py-16 bg-[#f2f3f4]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-10">
-            <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">Smještaj</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">Sezona 2025/26</h2>
+            <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">{t("accommodation")}</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">{t("season")}</h2>
             <p className="mt-2 text-gray-500 text-sm">Pansionske usluge – Cjene po osobi (višekrevetna soba sa TV, telefon, WC)</p>
           </motion.div>
 
@@ -223,7 +227,7 @@ export default function Cjenik() {
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Rezervirajte sada</h2>
             <p className="text-white/60 mb-8">Kontaktirajte nas za posebne ponude i grupne popuste</p>
             <Link href="/kontakt" className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
-              Kontaktirajte nas <ArrowRight className="w-4 h-4" />
+              {tc("contact_us")} <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
         </div>

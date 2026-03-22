@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Bed, Waves, Dumbbell, UtensilsCrossed, Snowflake, Phone } from "lucide-react";
 import { ImageGallery } from "@/components/layout/ImageGallery";
+import { useTranslations } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -13,21 +14,24 @@ const fadeInUp = {
   transition: { duration: 0.6 },
 };
 
-const highlights = [
-  { icon: Bed, value: "256", label: "Ležajeva", color: "from-blue-500 to-blue-600" },
-  { icon: Waves, value: "25m", label: "Olimpijski bazen", color: "from-cyan-500 to-cyan-600" },
-  { icon: Dumbbell, value: "30+", label: "Fitness sprava", color: "from-indigo-500 to-indigo-600" },
-  { icon: UtensilsCrossed, value: "2", label: "Restorana", color: "from-amber-500 to-amber-600" },
-  { icon: Snowflake, value: "2", label: "Saune", color: "from-sky-500 to-sky-600" },
-  { icon: Phone, value: "24/7", label: "Recepcija", color: "from-emerald-500 to-emerald-600" },
-];
-
-const galleryImages = Array.from({ length: 18 }, (_, i) => ({
-  src: `/images/hotel-${String(i + 1).padStart(2, "0")}.jpg`,
-  alt: `Hotel Adria Ski ${i + 1}`,
-}));
-
 export default function HotelAdriaSki() {
+  const t = useTranslations("hotel");
+  const tc = useTranslations("common");
+
+  const highlights = [
+    { icon: Bed, value: "256", label: t("beds"), color: "from-blue-500 to-blue-600" },
+    { icon: Waves, value: "25m", label: t("pool"), color: "from-cyan-500 to-cyan-600" },
+    { icon: Dumbbell, value: "30+", label: t("fitness_machines"), color: "from-indigo-500 to-indigo-600" },
+    { icon: UtensilsCrossed, value: "2", label: t("restaurants"), color: "from-amber-500 to-amber-600" },
+    { icon: Snowflake, value: "2", label: t("saunas"), color: "from-sky-500 to-sky-600" },
+    { icon: Phone, value: "24/7", label: t("reception"), color: "from-emerald-500 to-emerald-600" },
+  ];
+
+  const galleryImages = Array.from({ length: 18 }, (_, i) => ({
+    src: `/images/hotel-${String(i + 1).padStart(2, "0")}.jpg`,
+    alt: `Hotel Adria Ski ${i + 1}`,
+  }));
+
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -52,7 +56,7 @@ export default function HotelAdriaSki() {
                 O nama
               </span>
               <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">
-                Hotel Adria Ski
+                {t("title")}
               </h1>
               <p className="mt-3 text-lg text-white/70 max-w-xl">
                 256 ležajeva, wellness, bazen, restoran - sve na jednom mjestu
@@ -247,7 +251,7 @@ export default function HotelAdriaSki() {
                     <h3 className="text-lg font-heading font-bold text-white mb-1">{card.title}</h3>
                     <p className="text-sm text-white/70">{card.desc}</p>
                     <span className="inline-flex items-center gap-1 mt-2 text-[#00c0f7] text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      Saznaj više <ArrowRight className="w-3.5 h-3.5" />
+                      {tc("learn_more")} <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </Link>
@@ -262,10 +266,10 @@ export default function HotelAdriaSki() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-12">
             <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-              Fotografije
+              {tc("photos")}
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">
-              Galerija
+              {tc("gallery")}
             </h2>
           </motion.div>
           <ImageGallery images={galleryImages} />
@@ -287,13 +291,13 @@ export default function HotelAdriaSki() {
                 href="/kontakt"
                 className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
-                Kontaktirajte nas <ArrowRight className="w-4 h-4" />
+                {tc("contact_us")} <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/cjenik"
                 className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
-                Pogledajte cjenik
+                {tc("view_pricing")}
               </Link>
             </div>
           </motion.div>

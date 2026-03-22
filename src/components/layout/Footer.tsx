@@ -1,20 +1,27 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathTranslations } from "@/lib/use-path-locale";
 
-const exploreLinks = [
-  { label: "Home", href: "/" },
-  { label: "Kamera live", href: "/kamera-live" },
-  { label: "Cjenik", href: "/cjenik" },
-  { label: "Kontakt", href: "/kontakt" },
+const exploreHrefs = [
+  { key: "home", href: "/" },
+  { key: "camera_live", href: "/kamera-live" },
+  { key: "pricing", href: "/cjenik" },
+  { key: "contact", href: "/kontakt" },
 ];
 
 const recentPosts = [
-  { label: "Otvaramo skijašku sezonu 2026", href: "/dogadanja" },
-  { label: "Doček Nove godine", href: "/dogadanja" },
-  { label: "Adria Ski Cup 2024", href: "/dogadanja" },
+  { labelKey: "ski_season_2026", fallback: "Otvaramo skijašku sezonu 2026", href: "/dogadanja" },
+  { labelKey: "new_year", fallback: "Doček Nove godine", href: "/dogadanja" },
+  { labelKey: "adria_ski_cup", fallback: "Adria Ski Cup 2024", href: "/dogadanja" },
 ];
 
 export function Footer() {
+  const tf = usePathTranslations("footer");
+  const tn = usePathTranslations("nav");
+  const tc = usePathTranslations("common");
+
   return (
     <footer className="bg-[#163c6f] text-white">
       <div className="border-t border-[#dcdcdc]/20" />
@@ -34,7 +41,7 @@ export function Footer() {
               </Link>
             </div>
             <h3 className="text-sm font-bold uppercase tracking-wider mb-3 text-[#f9f9f9]">
-              O nama
+              {tf("about")}
             </h3>
             <p className="text-sm text-[#f9f9f9]/70 leading-relaxed">
               Hotel Adria ski<br />
@@ -59,16 +66,16 @@ export function Footer() {
           {/* Column 2: Explore */}
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wider mb-4 text-[#f9f9f9]">
-              Explore
+              {tf("explore")}
             </h3>
             <ul className="space-y-2">
-              {exploreLinks.map((link) => (
+              {exploreHrefs.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-sm text-[#f9f9f9]/70 hover:text-[#00c0f7] transition-colors duration-200"
                   >
-                    {link.label}
+                    {tn(link.key)}
                   </Link>
                 </li>
               ))}
@@ -78,7 +85,7 @@ export function Footer() {
           {/* Column 3: Recent */}
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wider mb-4 text-[#f9f9f9]">
-              Recent
+              {tf("recent")}
             </h3>
             <ul className="space-y-2">
               {recentPosts.map((post, i) => (
@@ -87,7 +94,7 @@ export function Footer() {
                     href={post.href}
                     className="text-sm text-[#f9f9f9]/70 hover:text-[#00c0f7] transition-colors duration-200"
                   >
-                    {post.label}
+                    {post.fallback}
                   </Link>
                 </li>
               ))}
@@ -97,7 +104,7 @@ export function Footer() {
           {/* Column 4: Contact */}
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wider mb-4 text-[#f9f9f9]">
-              Kontakt
+              {tf("contact")}
             </h3>
             <div className="text-sm text-[#f9f9f9]/70 space-y-2">
               <p>Hotel Adria ski</p>
@@ -124,7 +131,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <p className="text-xs text-[#f9f9f9]/50 text-center">
-            &copy; 2026 Hotel Adria Ski. Sva prava zadržana.
+            &copy; 2026 Hotel Adria Ski. {tc("all_rights_reserved")}.
           </p>
         </div>
       </div>

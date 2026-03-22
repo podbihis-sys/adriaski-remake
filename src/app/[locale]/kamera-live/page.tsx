@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Video, MapPin, Phone, Mountain, Clock, Snowflake, Thermometer, Wind, Camera } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -47,6 +48,7 @@ function getWeatherDescription(code: number): string {
 }
 
 export default function KameraLivePage() {
+  const tc = useTranslations("common");
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [cameras, setCameras] = useState<CameraItem[]>(defaultCameras);
   const [activeCamera, setActiveCamera] = useState(0);
@@ -334,7 +336,7 @@ export default function KameraLivePage() {
                     <h3 className="text-lg font-heading font-bold text-white mb-1">{card.title}</h3>
                     <p className="text-sm text-white/70">{card.desc}</p>
                     <span className="inline-flex items-center gap-1 mt-2 text-[#00c0f7] text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      Saznaj više <ArrowRight className="w-3.5 h-3.5" />
+                      {tc("learn_more")} <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </Link>

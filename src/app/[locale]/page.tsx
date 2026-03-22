@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Waves, Mountain, Hotel, ChevronDown, Calendar } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 
 import { events as allEvents } from "@/lib/events";
@@ -22,13 +23,6 @@ const fadeInUp = {
   viewport: { once: true },
   transition: { duration: 0.6 },
 };
-
-const stats = [
-  { value: "256", label: "Ležajeva", icon: Hotel },
-  { value: "13km", label: "Ski staza", icon: Mountain },
-  { value: "1.200m", label: "Nadmorske visine", icon: Mountain },
-  { value: "25m", label: "Olimpijski bazen", icon: Waves },
-];
 
 const features = [
   {
@@ -61,6 +55,16 @@ const galleryImages = [
 ];
 
 export default function HomePage() {
+  const t = useTranslations("home");
+  const tc = useTranslations("common");
+
+  const stats = [
+    { value: "256", label: t("beds"), icon: Hotel },
+    { value: "13km", label: t("ski_slopes"), icon: Mountain },
+    { value: "1.200m", label: t("altitude"), icon: Mountain },
+    { value: "25m", label: t("olympic_pool"), icon: Waves },
+  ];
+
   return (
     <main>
       {/* ===== HERO SECTION ===== */}
@@ -103,7 +107,7 @@ export default function HomePage() {
             transition={{ duration: 0.8, delay: 0.15 }}
             className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight max-w-4xl"
           >
-            Otkrijte očaravajući
+            {t("hero_title")}
             <br />
             <span className="text-[#00c0f7]">Hotel Adria ski</span>
           </motion.h1>
@@ -114,7 +118,7 @@ export default function HomePage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-5 text-lg md:text-xl text-white/80 max-w-2xl"
           >
-            Predivne ski staze &amp; vrhunsku uslugu
+            {t("hero_subtitle")}
           </motion.p>
 
           {/* Stats Row */}
@@ -150,14 +154,14 @@ export default function HomePage() {
               href="/kontakt"
               className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#00c0f7]/25"
             >
-              Rezervirajte odmor
+              {tc("book_now")}
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/hotel-adria-ski"
               className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
             >
-              Saznajte više
+              {tc("learn_more")}
             </Link>
           </motion.div>
         </div>
@@ -207,13 +211,13 @@ export default function HomePage() {
               transition={{ duration: 0.7 }}
             >
               <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-                O hotelu
+                {t("about_hotel")}
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] leading-tight mb-2">
                 Otkrijte očaravajući Hotel Adria ski.
               </h2>
               <h3 className="text-xl font-heading text-[#163c6f]/70 mb-6">
-                Predivne ski staze &amp; vrhunsku uslugu.
+                {t("hero_subtitle")}.
               </h3>
 
               <div className="text-[#3d3d3d] leading-relaxed space-y-4">
@@ -240,7 +244,7 @@ export default function HomePage() {
                 href="/hotel-adria-ski"
                 className="inline-flex items-center gap-2 mt-6 text-[#00c0f7] font-semibold hover:gap-3 transition-all duration-300"
               >
-                Pogledajte više o hotelu
+                {tc("learn_more")}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
@@ -253,7 +257,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center mb-14">
             <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-              Naša ponuda
+              {t("our_offer")}
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">
               Sportovi, avanture i vrhunski smjestaj
@@ -291,7 +295,7 @@ export default function HomePage() {
                     {feature.description}
                   </p>
                   <span className="inline-flex items-center gap-1 mt-4 text-sm text-[#00c0f7] font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Saznaj više <ArrowRight className="w-3.5 h-3.5" />
+                    {tc("learn_more")} <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </Link>
               </motion.div>
@@ -305,10 +309,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center mb-12">
             <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-              Galerija
+              {t("gallery")}
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">
-              Upoznajte nas iz prve ruke
+              {t("meet_us")}
             </h2>
           </motion.div>
 
@@ -346,17 +350,17 @@ export default function HomePage() {
           <motion.div {...fadeInUp} className="flex items-center justify-between mb-12">
             <div>
               <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-                Novosti
+                {t("news")}
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">
-                Najnovije vijesti
+                {t("latest_news")}
               </h2>
             </div>
             <Link
               href="/dogadanja"
               className="hidden md:inline-flex items-center gap-2 text-[#00c0f7] font-semibold text-sm hover:gap-3 transition-all duration-300"
             >
-              Svi događaji <ArrowRight className="w-4 h-4" />
+              {tc("all_events")} <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
 
@@ -393,7 +397,7 @@ export default function HomePage() {
                       {news.text}
                     </p>
                     <span className="inline-flex items-center gap-1 mt-3 text-[#00c0f7] text-sm font-semibold">
-                      Pročitajte više <ArrowRight className="w-3.5 h-3.5" />
+                      {tc("read_more")} <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </Link>
@@ -423,7 +427,7 @@ export default function HomePage() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-white mb-4">
-              Spremni za avanturu?
+              {tc("ready_for_adventure")}
             </h2>
             <p className="text-lg text-white/70 mb-8 max-w-2xl mx-auto">
               Rezervirajte svoj boravak i osigurajte najbolje cijene za nezaboravan odmor na Kupresu
@@ -433,14 +437,14 @@ export default function HomePage() {
                 href="/kontakt"
                 className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-10 py-4 rounded-lg transition-all duration-300 text-lg shadow-lg shadow-[#00c0f7]/20"
               >
-                Kontaktirajte nas
+                {tc("contact_us")}
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 href="/cjenik"
                 className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-10 py-4 rounded-lg transition-all duration-300 text-lg"
               >
-                Pogledajte cjenik
+                {tc("view_pricing")}
               </Link>
             </div>
           </motion.div>

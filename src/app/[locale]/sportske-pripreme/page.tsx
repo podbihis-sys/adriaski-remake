@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Mountain, Dumbbell, Waves, TreePine, Trophy, Users } from "lucide-react";
 import { ImageGallery } from "@/components/layout/ImageGallery";
+import { useTranslations } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -59,6 +60,7 @@ const galleryImages = [
 ];
 
 export default function SportskePripremePage() {
+  const tc = useTranslations("common");
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -305,10 +307,10 @@ export default function SportskePripremePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-12">
             <span className="inline-block text-green-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-              Fotografije
+              {tc("photos")}
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">
-              Galerija
+              {tc("gallery")}
             </h2>
           </motion.div>
           <ImageGallery images={galleryImages} />
@@ -332,7 +334,7 @@ export default function SportskePripremePage() {
                 href="/kontakt"
                 className="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
-                Kontaktirajte nas <ArrowRight className="w-4 h-4" />
+                {tc("contact_us")} <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/fitness"

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Monitor, Coffee, Presentation } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -32,6 +33,7 @@ const rooms = [
 ];
 
 export default function SeminariPage() {
+  const tc = useTranslations("common");
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -127,7 +129,7 @@ export default function SeminariPage() {
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Planirate seminar ili konferenciju?</h2>
             <p className="text-white/60 mb-8 max-w-xl mx-auto">Kontaktirajte nas za organizaciju vašeg poslovnog skupa</p>
             <Link href="/kontakt" className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
-              Kontaktirajte nas <ArrowRight className="w-4 h-4" />
+              {tc("contact_us")} <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
         </div>

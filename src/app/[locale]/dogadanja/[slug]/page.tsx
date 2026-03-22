@@ -6,8 +6,10 @@ import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Phone, Mail, ArrowRight } from "lucide-react";
 import { events, getEventBySlug } from "@/lib/events";
+import { useTranslations } from "next-intl";
 
 export default function EventArticlePage() {
+  const tc = useTranslations("common");
   const params = useParams();
   const slug = params.slug as string;
   const event = getEventBySlug(slug);
@@ -18,7 +20,7 @@ export default function EventArticlePage() {
         <div className="text-center">
           <h1 className="text-4xl font-heading font-bold text-[#163c6f] mb-4">Članak nije pronađen</h1>
           <Link href="/dogadanja" className="inline-flex items-center gap-2 text-[#00c0f7] font-semibold">
-            <ArrowLeft className="w-4 h-4" /> Nazad na događanja
+            <ArrowLeft className="w-4 h-4" /> {tc("back")} na događanja
           </Link>
         </div>
       </main>
@@ -44,7 +46,7 @@ export default function EventArticlePage() {
                 href="/dogadanja"
                 className="inline-flex items-center gap-2 text-white/60 text-sm hover:text-white transition-colors mb-4"
               >
-                <ArrowLeft className="w-4 h-4" /> Svi događaji
+                <ArrowLeft className="w-4 h-4" /> {tc("all_events")}
               </Link>
               <div className="flex items-center gap-2 text-[#00c0f7] text-sm mb-3">
                 <Calendar className="w-4 h-4" />
@@ -118,7 +120,7 @@ export default function EventArticlePage() {
             ) : <div />}
 
             <Link href="/dogadanja" className="text-sm text-gray-500 hover:text-[#00c0f7] transition-colors hidden md:block">
-              Svi događaji
+              {tc("all_events")}
             </Link>
 
             {nextEvent ? (

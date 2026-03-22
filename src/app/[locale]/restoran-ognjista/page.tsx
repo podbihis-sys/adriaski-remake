@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Flame, Wine, Mountain, UtensilsCrossed, Clock, MapPin } from "lucide-react";
 import { ImageGallery } from "@/components/layout/ImageGallery";
+import { useTranslations } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -28,6 +29,7 @@ const galleryImages = [1, 4, 6, 7, 8, 9, 10, 11, 12].map((n) => ({
 }));
 
 export default function RestoranOgnjista() {
+  const tc = useTranslations("common");
   return (
     <main>
       {/* ===== HERO HEADER ===== */}
@@ -225,7 +227,7 @@ export default function RestoranOgnjista() {
                     <h3 className="text-lg font-heading font-bold text-white mb-1">{card.title}</h3>
                     <p className="text-sm text-white/70">{card.desc}</p>
                     <span className="inline-flex items-center gap-1 mt-2 text-[#00c0f7] text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      Saznaj više <ArrowRight className="w-3.5 h-3.5" />
+                      {tc("learn_more")} <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </Link>
@@ -240,10 +242,10 @@ export default function RestoranOgnjista() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-12">
             <span className="inline-block text-amber-600 text-xs tracking-[0.2em] uppercase font-semibold mb-3">
-              Fotografije
+              {tc("photos")}
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">
-              Galerija
+              {tc("gallery")}
             </h2>
           </motion.div>
           <ImageGallery images={galleryImages} />
@@ -278,7 +280,7 @@ export default function RestoranOgnjista() {
                 href="/kontakt"
                 className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
               >
-                Kontaktirajte nas
+                {tc("contact_us")}
               </Link>
             </div>
           </motion.div>

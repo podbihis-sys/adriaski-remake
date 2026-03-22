@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Phone } from "lucide-react";
 import { events } from "@/lib/events";
+import { useTranslations } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -14,6 +15,8 @@ const fadeInUp = {
 };
 
 export default function Dogadanja() {
+  const t = useTranslations("events");
+  const tc = useTranslations("common");
   const pinnedEvent = events.find((e) => e.pinned);
   const otherEvents = events.filter((e) => !e.pinned);
 
@@ -26,9 +29,9 @@ export default function Dogadanja() {
         <div className="absolute bottom-0 left-0 right-0 z-10 pb-10 md:pb-14">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              <span className="inline-block text-[#00c0f7] text-xs tracking-[0.25em] uppercase font-semibold mb-3">Novosti</span>
-              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">Događanja</h1>
-              <p className="mt-3 text-lg text-white/70 max-w-xl">Najnovije vijesti i eventi</p>
+              <span className="inline-block text-[#00c0f7] text-xs tracking-[0.25em] uppercase font-semibold mb-3">{t("title")}</span>
+              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">{t("subtitle")}</h1>
+              <p className="mt-3 text-lg text-white/70 max-w-xl">{t("latest_news")}</p>
             </motion.div>
           </div>
         </div>
@@ -51,7 +54,7 @@ export default function Dogadanja() {
                 <div className="p-8 flex flex-col justify-center">
                   <span className="inline-flex items-center gap-2 text-[#00c0f7] text-xs tracking-wider uppercase font-semibold mb-3">
                     <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                    Aktualno
+                    {t("current")}
                   </span>
                   <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-3 group-hover:text-[#00c0f7] transition-colors duration-300">{pinnedEvent.title}</h2>
                   <div className="flex items-center gap-2 text-white/50 text-sm mb-4">
@@ -60,7 +63,7 @@ export default function Dogadanja() {
                   </div>
                   <p className="text-white/70 text-[15px] leading-relaxed">{pinnedEvent.summary}</p>
                   <span className="inline-flex items-center gap-2 mt-6 text-[#00c0f7] font-semibold text-sm">
-                    Pročitajte više <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    {tc("read_more")} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 </div>
               </motion.div>
@@ -73,7 +76,7 @@ export default function Dogadanja() {
       <section className="py-16 bg-[#f2f3f4]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <motion.div {...fadeInUp} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">Svi događaji</h2>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f]">{tc("all_events")}</h2>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -115,7 +118,7 @@ export default function Dogadanja() {
                       </div>
                     )}
                     <span className="inline-flex items-center gap-1 mt-3 text-[#00c0f7] text-sm font-semibold">
-                      Pročitajte više <ArrowRight className="w-3.5 h-3.5" />
+                      {tc("read_more")} <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </Link>
@@ -133,7 +136,7 @@ export default function Dogadanja() {
             <p className="text-white/60 mb-8 max-w-xl mx-auto">Kontaktirajte nas za informacije o nadolazećim događanjima</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/kontakt" className="inline-flex items-center justify-center gap-2 bg-[#00c0f7] hover:bg-[#00a8d6] text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
-                Kontaktirajte nas <ArrowRight className="w-4 h-4" />
+                {tc("contact_us")} <ArrowRight className="w-4 h-4" />
               </Link>
               <a href="https://www.facebook.com/adriaski" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
                 Facebook stranica
