@@ -20,9 +20,45 @@ interface NavItem {
   dropdown?: NavDropdownItem[];
 }
 
-function getNavItems(t: (key: string) => string, locale: string): NavItem[] {
+interface DynamicMenuItem {
+  slug: string;
+  title: string;
+  menuPosition: string;
+  menuOrder: number;
+}
+
+const menuGroupMap: Record<string, number> = {
+  "o-nama": 1,
+  "ponuda": 2,
+  "ljetna-ponuda": 3,
+};
+
+function getNavItems(t: (key: string) => string, locale: string, dynamicItems: DynamicMenuItem[] = []): NavItem[] {
   const p = (path: string) => `/${locale}${path}`;
-  return [
+
+  // Collect dynamic items per group
+  const dynamicByGroup: Record<string, NavDropdownItem[]> = {};
+  const dynamicTop: NavItem[] = [];
+
+  for (const item of dynamicItems) {
+    // Skip items that are already hardcoded
+    const hardcodedSlugs = [
+      "hotel-adria-ski", "motel-tikvice", "skijalista", "restoran-ognjista", "skola-skijanja",
+      "kamera-live", "gastro-ponuda", "svadbeni-salon", "sportske-pripreme", "seminari", "bazen", "fitness",
+      "brdski-biciklizam", "planinarenje", "ramsko-jezero", "jahanje", "enduro-turizam",
+      "dogadanja", "cjenik", "kontakt",
+    ];
+    if (hardcodedSlugs.includes(item.slug)) continue;
+
+    if (item.menuPosition === "top") {
+      dynamicTop.push({ label: item.title, href: p(`/${item.slug}`) });
+    } else if (menuGroupMap[item.menuPosition] !== undefined) {
+      if (!dynamicByGroup[item.menuPosition]) dynamicByGroup[item.menuPosition] = [];
+      dynamicByGroup[item.menuPosition].push({ label: item.title, href: p(`/${item.slug}`) });
+    }
+  }
+
+  const nav: NavItem[] = [
     { label: t("home"), href: p("/") },
     {
       label: t("about"),
@@ -32,6 +68,7 @@ function getNavItems(t: (key: string) => string, locale: string): NavItem[] {
         { label: t("ski_slopes"), href: p("/skijalista") },
         { label: t("restaurant"), href: p("/restoran-ognjista") },
         { label: t("ski_school"), href: p("/skola-skijanja") },
+        ...(dynamicByGroup["o-nama"] || []),
       ],
     },
     {
@@ -44,6 +81,7 @@ function getNavItems(t: (key: string) => string, locale: string): NavItem[] {
         { label: t("seminars"), href: p("/seminari") },
         { label: t("pool"), href: p("/bazen") },
         { label: t("fitness"), href: p("/fitness") },
+        ...(dynamicByGroup["ponuda"] || []),
       ],
     },
     {
@@ -54,12 +92,16 @@ function getNavItems(t: (key: string) => string, locale: string): NavItem[] {
         { label: t("lake"), href: p("/ramsko-jezero") },
         { label: t("horseback"), href: p("/jahanje") },
         { label: t("enduro"), href: p("/enduro-turizam") },
+        ...(dynamicByGroup["ljetna-ponuda"] || []),
       ],
     },
     { label: t("events"), href: p("/dogadanja") },
     { label: t("pricing"), href: p("/cjenik") },
+    ...dynamicTop,
     { label: t("contact"), href: p("/kontakt") },
   ];
+
+  return nav;
 }
 
 function DesktopDropdown({
@@ -148,10 +190,18 @@ function MobileAccordion({
 export function Navbar() {
   const t = usePathTranslations("nav");
   const locale = usePathLocale();
-  const navItems = getNavItems(t, locale);
+  const [dynamicItems, setDynamicItems] = useState<DynamicMenuItem[]>([]);
+  const navItems = getNavItems(t, locale, dynamicItems);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    fetch("/api/menu")
+      .then((r) => r.ok ? r.json() : [])
+      .then(setDynamicItems)
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     if (isMobileOpen) {

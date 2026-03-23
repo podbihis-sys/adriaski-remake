@@ -75,11 +75,17 @@ export async function PUT(
       label: stripHtml(String(section.label || '')).slice(0, 200),
     }));
 
+    const validMenuPositions = ['none', 'top', 'o-nama', 'ponuda', 'ljetna-ponuda'];
+    const menuPosition = validMenuPositions.includes(body.menuPosition) ? body.menuPosition : (existing?.menuPosition || 'none');
+    const menuOrder = typeof body.menuOrder === 'number' ? Math.max(0, Math.min(99, body.menuOrder)) : (existing?.menuOrder ?? 99);
+
     const updatedContent: PageContent = {
       slug,
       title: body.title ? stripHtml(String(body.title)).slice(0, 200) : (existing?.title || slug),
       sections: sanitizedSections,
       updatedAt: new Date().toISOString(),
+      menuPosition,
+      menuOrder,
     };
 
     await savePageContent(slug, updatedContent);

@@ -9,11 +9,15 @@ export interface PageSection {
   label: string;
 }
 
+export type MenuPosition = "none" | "top" | "o-nama" | "ponuda" | "ljetna-ponuda";
+
 export interface PageContent {
   slug: string;
   title: string;
   sections: PageSection[];
   updatedAt: string;
+  menuPosition?: MenuPosition;
+  menuOrder?: number;
 }
 
 // Store all pages as a hash: adriaski:pages -> { slug: PageContent }
@@ -88,6 +92,33 @@ export async function listPages(): Promise<{ slug: string; title: string; update
 
     return DEFAULT_PAGES.map((p) => ({ slug: p.slug, title: p.title, updatedAt: now }))
       .sort((a, b) => a.title.localeCompare(b.title));
+  } catch {
+    return [];
+  }
+}
+
+export interface MenuItem {
+  slug: string;
+  title: string;
+  menuPosition: MenuPosition;
+  menuOrder: number;
+}
+
+export async function getMenuItems(): Promise<MenuItem[]> {
+  try {
+    const redis = getRedis();
+    const all = await redis.hgetall<Record<string, PageContent>>(PAGES_KEY);
+    if (!all) return [];
+
+    return Object.values(all)
+      .filter((p) => p.menuPosition && p.menuPosition !== "none")
+      .map((p) => ({
+        slug: p.slug,
+        title: p.title,
+        menuPosition: p.menuPosition || "none",
+        menuOrder: p.menuOrder ?? 99,
+      }))
+      .sort((a, b) => a.menuOrder - b.menuOrder);
   } catch {
     return [];
   }

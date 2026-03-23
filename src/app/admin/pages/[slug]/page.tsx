@@ -18,12 +18,24 @@ interface PageSection {
   label: string;
 }
 
+type MenuPosition = "none" | "top" | "o-nama" | "ponuda" | "ljetna-ponuda";
+
 interface PageContent {
   slug: string;
   title: string;
   sections: PageSection[];
   updatedAt: string;
+  menuPosition?: MenuPosition;
+  menuOrder?: number;
 }
+
+const menuPositionLabels: Record<MenuPosition, string> = {
+  none: "Nije u meniju",
+  top: "Glavna navigacija",
+  "o-nama": "Pod 'O nama'",
+  "ponuda": "Pod 'Ponuda'",
+  "ljetna-ponuda": "Pod 'Ljetna ponuda'",
+};
 
 const sectionTypeLabels: Record<string, { label: string; icon: typeof Type }> = {
   heading: { label: "Naslov", icon: Type },
@@ -151,7 +163,7 @@ export default function AdminPageEditorPage() {
       const res = await fetch(`/api/admin/pages/${slug}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json", "x-admin-token": token },
-        body: JSON.stringify({ title: page.title, sections: page.sections }),
+        body: JSON.stringify({ title: page.title, sections: page.sections, menuPosition: page.menuPosition || "none", menuOrder: page.menuOrder ?? 99 }),
       });
       if (!res.ok) throw new Error((await res.json()).error || "Greška.");
       setPage(await res.json());
@@ -209,6 +221,40 @@ export default function AdminPageEditorPage() {
           {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
           Spremi
         </button>
+      </div>
+
+      {/* Menu Position */}
+      <div className="bg-white border border-gray-200 rounded-xl p-4 mb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <span className="text-sm font-semibold text-gray-700">Pozicija u meniju:</span>
+          </div>
+          <select
+            value={page.menuPosition || "none"}
+            onChange={(e) => { setPage({ ...page, menuPosition: e.target.value as MenuPosition }); markDirty(); }}
+            className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] outline-none"
+          >
+            {Object.entries(menuPositionLabels).map(([val, label]) => (
+              <option key={val} value={val}>{label}</option>
+            ))}
+          </select>
+          {page.menuPosition && page.menuPosition !== "none" && (
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <span className="text-xs text-gray-500">Redoslijed:</span>
+              <input
+                type="number"
+                min={0}
+                max={99}
+                value={page.menuOrder ?? 99}
+                onChange={(e) => { setPage({ ...page, menuOrder: Number(e.target.value) }); markDirty(); }}
+                className="w-16 px-2 py-2 border border-gray-200 rounded-lg text-sm text-center focus:ring-2 focus:ring-[#00c0f7]/30 outline-none"
+              />
+            </div>
+          )}
+        </div>
+        {page.menuPosition && page.menuPosition !== "none" && (
+          <p className="text-xs text-gray-400 mt-2">Niži broj = pojavljuje se ranije u meniju. Spremi za primjenu.</p>
+        )}
       </div>
 
       {/* Add at top */}
