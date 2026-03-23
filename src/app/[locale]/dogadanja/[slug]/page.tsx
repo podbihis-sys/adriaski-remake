@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Phone, Mail, ArrowRight } from "lucide-react";
 import { events, getEventBySlug } from "@/lib/events";
 import { useTranslations, useLocale } from "next-intl";
+import { JsonLd, eventJsonLd } from "@/components/seo/JsonLd";
 
 export default function EventArticlePage() {
   const t = useTranslations("event_detail");
@@ -36,6 +37,7 @@ export default function EventArticlePage() {
 
   return (
     <main>
+      <JsonLd data={eventJsonLd(event)} />
       {/* ===== HERO ===== */}
       <section className="relative h-[45vh] min-h-[300px] md:h-[55vh] overflow-hidden">
         <Image src={event.image} alt={event.title} fill className="object-cover" priority />

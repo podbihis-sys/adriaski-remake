@@ -22,22 +22,17 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Hotel Adria Ski | Premium Ski & Wellness Resort | Kupres, BiH",
+  title: {
+    default: "Hotel Adria Ski | Premium Ski & Wellness Resort | Kupres, BiH",
+    template: "%s",
+  },
   description:
-    "Hotel Adria Ski u Kupresu nudi premium smještaj, skijalište, wellness, bazen i restoran. Idealna destinacija za zimski odmor, ljetni odmor, seminare i sportske pripreme u srcu Bosne i Hercegovine.",
+    "Hotel Adria Ski u Kupresu nudi premium smještaj, skijalište, wellness, bazen i restoran.",
   icons: {
     icon: "/images/logo-square.png",
     apple: "/images/logo-square.png",
   },
-  openGraph: {
-    title: "Hotel Adria Ski | Premium Ski & Wellness Resort | Kupres, BiH",
-    description:
-      "Hotel Adria Ski u Kupresu nudi premium smještaj, skijalište, wellness, bazen i restoran. Idealna destinacija za zimski odmor, ljetni odmor, seminare i sportske pripreme u srcu Bosne i Hercegovine.",
-    type: "website",
-    locale: "bs_BA",
-    siteName: "Hotel Adria Ski",
-    url: "https://adriaski.net",
-  },
+  metadataBase: new URL("https://adriaski.net"),
 };
 
 export default function RootLayout({

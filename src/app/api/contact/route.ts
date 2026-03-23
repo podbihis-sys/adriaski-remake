@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@/lib/supabase";
 import { contactSchema, sanitize } from "@/lib/validations";
 import { rateLimit } from "@/lib/rate-limit";
+import { sendContactMail } from "@/lib/mailer";
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,7 +22,20 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
 
-    const result = contactSchema.safeParse(body);
+    // Anti-spam: honeypot — bot filled the hidden field
+    if (body._hp) {
+      return NextResponse.json({ success: true, message: "Vaša poruka je uspješno poslana!" });
+    }
+
+    // Anti-spam: form submitted too fast (< 3 seconds)
+    if (body._t && Date.now() - Number(body._t) < 3000) {
+      return NextResponse.json({ success: true, message: "Vaša poruka je uspješno poslana!" });
+    }
+
+    const { _hp, _t, ...formData } = body;
+    void _hp; void _t;
+
+    const result = contactSchema.safeParse(formData);
     if (!result.success) {
       return NextResponse.json(
         { success: false, message: "Greška u validaciji.", errors: result.error.flatten().fieldErrors },
@@ -44,6 +58,21 @@ export async function POST(request: NextRequest) {
         { success: false, message: "Greška pri slanju poruke." },
         { status: 500 }
       );
+    }
+
+    // Send email notification (fire-and-forget, don't block response)
+    try {
+      await sendContactMail({
+        name: sanitized.name,
+        email: sanitized.email,
+        nachricht: sanitized.nachricht,
+        ulica: result.data.ulica ? sanitize(result.data.ulica) : undefined,
+        postanskiBroj: result.data.postanskiBroj ? sanitize(result.data.postanskiBroj) : undefined,
+        grad: result.data.grad ? sanitize(result.data.grad) : undefined,
+        drzava: result.data.drzava ? sanitize(result.data.drzava) : undefined,
+      });
+    } catch (mailErr) {
+      console.error("Mail send error:", mailErr);
     }
 
     return NextResponse.json(

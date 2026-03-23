@@ -2,8 +2,13 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, CheckCircle, AlertCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useState, useEffect, useRef, FormEvent } from "react";
+import dynamic from "next/dynamic";
+import BookingForm from "@/components/forms/BookingForm";
+
+const HotelMap = dynamic(() => import("@/components/map/HotelMap"), { ssr: false });
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -15,6 +20,64 @@ const fadeInUp = {
 export default function Kontakt() {
   const t = useTranslations("contact");
   const tc = useTranslations("common");
+  const tb = useTranslations("booking");
+
+  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
+  const [formTimestamp, setFormTimestamp] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    setFormTimestamp(String(Date.now()));
+  }, []);
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus(null);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    const emailVal = fd.get("email") as string;
+    const emailConfirm = fd.get("emailConfirm") as string;
+    if (emailVal !== emailConfirm) {
+      setStatus({ type: "error", message: t("email_mismatch") });
+      return;
+    }
+
+    setSending(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: `${fd.get("prezime")} ${fd.get("ime")}`.trim(),
+          email: emailVal,
+          ulica: fd.get("ulica") || undefined,
+          postanskiBroj: fd.get("postanskiBroj") || undefined,
+          grad: fd.get("grad") || undefined,
+          drzava: fd.get("drzava") || undefined,
+          nachricht: fd.get("poruka"),
+          _hp: fd.get("_hp"),
+          _t: fd.get("_t"),
+        }),
+      });
+
+      const data = await res.json();
+      if (res.status === 429) {
+        setStatus({ type: "error", message: t("rate_limit_message") });
+      } else if (data.success) {
+        setStatus({ type: "success", message: t("success_message") });
+        form.reset();
+        setFormTimestamp(String(Date.now()));
+      } else {
+        setStatus({ type: "error", message: data.message || t("error_message") });
+      }
+    } catch {
+      setStatus({ type: "error", message: t("error_message") });
+    } finally {
+      setSending(false);
+    }
+  }
 
   return (
     <main>
@@ -114,17 +177,8 @@ export default function Kontakt() {
                 </div>
               </div>
 
-              <div className="mt-10 rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2877.5!2d17.2847!3d43.9614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475f9a0e0b0b0001%3A0x0!2sHotel%20Adria%20Ski!5e0!3m2!1sbs!2sba!4v1700000000000!5m2!1sbs!2sba"
-                  width="100%"
-                  height="280"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Hotel Adria Ski lokacija"
-                />
+              <div className="mt-10 rounded-2xl overflow-hidden shadow-lg border border-gray-100 h-[280px]">
+                <HotelMap />
               </div>
             </motion.div>
 
@@ -139,7 +193,11 @@ export default function Kontakt() {
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-2">{t("form_subtitle")}</h2>
               <p className="text-gray-500 text-sm mb-8">{t("form_description")}</p>
 
-              <form className="space-y-4">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot — hidden from humans, bots fill it */}
+                <input type="text" name="_hp" autoComplete="off" tabIndex={-1} aria-hidden="true" style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0, width: 0 }} />
+                <input type="hidden" name="_t" value={formTimestamp} />
+
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="prezime" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">{t("last_name")} *</label>
@@ -152,24 +210,24 @@ export default function Kontakt() {
                 </div>
 
                 <div>
-                  <label htmlFor="ulica" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">{t("street")} *</label>
-                  <input type="text" id="ulica" name="ulica" required className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
+                  <label htmlFor="ulica" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">{t("street")}</label>
+                  <input type="text" id="ulica" name="ulica" className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="postanskiBroj" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">{t("postal_code")} *</label>
-                    <input type="text" id="postanskiBroj" name="postanskiBroj" required className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
+                    <label htmlFor="postanskiBroj" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">{t("postal_code")}</label>
+                    <input type="text" id="postanskiBroj" name="postanskiBroj" className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
                   </div>
                   <div>
-                    <label htmlFor="grad" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">{t("city")} *</label>
-                    <input type="text" id="grad" name="grad" required className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
+                    <label htmlFor="grad" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">{t("city")}</label>
+                    <input type="text" id="grad" name="grad" className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="drzava" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">{t("country")} *</label>
-                  <input type="text" id="drzava" name="drzava" required className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
+                  <label htmlFor="drzava" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">{t("country")}</label>
+                  <input type="text" id="drzava" name="drzava" className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all" />
                 </div>
 
                 <div>
@@ -184,15 +242,36 @@ export default function Kontakt() {
 
                 <div>
                   <label htmlFor="poruka" className="block text-xs font-semibold text-[#163c6f] mb-1.5 uppercase tracking-wider">{t("your_message")} *</label>
-                  <textarea id="poruka" name="poruka" rows={5} required className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all resize-none" />
+                  <textarea id="poruka" name="poruka" rows={5} required minLength={10} className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-[#3d3d3d] bg-white focus:outline-none focus:ring-2 focus:ring-[#00c0f7]/30 focus:border-[#00c0f7] transition-all resize-none" />
                 </div>
 
-                <button type="submit" className="w-full bg-[#163c6f] hover:bg-[#0b1d42] text-white font-semibold py-3.5 px-8 rounded-lg transition-all duration-300 text-sm">
-                  {t("send_message")}
+                {status && (
+                  <div className={`flex items-start gap-2 rounded-lg p-3 text-sm ${status.type === "success" ? "bg-green-50 text-green-800 border border-green-200" : "bg-red-50 text-red-800 border border-red-200"}`}>
+                    {status.type === "success" ? <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0" /> : <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />}
+                    <span>{status.message}</span>
+                  </div>
+                )}
+
+                <button type="submit" disabled={sending} className="w-full bg-[#163c6f] hover:bg-[#0b1d42] disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3.5 px-8 rounded-lg transition-all duration-300 text-sm">
+                  {sending ? t("sending") : t("send_message")}
                 </button>
               </form>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* ===== BOOKING SECTION ===== */}
+      <section className="py-20 bg-[#f2f3f4]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <motion.div {...fadeInUp} className="text-center mb-10">
+            <span className="inline-block text-[#00c0f7] text-xs tracking-[0.2em] uppercase font-semibold mb-3">{tb("section_title")}</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#163c6f] mb-3">{tb("section_subtitle")}</h2>
+            <p className="text-gray-500 text-sm">{tb("section_desc")}</p>
+          </motion.div>
+          <motion.div {...fadeInUp} className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+            <BookingForm />
+          </motion.div>
         </div>
       </section>
     </main>

@@ -4,8 +4,11 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import {
   Mountain, Camera, Calendar, Plus, ExternalLink, TrendingUp,
-  Eye, Users, Clock, FileText, ArrowUpRight,
+  Eye, Users, Clock, FileText, ArrowUpRight, BarChart3,
 } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const VisitorChart = dynamic(() => import("@/components/admin/VisitorChart"), { ssr: false });
 
 interface EventItem {
   id: string;
@@ -32,6 +35,7 @@ export default function AdminDashboard() {
   const [events, setEvents] = useState<EventItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [visits, setVisits] = useState<PageVisit[]>([]);
+  const [dailyViews, setDailyViews] = useState<{ date: string; views: number }[]>([]);
 
   const token = typeof window !== "undefined" ? localStorage.getItem("admin_token") || "" : "";
 
@@ -51,6 +55,17 @@ export default function AdminDashboard() {
         const analyticsData = await analyticsRes.json();
         const sorted = [...(analyticsData.pageViews || [])].sort((a: PageVisit, b: PageVisit) => b.count - a.count).slice(0, 10);
         setVisits(sorted);
+
+        // Build daily views for chart (last 30 days)
+        const dv: Record<string, number> = analyticsData.dailyViews || {};
+        const last30: { date: string; views: number }[] = [];
+        for (let i = 29; i >= 0; i--) {
+          const d = new Date();
+          d.setDate(d.getDate() - i);
+          const key = d.toISOString().slice(0, 10);
+          last30.push({ date: key.slice(5), views: dv[key] || 0 });
+        }
+        setDailyViews(last30);
       }
     } catch {} finally { setLoading(false); }
   }, [token]);
@@ -121,6 +136,18 @@ export default function AdminDashboard() {
           </div>
           <p className="text-lg font-bold text-[#163c6f]">{events.length}</p>
           <p className="text-xs text-gray-500">Događaja</p>
+        </div>
+      </div>
+
+      {/* Visitor Trend Chart */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+        <div className="p-5 border-b border-gray-100 flex items-center justify-between">
+          <h2 className="text-base font-semibold text-gray-900 flex items-center gap-2">
+            <BarChart3 className="w-5 h-5 text-[#163c6f]" /> Posjete (zadnjih 30 dana)
+          </h2>
+        </div>
+        <div className="p-5">
+          <VisitorChart data={dailyViews} />
         </div>
       </div>
 

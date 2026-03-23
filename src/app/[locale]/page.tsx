@@ -8,6 +8,7 @@ import { useTranslations, useLocale } from "next-intl";
 
 
 import { events as allEvents } from "@/lib/events";
+import { JsonLd, hotelJsonLd, localBusinessJsonLd } from "@/components/seo/JsonLd";
 
 const latestNews = allEvents.slice(0, 3).map((e) => ({
   title: e.title,
@@ -72,6 +73,8 @@ export default function HomePage() {
 
   return (
     <main>
+      <JsonLd data={hotelJsonLd()} />
+      <JsonLd data={localBusinessJsonLd()} />
       {/* ===== HERO SECTION ===== */}
       <section className="relative h-[85vh] min-h-[500px] overflow-hidden">
         {/* Background Video */}

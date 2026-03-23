@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@/lib/supabase";
 import { bookingSchema, sanitize } from "@/lib/validations";
 import { rateLimit } from "@/lib/rate-limit";
+import { sendBookingMail } from "@/lib/mailer";
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,7 +22,20 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
 
-    const result = bookingSchema.safeParse(body);
+    // Anti-spam: honeypot
+    if (body._hp) {
+      return NextResponse.json({ success: true, message: "Vaša rezervacija je uspješno poslana!" });
+    }
+
+    // Anti-spam: form submitted too fast (< 3 seconds)
+    if (body._t && Date.now() - Number(body._t) < 3000) {
+      return NextResponse.json({ success: true, message: "Vaša rezervacija je uspješno poslana!" });
+    }
+
+    const { _hp, _t, ...formData } = body;
+    void _hp; void _t;
+
+    const result = bookingSchema.safeParse(formData);
     if (!result.success) {
       return NextResponse.json(
         { success: false, message: "Greška u validaciji.", errors: result.error.flatten().fieldErrors },
@@ -47,6 +61,13 @@ export async function POST(request: NextRequest) {
         { success: false, message: "Greška pri spremanju rezervacije." },
         { status: 500 }
       );
+    }
+
+    // Send email notification
+    try {
+      await sendBookingMail(sanitized);
+    } catch (mailErr) {
+      console.error("Mail send error:", mailErr);
     }
 
     return NextResponse.json(

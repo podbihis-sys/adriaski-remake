@@ -12,12 +12,14 @@ interface AnalyticsData {
   pageViews: PageView[];
   totalVisits: number;
   lastUpdated: string;
+  dailyViews?: Record<string, number>;
 }
 
 const DEFAULT_DATA: AnalyticsData = {
   pageViews: [],
   totalVisits: 0,
   lastUpdated: new Date().toISOString(),
+  dailyViews: {},
 };
 
 export async function getAnalytics(): Promise<AnalyticsData> {
@@ -48,6 +50,9 @@ export async function trackPageView(pagePath: string): Promise<void> {
       data.pageViews.push({ path: normalized, count: 1, label });
     }
     data.totalVisits++;
+    const today = new Date().toISOString().slice(0, 10);
+    if (!data.dailyViews) data.dailyViews = {};
+    data.dailyViews[today] = (data.dailyViews[today] || 0) + 1;
     data.lastUpdated = new Date().toISOString();
     await redis.set(ANALYTICS_KEY, data);
   } catch {

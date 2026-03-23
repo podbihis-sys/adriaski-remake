@@ -8,6 +8,7 @@ export function Footer() {
   const tf = usePathTranslations("footer");
   const tn = usePathTranslations("nav");
   const tc = usePathTranslations("common");
+  const tck = usePathTranslations("cookies");
   const locale = usePathLocale();
   const p = (path: string) => `/${locale}${path}`;
 
@@ -131,10 +132,16 @@ export function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <p className="text-xs text-[#f9f9f9]/50 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-xs text-[#f9f9f9]/50">
             &copy; 2026 Hotel Adria Ski. {tc("all_rights_reserved")}.
           </p>
+          <button
+            onClick={() => window.dispatchEvent(new Event("show-cookie-settings"))}
+            className="text-xs text-[#f9f9f9]/50 hover:text-[#00c0f7] transition-colors cursor-pointer"
+          >
+            {tck("footer_link")}
+          </button>
         </div>
       </div>
     </footer>

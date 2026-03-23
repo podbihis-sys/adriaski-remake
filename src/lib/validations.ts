@@ -18,9 +18,13 @@ export const bookingSchema = z.object({
 });
 
 export const contactSchema = z.object({
-  name: z.string().min(2, 'Name muss mindestens 2 Zeichen haben').max(100).trim(),
-  email: z.string().email('Ungültige E-Mail-Adresse').max(255).trim().toLowerCase(),
-  nachricht: z.string().min(10, 'Nachricht muss mindestens 10 Zeichen haben').max(5000).trim(),
+  name: z.string().min(2, 'Ime mora imati najmanje 2 znaka').max(100).trim(),
+  email: z.string().email('Nevažeća e-mail adresa').max(255).trim().toLowerCase(),
+  ulica: z.string().max(200).trim().optional(),
+  postanskiBroj: z.string().max(20).trim().optional(),
+  grad: z.string().max(100).trim().optional(),
+  drzava: z.string().max(100).trim().optional(),
+  nachricht: z.string().min(10, 'Poruka mora imati najmanje 10 znakova').max(5000).trim(),
 });
 
 // Sanitize input against XSS
