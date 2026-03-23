@@ -46,7 +46,6 @@ export default function RootLayout({
       className={`${inter.variable} ${playfairDisplay.variable} ${montserrat.variable}`}
     >
       <head>
-        <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#163c6f" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
