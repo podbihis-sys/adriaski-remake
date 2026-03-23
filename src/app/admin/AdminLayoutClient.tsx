@@ -364,6 +364,15 @@ export default function AdminLayoutClient({ children }: { children: ReactNode })
           </div>
         </div>
 
+        {/* Site Switcher */}
+        <div className="px-4 py-3 border-b border-white/10">
+          <p className="text-[10px] uppercase tracking-wider text-white/40 mb-2">Projekt</p>
+          <div className="flex gap-1">
+            <span className="flex-1 px-3 py-1.5 bg-white/20 text-white text-xs font-medium rounded text-center">Adria Ski</span>
+            <a href="https://hotel-jezero-remake.vercel.app/admin" target="_blank" rel="noopener noreferrer" className="flex-1 px-3 py-1.5 bg-white/5 text-white/60 hover:bg-white/10 hover:text-white text-xs font-medium rounded text-center transition">Hotel Jezero</a>
+          </div>
+        </div>
+
         <nav className="flex-1 p-4 space-y-1">
           {navItems.map((item) => {
             const isActive =

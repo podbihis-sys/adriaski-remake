@@ -64,6 +64,7 @@ function getNavItems(t: (key: string) => string, locale: string, dynamicItems: D
       label: t("about"),
       dropdown: [
         { label: t("hotel"), href: p("/hotel-adria-ski") },
+        { label: "Hotel Jezero", href: "https://hotel-jezero-remake.vercel.app" },
         { label: t("motel_tikvice"), href: p("/motel-tikvice") },
         { label: t("ski_slopes"), href: p("/skijalista") },
         { label: t("restaurant"), href: p("/restoran-ognjista") },
