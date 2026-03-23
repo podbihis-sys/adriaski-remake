@@ -146,17 +146,17 @@ export default function AdminSkijalistePage() {
   if (loading) return <div className="flex items-center justify-center h-64"><div className="w-8 h-8 border-4 border-[#163c6f] border-t-transparent rounded-full animate-spin" /></div>;
 
   return (
-    <div className="space-y-6 max-w-4xl">
+    <div className="space-y-6 max-w-4xl w-full">
       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
 
       {/* Header with Save button */}
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">Skijalište & Kamere</h1>
-        <div className="flex items-center gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Skijalište & Kamere</h1>
+        <div className="flex items-center gap-2 sm:gap-3">
           {isDirty && (
             <button
               onClick={handleDiscard}
-              className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition text-sm font-medium"
+              className="px-3 sm:px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition text-sm font-medium"
             >
               Poništi
             </button>
@@ -164,14 +164,14 @@ export default function AdminSkijalistePage() {
           <button
             onClick={handleSaveAll}
             disabled={!isDirty || saving}
-            className={`flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium transition ${
+            className={`flex items-center gap-2 px-4 sm:px-5 py-2 rounded-lg text-sm font-medium transition ${
               isDirty
                 ? "bg-[#163c6f] text-white hover:bg-[#1a4a87]"
                 : "bg-gray-200 text-gray-400 cursor-not-allowed"
             }`}
           >
             <Save className="w-4 h-4" />
-            {saving ? "Spremam..." : "Spremi promjene"}
+            {saving ? "Spremam..." : "Spremi"}
           </button>
         </div>
       </div>
@@ -210,9 +210,9 @@ export default function AdminSkijalistePage() {
         </div>
 
         {/* Opening Date */}
-        <div className="p-5 bg-blue-50 border border-blue-200 rounded-xl">
+        <div className="p-4 sm:p-5 bg-blue-50 border border-blue-200 rounded-xl overflow-hidden">
           <div className="flex items-center gap-2 mb-3">
-            <CalendarDays className="w-5 h-5 text-blue-600" />
+            <CalendarDays className="w-5 h-5 text-blue-600 flex-shrink-0" />
             <h3 className="font-semibold text-blue-800 text-sm">Datum otvaranja sezone</h3>
           </div>
           <p className="text-xs text-blue-600 mb-3">Ako je manje od 10 dana, prikazuje se countdown na stranici (do 09:00)</p>
@@ -220,7 +220,7 @@ export default function AdminSkijalistePage() {
             type="date"
             value={openingDate}
             onChange={e => setOpeningDate(e.target.value)}
-            className="w-full px-4 py-2 border border-blue-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none"
+            className="w-full max-w-full px-3 sm:px-4 py-2 border border-blue-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none box-border"
           />
           {openingDate && (
             <p className="text-xs text-blue-500 mt-2">Postavljeno: {new Date(openingDate).toLocaleDateString("hr-HR", { day: "numeric", month: "long", year: "numeric" })}</p>
@@ -314,15 +314,15 @@ export default function AdminSkijalistePage() {
 
       {/* Bottom save bar */}
       {isDirty && (
-        <div className="sticky bottom-4 bg-white border border-gray-200 rounded-xl shadow-lg p-4 flex items-center justify-between">
-          <p className="text-sm text-gray-600">Imate nespremljene promjene</p>
-          <div className="flex gap-3">
-            <button onClick={handleDiscard} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition text-sm">
+        <div className="sticky bottom-4 bg-white border border-gray-200 rounded-xl shadow-lg p-3 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-sm text-gray-600">Nespremljene promjene</p>
+          <div className="flex gap-2 sm:gap-3 w-full sm:w-auto">
+            <button onClick={handleDiscard} className="flex-1 sm:flex-none px-3 sm:px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition text-sm">
               Poništi
             </button>
-            <button onClick={handleSaveAll} disabled={saving} className="flex items-center gap-2 px-5 py-2 bg-[#163c6f] text-white rounded-lg hover:bg-[#1a4a87] transition text-sm font-medium disabled:opacity-50">
+            <button onClick={handleSaveAll} disabled={saving} className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-5 py-2 bg-[#163c6f] text-white rounded-lg hover:bg-[#1a4a87] transition text-sm font-medium disabled:opacity-50">
               <Save className="w-4 h-4" />
-              {saving ? "Spremam..." : "Spremi promjene"}
+              {saving ? "Spremam..." : "Spremi"}
             </button>
           </div>
         </div>
