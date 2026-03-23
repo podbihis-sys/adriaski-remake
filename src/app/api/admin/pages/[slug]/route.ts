@@ -53,35 +53,37 @@ export async function PUT(
 
   try {
     const existing = await getPageContent(slug);
-    if (!existing) {
-      return NextResponse.json({ error: 'Stranica nije pronađena.' }, { status: 404 });
-    }
-
     const body = await request.json();
 
     if (!body.sections || !Array.isArray(body.sections)) {
       return NextResponse.json({ error: 'Sekcije su obavezne.' }, { status: 400 });
     }
 
+    // For new pages, title is required
+    if (!existing && !body.title) {
+      return NextResponse.json({ error: 'Naziv stranice je obavezan.' }, { status: 400 });
+    }
+
     // Sanitize sections
+    const validTypes = ['text', 'image', 'heading', 'gallery', 'stats'];
     const sanitizedSections: PageSection[] = body.sections.map((section: PageSection) => ({
       id: String(section.id || '').slice(0, 100),
-      type: ['text', 'image', 'heading', 'gallery'].includes(section.type) ? section.type : 'text',
+      type: validTypes.includes(section.type) ? section.type : 'text',
       content: section.type === 'image' || section.type === 'gallery'
-        ? String(section.content || '').slice(0, 2000)
+        ? String(section.content || '').slice(0, 5000)
         : stripHtml(String(section.content || '')).slice(0, 10000),
       label: stripHtml(String(section.label || '')).slice(0, 200),
     }));
 
     const updatedContent: PageContent = {
       slug,
-      title: existing.title,
+      title: body.title ? stripHtml(String(body.title)).slice(0, 200) : (existing?.title || slug),
       sections: sanitizedSections,
       updatedAt: new Date().toISOString(),
     };
 
     await savePageContent(slug, updatedContent);
-    return NextResponse.json(updatedContent);
+    return NextResponse.json(updatedContent, { status: existing ? 200 : 201 });
   } catch {
     return NextResponse.json({ error: 'Neispravan zahtjev.' }, { status: 400 });
   }

@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { FileText, Clock, ArrowRight, Loader2 } from "lucide-react";
+import { FileText, Clock, ArrowRight, Loader2, RefreshCw, Plus } from "lucide-react";
 
 interface PageItem {
   slug: string;
@@ -13,26 +13,29 @@ interface PageItem {
 export default function AdminPagesPage() {
   const [pages, setPages] = useState<PageItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    async function fetchPages() {
-      try {
-        const token = localStorage.getItem("admin_token") || "";
-        const res = await fetch("/api/admin/pages", {
-          headers: { "x-admin-token": token },
-        });
-        if (!res.ok) throw new Error("Greška pri dohvaćanju stranica.");
-        const data = await res.json();
-        setPages(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Greška.");
-      } finally {
-        setLoading(false);
-      }
+  const fetchPages = useCallback(async (showRefresh = false) => {
+    if (showRefresh) setRefreshing(true);
+    try {
+      const token = localStorage.getItem("admin_token") || "";
+      const res = await fetch("/api/admin/pages", {
+        headers: { "x-admin-token": token },
+      });
+      if (!res.ok) throw new Error("Greška pri dohvaćanju stranica.");
+      const data = await res.json();
+      setPages(data);
+      setError("");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Greška.");
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
     }
-    fetchPages();
   }, []);
+
+  useEffect(() => { fetchPages(); }, [fetchPages]);
 
   function formatDate(iso: string) {
     try {
@@ -66,18 +69,38 @@ export default function AdminPagesPage() {
 
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-[#163c6f]">Stranice</h1>
-        <p className="text-gray-500 mt-1">Uredite sadržaj stranica web stranice</p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8">
+        <div>
+          <h1 className="text-xl sm:text-2xl font-bold text-[#163c6f]">Stranice</h1>
+          <p className="text-gray-500 mt-1 text-sm">Uredite sadržaj stranica web stranice</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => fetchPages(true)}
+            disabled={refreshing}
+            className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition text-sm font-medium disabled:opacity-50"
+          >
+            <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin" : ""}`} />
+            Aktualiziraj
+          </button>
+          <Link
+            href="/admin/pages/new"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-[#163c6f] text-white rounded-lg hover:bg-[#1a4a87] transition text-sm font-medium"
+          >
+            <Plus className="w-4 h-4" />
+            Nova stranica
+          </Link>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {pages.map((page) => (
-          <div
+          <Link
             key={page.slug}
-            className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300"
+            href={`/admin/pages/${page.slug}`}
+            className="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg hover:border-[#00c0f7]/30 transition-all duration-300 block"
           >
-            <div className="flex items-start gap-3 mb-4">
+            <div className="flex items-start gap-3 mb-3">
               <div className="w-10 h-10 rounded-lg bg-[#163c6f]/10 flex items-center justify-center flex-shrink-0">
                 <FileText className="w-5 h-5 text-[#163c6f]" />
               </div>
@@ -87,18 +110,16 @@ export default function AdminPagesPage() {
               </div>
             </div>
 
-            <div className="flex items-center gap-1.5 text-xs text-gray-400 mb-4">
-              <Clock className="w-3.5 h-3.5" />
-              <span>{formatDate(page.updatedAt)}</span>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5 text-xs text-gray-400">
+                <Clock className="w-3.5 h-3.5" />
+                <span>{formatDate(page.updatedAt)}</span>
+              </div>
+              <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#00c0f7]">
+                Uredi <ArrowRight className="w-3.5 h-3.5" />
+              </span>
             </div>
-
-            <Link
-              href={`/admin/pages/${page.slug}`}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#00c0f7] hover:text-[#00a8d6] transition-colors"
-            >
-              Uredi <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+          </Link>
         ))}
       </div>
 

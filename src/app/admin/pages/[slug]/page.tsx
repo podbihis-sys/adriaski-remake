@@ -151,7 +151,7 @@ export default function AdminPageEditorPage() {
       const res = await fetch(`/api/admin/pages/${slug}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json", "x-admin-token": token },
-        body: JSON.stringify({ sections: page.sections }),
+        body: JSON.stringify({ title: page.title, sections: page.sections }),
       });
       if (!res.ok) throw new Error((await res.json()).error || "Greška.");
       setPage(await res.json());
@@ -192,15 +192,20 @@ export default function AdminPageEditorPage() {
       )}
 
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
-        <div>
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8">
+        <div className="flex-1 min-w-0">
           <Link href="/admin/pages" className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#163c6f] transition-colors mb-2">
             <ArrowLeft className="w-4 h-4" /> Nazad
           </Link>
-          <h1 className="text-2xl font-bold text-[#163c6f]">{page.title}</h1>
+          <input
+            type="text"
+            value={page.title}
+            onChange={(e) => { setPage({ ...page, title: e.target.value }); markDirty(); }}
+            className="block w-full text-2xl font-bold text-[#163c6f] bg-transparent border-none outline-none focus:ring-0 p-0"
+          />
           <p className="text-xs text-gray-400 mt-1">/{page.slug}</p>
         </div>
-        <button onClick={handleSave} disabled={saving} className="inline-flex items-center gap-2 bg-[#163c6f] hover:bg-[#0b1d42] text-white font-semibold px-6 py-3 rounded-lg transition-all disabled:opacity-50">
+        <button onClick={handleSave} disabled={saving} className="inline-flex items-center gap-2 bg-[#163c6f] hover:bg-[#0b1d42] text-white font-semibold px-5 py-2.5 rounded-lg transition-all disabled:opacity-50 flex-shrink-0">
           {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
           Spremi
         </button>
